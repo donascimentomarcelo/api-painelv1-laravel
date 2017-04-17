@@ -1,0 +1,123 @@
+.header{
+	background-image: url(../img/painel.jpg);
+	height: 400px;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.logo{
+	height: 280px;
+	width: 60%;
+	padding-top: 1%;
+	margin-left: 2%;
+}
+
+.text-initial{
+	font-family: 'Lobster', cursive;
+	font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    width: 60%;
+    margin-left: 5%;
+    color: #000;
+}
+.container-profile{
+	text-align: -webkit-center;
+	margin-top: 10%;
+}
+
+.text-profile{
+	font-family: 'Lobster', cursive;
+	font-family: 'Pacifico', cursive;
+	color: black;
+}
+
+.container-photo-margins{
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.container-photo{
+	height: 200px;
+	width: 200px;
+	border-radius: 100px;
+	border: black solid 4px;
+	background-color: black;
+}
+.container-center-img{
+	background-image: url(../img/center0.jpg);
+	background-color: rgb(155, 145, 143);
+	width: 100%;
+	height: 400px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
+
+}
+/*.container-center-img-photo{
+	width: 60%;
+	height: 400px;
+	position: relative;
+    z-index: 0;
+	background-size: cover;
+	float: left;
+}*/
+.text-center-reflection{
+	font-family: 'Lobster', cursive;
+	font-family: 'Pacifico', cursive;
+	color: black;
+	font-size: 40px;
+	padding-top: 6%;
+	float: right;
+	width: 50%;
+	margin-right: 3%;
+}
+.container-center{
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+.img-center{
+	
+}
+
+@media(max-width: 2560px)
+{
+.header{
+	background-image: url(../img/painel.jpg);
+	height: 400px;
+	width: 100%;
+	background-repeat: no-repeat;
+ 	background-size: cover;
+
+}
+.logo{
+	height: 280px;
+	width: 60%;
+}
+/*.container-center-img{
+	background-image: url(../img/center0.jpg);
+	width: 100%;
+	height: 500px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}*/
+
+}
+@media(max-width: 1440px)
+{
+.header{
+	background-image: url(../img/painel.jpg);
+	height: 300px;
+	width: 100%;
+	background-repeat: no-repeat;
+ 	background-size: cover;
+
+}
+.logo{
+	height: 100px;
+	margin-top: 2%;
+}
+
+}
