@@ -1,9 +1,12 @@
 .header{
-	background-image: url(../img/painel.jpg);
+	background-image: url(../img/painel0.jpg);
 	height: 400px;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
 }
 
 .logo{
@@ -85,7 +88,7 @@
 @media(max-width: 2560px)
 {
 .header{
-	background-image: url(../img/painel.jpg);
+	background-image: url(../img/painel2.jpg);
 	height: 400px;
 	width: 100%;
 	background-repeat: no-repeat;
@@ -108,7 +111,7 @@
 @media(max-width: 1440px)
 {
 .header{
-	background-image: url(../img/painel.jpg);
+	background-image: url(../img/painel2.jpg);
 	height: 300px;
 	width: 100%;
 	background-repeat: no-repeat;
