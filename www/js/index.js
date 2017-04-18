@@ -1,4 +1,4 @@
-angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax'])
+angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angular-carousel'])
 .config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
 	.state('home',{
@@ -13,7 +13,7 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax'])
 	})
 	$urlRouterProvider.otherwise('/');
 })
-.controller('myController',['$scope', function($scope){
+.controller('myController',['$scope', 'Carousel', function($scope, Carousel){
  
     		$scope.stuff = [
     		"Olá!", 
@@ -26,5 +26,7 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax'])
     		"Entre em contato!",
     		"Ligue para 21 982525286",
     		"Não perca mais tempo e envie um e-mail para contato@marceloprogrammer.com..." 
-    		]
+    		];
+
+    		$scope.Carousel = Carousel;
 }])
