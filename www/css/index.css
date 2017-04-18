@@ -26,7 +26,7 @@
 }
 .container-profile{
 	text-align: -webkit-center;
-	margin-top: 10%;
+	margin-top: 6%;
 }
 
 .text-profile{
@@ -48,7 +48,7 @@
 	background-color: black;
 }
 .container-center-img{
-	background-image: url(../img/center0.jpg);
+	background-image: url(../img/center1.jpg);
 	background-color: rgb(155, 145, 143);
 	width: 100%;
 	height: 400px;
@@ -78,11 +78,24 @@
 	margin-right: 3%;
 }
 .container-center{
-	margin-top: 10%;
-	margin-bottom: 10%;
+	margin-top: 6%;
+	margin-bottom: 6%;
 }
-.img-center{
-	
+.project{
+	font-family: 'Lobster', cursive;
+	font-family: 'Pacifico', cursive;
+	color: black;
+	font-size: 40px;
+	/*padding-top: 6%;*/
+	text-align: center;
+}
+.align-projects{
+	margin: auto 0;
+	font-family: 'Lobster', cursive;
+	font-family: 'Pacifico', cursive;
+	color: black;
+	text-align: center;
+	margin-top: 5%;
 }
 
 @media(max-width: 2560px)
