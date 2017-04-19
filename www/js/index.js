@@ -7,7 +7,7 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
 		controller:'myController'
 	})
 	.state('contact',{
-		url:'/contact',
+		url:'/contato',
 		templateUrl:'templates/contact.html',
 		controller:'myController'
 	})

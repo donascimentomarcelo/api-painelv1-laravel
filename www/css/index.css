@@ -73,14 +73,6 @@
     background-position: 50% 0;
 
 }
-/*.container-center-img-photo{
-	width: 60%;
-	height: 400px;
-	position: relative;
-    z-index: 0;
-	background-size: cover;
-	float: left;
-}*/
 .text-center-reflection{
 	font-family: 'Lobster', cursive;
 	font-family: 'Pacifico', cursive;
@@ -100,7 +92,6 @@
 	font-family: 'Pacifico', cursive;
 	color: black;
 	font-size: 40px;
-	/*padding-top: 6%;*/
 	text-align: center;
 }
 .align-projects{
@@ -120,6 +111,14 @@
 .bottom-content{
 	margin-bottom: 20%;
 }
+
+/*****************CONTACT*******************/
+.contact-container{
+	margin-top: 6%;
+	margin-bottom: 6%;
+}
+/*****************CONTACT*******************/
+
 .footer-img{
 	background-image: url(../img/footer.jpg);
 	background-color: rgb(155, 145, 143);
@@ -130,7 +129,18 @@
 	position: relative;
 	background-attachment: fixed;
     background-position: 50% 0;
+}
 
+.footer-img-contact{
+	background-image: url(../img/footer2.jpg);
+	background-color: rgb(155, 145, 143);
+	width: 100%;
+	height: 400px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
 }
 
 .footer {
@@ -147,7 +157,7 @@
 	padding-top: 1%;
 	margin-left: 2%;
 }
-/*CAROUSEL*/
+/*****************CAROUSEL*******************/
 .ng-carousel slide {
     background-color: #999;
     text-align: center;
@@ -164,7 +174,7 @@
   background-color: #aaa;
   color: #ccc;
 }
-/*CAROUSEL*/
+/*****************CAROUSEL*******************/
 
 
 @media(max-width: 2560px)
