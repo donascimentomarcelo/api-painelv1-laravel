@@ -25,50 +25,8 @@
 	<link rel="icon" href="img/title3.png" type="image/x-icon" />
 </head>
 <body ng-controller="myController">
-<div class="content">
-	<section name="home">
-		<nav>
-			<ul>
-			<li><a href="#home" du-smooth-scroll du-scrollspy>Início</a></li>
-			<li><a href="#profile" du-smooth-scroll du-scrollspy>Quem sou eu</a></li>
-				<li><a href="#project" du-smooth-scroll du-scrollspy>Projetos</a></li>
-				<li><a du-smooth-scroll="contact" du-scrollspy>Contato</a></li>
-				<li><a href="http://github.com/marcelojunin/">Projetos no Github</a></li>
-			</ul>
-		</nav>
-		<div class="header" parallax-background parallax-ratio="0.15">
-			<div class="container-painel">
-				<img src="../img/title4.png" class="logo"><br/>	
-			</div>
-			<div class="text-initial">
-				<span typewrite="" type-delay="100" text="stuff" initial-delay="1.5s" callback-fn="activateTitle()" class="ng-isolate-scope"></span>
-			</div>
-		</div>
-	</section>
-	<div ui-view></div>
-	<div class="footer">
-		<div class="footer-align-logo">
-			<img src="../img/title4.png" class="footer-logo">
-		</div>
-		<div class="footer-text">
-		Nossa missão é de trazer mobilidade, agilidade e praticidade <br>
-	    aos seus negóciosa, a fim de ajudá-los a alcançar seus sonhos e <br>
-	    mudar o mundo. <br>
 
-		</div>
-		<div class="social-footer">
-			<h3>Siga...</h3>
-			<a class="btn btn-social-icon btn-facebook">
-				<span class="fa fa-facebook"></span>
-			</a>
-			<a class="btn btn-social-icon btn-linkedin">
-				<span class="fa fa-linkedin"></span>
-			</a>
-			<a class="btn btn-social-icon btn-github">
-				<span class="fa fa-github"></span>
-			</a>
-		</div>
-	</div>
-</div>
+	<div ui-view></div>
+	
 </body>
 </html>

@@ -217,12 +217,13 @@
 
 nav {
 	position: fixed;
-	z-index: 1;
+	z-index: 2;
 	top: 0;
 	left: 0;
 	right: 0;
 	background: #fff;
-	background: rgba(255, 255, 255, 0.8);
+	/*background: rgba(255, 255, 255, 0.8);*/
+	background: rgba(51, 51, 51, 0.78);
 }
 nav li, nav ul {
 	list-style: none;
@@ -235,7 +236,7 @@ nav li, nav a {
 }
 nav a {
 	padding: 20px;
-	color: #333;
+	color: #fff;
 	text-decoration: none;
 }
 a:hover {
@@ -261,6 +262,10 @@ button {
 	background: #00AC7F;
 	color: #fff;
 	cursor: pointer;
+}
+a:hover, a:focus {
+    color: #080808;
+    text-decoration: none;
 }
 /*****************MENU*******************/
 

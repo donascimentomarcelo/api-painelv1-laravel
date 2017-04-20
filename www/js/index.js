@@ -15,8 +15,7 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
     		$scope.stuff = [
     		"Olá!", 
     		"Está procurando um site, sistema ou aplicativo?", 
-    		"Que maravilha!!!",
-    		"Você veio ao lugar certo!", 
+    		"Que maravilha!!! Você veio ao lugar certo!", 
     		"Meu nome é Marcelo, e eu posso te ajudar a conseguir seu objetivo!",
     		"Sou desenvolvedor, e por meio desse site, venho te apresentar um resumo do meu portifólio.",
     		"Desenvolvo sites e sistema com as tecnologias atuais do mercado.",
