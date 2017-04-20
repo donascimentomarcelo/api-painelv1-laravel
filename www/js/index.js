@@ -1,4 +1,4 @@
-angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angular-carousel'])
+angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angular-carousel','duScroll'])
 .config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
 	.state('home',{
@@ -6,14 +6,11 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
 		templateUrl:'templates/home.html',
 		controller:'myController'
 	})
-	.state('contact',{
-		url:'/contato',
-		templateUrl:'templates/contact.html',
-		controller:'myController'
-	})
 	$urlRouterProvider.otherwise('/');
 })
-.controller('myController',['$scope', 'Carousel', function($scope, Carousel){
+.value('duScrollDuration', 2000)
+.value('duScrollOffset', 30)
+.controller('myController',['$scope', 'Carousel', function($scope, Carousel, $document){
  
     		$scope.stuff = [
     		"Olá!", 
@@ -29,4 +26,15 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
     		];
 
     		$scope.Carousel = Carousel;
-}])
+
+           $scope.toTheTop = function() {
+              $document.scrollTopAnimated(0, 5000).then(function() {
+                console && console.log('You just scrolled to the top!');
+            });
+          }
+          var section3 = angular.element(document.getElementById('section-3'));
+          $scope.toSection3 = function() {
+              $document.scrollToElementAnimated(section3);
+          }
+     
+}]).value('duScrollOffset', 30)
