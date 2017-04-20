@@ -2,7 +2,6 @@
 .header{
 	background-image: url(../img/painel2.jpg);
 	height: 380px;
-	/*height: 500px;*/
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -278,27 +277,113 @@ a:hover, a:focus {
 @media(max-width: 1440px)
 {
 
-
 }
 
-@media(max-width: 1020px)
+@media(max-width: 1024px)
 {
+.header{
+	background-image: url(../img/1020/painel1020.jpg);
+	height: 380px;
+	width: 100%;
+}
+.social-footer {
+    margin-top: -13%;
+}
+.footer-text {
+	font-size: 17px;
+}
+.footer-logo {
+    height: 95px;
+    padding-top: 3%;
+}
 
 }
 
 @media(max-width: 768px)
 {
-
+.text-initial {
+    font-size: 25px;
+}
+.header{
+	background-image: url(../img/768/painel768.jpg);
+	height: 380px;
+	width: 100%;
+}
+.logo {
+    height: 188px;
+    width: 30%;
+    padding-top: 2%;
+    margin-left: 0%;
+}
+.text-center-reflection {
+    font-size: 25px;
+    padding-top: 14%;
+}
+.footer-text {
+	width: 80%;
+	font-size: 18px;
+	margin-left: 16%;
+}
+.footer {
+    height: 215px;
+}
+.social-footer{
+	margin-top: 0%;
+    margin-left: 4%;
+    float: left;
+}
+.footer-logo {
+	width: 9%;
+}
 }
 
 @media(max-width: 425px)
 {
-
+h1, .h1 {
+    font-size: 30px;
+}
+h2, .h2 {
+    font-size: 22px;
+}
+.text-center-reflection {
+    font-size: 23px;
+    padding-top: 24%;
+}
+.project{
+	font-size: 30px;
+}
+.text-profile-under{
+	font-size: 22px;
+	margin-left: 2%;
+}
+.footer-logo{
+	display: none;
+}
+.footer-text {
+    width: 90%;
+    font-size: 17px;
+    margin-left: 7%;
+    text-align: center;
+}
+.social-footer {
+    margin-top: -3%;
+    margin-left: 0%; 
+    float: none; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 31%;
+    text-align: center;
+}
 }
 
 @media(max-width: 375px)
 {
-
+.text-initial {
+    font-size: 19px;
+}
+.social-footer {
+	width: 31%;
+}
 }
 
 @media(max-width: 320px)
