@@ -1,7 +1,7 @@
-<div class="content">
+<div class="content" id="inicio">
 	<div class="header" parallax-background parallax-ratio="0.15">
 		<section name="home">
-			<nav>
+			<nav class="menu-hide">
 				<ul>
 					<li><a du-smooth-scroll="home"  du-scrollspy>Início</a></li>
 					<li><a du-smooth-scroll="profile"  du-scrollspy>Quem sou eu</a></li>
@@ -10,7 +10,17 @@
 					<li><a href="http://github.com/marcelojunin/">Projetos no Github</a></li>
 				</ul>
 			</nav>
-				<div class="container-painel">
+
+	    <div drag-circular-menu 
+		     angle="30" 
+		     placement="topLeft" 
+		     button-config="menuConfig3" 
+		     menu-items="menuItems" 
+		     default-open="false"
+		     onwing-click="onWingClick(wing)"
+		     class="hide-desktop">
+		</div>  
+		<div class="container-painel">
 					<img src="../img/title4.png" class="logo"><br/>	
 				</div>
 				<div class="text-initial">
@@ -22,7 +32,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="container-profile text-profile">
-					 		<section name="profile">
+					 		<section name="profile" id="perfil">
 							<h1>Um pouquinho sobre mim...</h1>
 							<div class="col container-photo-margins">
 								<img src="../img/photo.jpg" class="container-photo" parallax-background parallax-ratio="0.5">
@@ -31,8 +41,8 @@
 								<h2>
 									Olá... <br> 
 									Meu nome é Marcelo e tenho 22 anos. <br>
-									Sou desenvolvedor, e crio sites, sistemas e aplicativos. <br>
-									Sou formado em Análise e Desenvolvimento de sistemas, <br>
+									Sou desenvolvedor e crio sites, sistemas e aplicativos. <br>
+									Sou formado em Análise e Desenvolvimento de sistemas <br>
 									e apaixonado por Tecnologia da Informação. <br>
 									Amo o que faço pois programar é meu hobbie. <br>
 									Trabalho com projetos, e tenho experiência em <br>
@@ -64,7 +74,7 @@
 			</div>
 		</div>
 	</div>
-	<section name="project">
+	<section name="project" id="projetos">
 		<div class="container">
 			<div class="row bottom-content">
 				<h2 class="project">Conheça alguns de meus projetos</h2>
@@ -150,7 +160,7 @@
 			<div class=" text-profile-under">
 				<h2>Seu negócio merece o que ha de mais inovador no mercado... </h2>
 				 <br>
-				Ame seu empreendemento! <br>
+				Ame seu empreendimento! <br>
 				Use a tecnologia como seu aliado em um <br>
 				mercado tão vasto e competitivo. Saia da <br> 
 				frente e permaneça na frente! <br>
@@ -158,7 +168,7 @@
 			</div>
 		</div>
 	</div>
-	<section name="contact">
+	<section name="contact" id="contato">
 		<div class="contact-container">
 			<div class="container">
 				<div class="row">
