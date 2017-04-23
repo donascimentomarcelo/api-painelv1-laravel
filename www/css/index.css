@@ -57,6 +57,14 @@
 	font-size: 30px;
 	padding-top: 2%;
 }
+.text-profile-under-one{
+	font-family: 'Lobster', cursive;
+	font-family: 'Pacifico', cursive;
+	color: black;
+	text-align-last: center;
+	font-size: 30px;
+	padding-top: 2%;
+}
 .container-painel{
 	margin-left: 10%;
 }
@@ -128,7 +136,7 @@
 .contact-container{
 	margin-top: 6%;
 	margin-bottom: 6%;
-	width: 90%;
+	width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -245,7 +253,7 @@ a:hover {
 	background: #fff;
 }
 a.active {
-	background: #00AC7F;
+	background: #080808;
 	color: #fff;
 }
 .wrap {
@@ -266,7 +274,7 @@ button {
 	cursor: pointer;
 }
 a:hover, a:focus {
-    color: #080808;
+    color: #ddd;
     text-decoration: none;
 }
 .hide-desktop{
@@ -282,7 +290,9 @@ a:hover, a:focus {
 
 @media(max-width: 1440px)
 {
-
+.social-footer {
+    margin-top: -6%;
+}
 }
 
 @media(max-width: 1024px)
@@ -293,7 +303,7 @@ a:hover, a:focus {
 	width: 100%;
 }
 .social-footer {
-    margin-top: -13%;
+    margin-top: -8%;
 }
 .footer-text {
 	font-size: 17px;
@@ -341,26 +351,45 @@ a:hover, a:focus {
 .footer-logo {
 	width: 9%;
 }
+.footer-img {
+    background-image: url(../img/768/footer.jpg);
+}
 }
 
 @media(max-width: 425px)
 {
 h1, .h1 {
-    font-size: 30px;
+    font-size: 26px;
 }
 h2, .h2 {
-    font-size: 22px;
+    font-size: 20px;
+}
+h3, .h3 {
+    font-size: 20px;
 }
 .text-center-reflection {
-    font-size: 23px;
-    padding-top: 24%;
+    font-size: 20px;
+    padding-top: 11%;
 }
 .project{
 	font-size: 30px;
 }
 .text-profile-under{
+	font-size: 19px;
+	width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1%;
+}
+.text-profile-under-none{
+	display: none;
+}
+.text-profile-under-one{
 	font-size: 22px;
-	margin-left: 2%;
+	width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15%;
 }
 .footer-logo{
 	display: none;
@@ -385,6 +414,11 @@ h2, .h2 {
 }
 .menuContainer {
 	top: 30px !important;
+}
+.btn-send{
+	width: 100%;
+	/*font-family: 'Lobster', cursive;
+	font-family: 'Pacifico', cursive;*/
 }
 
 /********************MENU-RESPONSIVE*********************/
@@ -416,7 +450,48 @@ a:hover, a:focus {
     font-size: 26px;
 }
 /********************MENU-RESPONSIVE*********************/
-
+.header{
+	background-image: url(../img/425/painel425.jpg);
+	height: 270px;
+}
+.contact-container{
+	width: 90%;
+}
+.logo{
+	width: 40%;
+	height: 150px;
+	margin-left: 11%;
+}
+section {
+    padding: 11px 0 30px 0;
+}
+.text-initial {
+    font-size: 23px;
+    width: 90%
+}
+.text-none{
+	display: none;
+}
+.text-col{
+	width: 90%;
+}
+.footer-img-contact{
+	background-image: url(../img/425/footer3.jpg);
+}
+.container-center-img {
+	height: 250px
+}
+.footer-img {
+    height: 250px;
+}
+.footer-img-contact {
+    height: 250px;
+}
+.text-profile-under-one{
+	padding-top: 1px;
+	float: right !important;
+	margin-right: 3%;
+}
 }
 @media(max-width: 375px)
 {
@@ -426,9 +501,49 @@ a:hover, a:focus {
 .social-footer {
 	width: 40%;
 }
+.logo {
+    width: 53%;
+}
+.text-profile-under {
+    font-size: 20px;
+    width: 89%;
+    float: right !important;
+}
+.hide-footer-text{
+	display: none;
+}
+.text-center-reflection {
+    padding-top: 13%;
+    font-size: 19px;
+}
 }
 
 @media(max-width: 320px)
 {
-
+h1, .h1 {
+    font-size: 24px;
+}
+h2, .h2 {
+    font-size: 20px;
+}
+.container-photo {
+    height: 150px;
+    width: 150px;
+}
+.logo {
+    width: 60%;
+}
+.text-center-reflection {
+    font-size: 20px;
+    padding-top: 10%;
+}
+.project {
+    font-size: 22px;
+}
+.text-profile-under-one {
+	width: 76%;
+}
+.text-profile-under {
+    font-size: 17px;
+}
 }

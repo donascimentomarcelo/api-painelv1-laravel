@@ -55,28 +55,28 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
             "rotate": 0,
             "show": 0,
             "titleColor": "#fff",
-            "icon":{"color":"#fff","name":"fa fa-tablet","size": 30}
+            "icon":{"color":"#fff","name":"fa fa-home","size": 30}
           }, {
             "title": "perfil",
             "color": "rgba(51, 51, 51, 0.88)",
             "rotate": 0,
             "show": 0,
             "titleColor": "#fff",
-            "icon":{"color":"#fff","name":"fa fa-laptop","size": 30}
+            "icon":{"color":"#fff","name":"fa fa-user-circle-o","size": 30}
           }, {
-            "title": "projetos",
+            "title": "projeto",
             "color": "rgba(85, 85, 85, 0.88)",
             "rotate": 0,
             "show": 0,
             "titleColor": "#fff",
-            "icon":{"color":"#fff","name":"fa fa-mobile","size": 30}
+            "icon":{"color":"#fff","name":"fa fa-file-code-o","size": 30}
           }, {
             "title": "contato",
             "color": "rgba(153, 153, 153, 0.93)",
             "rotate": 0,
             "show": 0,
             "titleColor": "#fff",
-            "icon":{"color":"#fff","name":"fa fa-clock-o","size": 30}
+            "icon":{"color":"#fff","name":"fa fa-envelope-open-o","size": 30}
           }];
 
          var inicio   = angular.element(document.getElementById('inicio')),
@@ -93,7 +93,7 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
           {
             $document.scrollTo(perfil, 0, 1000);
           }
-          else if(wing.title === 'projetos')
+          else if(wing.title === 'projeto')
           {
             $document.scrollTo(projetos, 0, 1000);
           }
