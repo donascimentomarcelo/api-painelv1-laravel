@@ -82,7 +82,7 @@
 }
 .container-center-img{
 	background-image: url(../img/center1.jpg);
-	background-color: rgb(155, 145, 143);
+	/*background-color: rgb(155, 145, 143);*/
 	width: 100%;
 	height: 400px;
 	background-repeat: no-repeat;
@@ -145,7 +145,7 @@
 /*****************FOOTER*******************/
 .footer-img{
 	background-image: url(../img/footer.jpg);
-	background-color: rgb(155, 145, 143);
+	/*background-color: rgb(155, 145, 143);*/
 	width: 100%;
 	height: 375px;
 	background-repeat: no-repeat;
@@ -157,7 +157,7 @@
 
 .footer-img-contact{
 	background-image: url(../img/footer2.jpg);
-	background-color: rgb(155, 145, 143);
+	/*background-color: rgb(155, 145, 143);*/
 	width: 100%;
 	height: 400px;
 	background-repeat: no-repeat;
@@ -301,6 +301,11 @@ a:hover, a:focus {
 	background-image: url(../img/1020/painel1020.jpg);
 	height: 380px;
 	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
 }
 .social-footer {
     margin-top: -8%;
@@ -324,6 +329,11 @@ a:hover, a:focus {
 	background-image: url(../img/768/painel768.jpg);
 	height: 380px;
 	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
 }
 .logo {
     height: 188px;
@@ -353,6 +363,11 @@ a:hover, a:focus {
 }
 .footer-img {
     background-image: url(../img/768/footer.jpg);
+    background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
 }
 }
 
@@ -453,6 +468,11 @@ a:hover, a:focus {
 .header{
 	background-image: url(../img/425/painel425.jpg);
 	height: 270px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
 }
 .contact-container{
 	width: 90%;
@@ -477,6 +497,11 @@ section {
 }
 .footer-img-contact{
 	background-image: url(../img/425/footer3.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-attachment: fixed;
+    background-position: 50% 0;
 }
 .container-center-img {
 	height: 250px
