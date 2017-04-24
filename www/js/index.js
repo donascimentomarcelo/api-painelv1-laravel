@@ -10,7 +10,7 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
 })
 .value('duScrollDuration', 2000)
 .value('duScrollOffset', 30)
-.controller('myController',['$scope', 'Carousel', '$document', '$location', function($scope, Carousel, $document, $location){
+.controller('myController',['$scope', 'Carousel', '$document', '$location', function($scope, Carousel, $document, $location, $http){
  
     		$scope.stuff = [
     		"Olá!", 
@@ -106,4 +106,9 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
             $document.scrollTo(inicio, 0, 1000);
           }
        };
+
+       $scope.sendEmail = function(data){
+          $http.post('')
+       };
+
 }]).value('duScrollOffset', 30)
