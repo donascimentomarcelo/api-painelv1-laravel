@@ -382,9 +382,15 @@ h2, .h2 {
 h3, .h3 {
     font-size: 20px;
 }
+.btn-success {
+    color: #fff;
+    background-color: #000;
+    border-color: #777;
+}
 .text-center-reflection {
     font-size: 20px;
-    padding-top: 11%;
+    padding-top: 1%;
+    margin-top: 30%;
 }
 .project{
 	font-size: 30px;
@@ -394,7 +400,8 @@ h3, .h3 {
 	width: 95%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 1%;
+    /*padding-top: 1%;*/
+    padding-top: 20%;
 }
 .text-profile-under-none{
 	display: none;
@@ -467,7 +474,7 @@ a:hover, a:focus {
 /********************MENU-RESPONSIVE*********************/
 .header{
 	background-image: url(../img/425/painel425.jpg);
-	height: 270px;
+	/*height: 270px;*/
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
@@ -504,18 +511,19 @@ section {
     background-position: 50% 0;
 }
 .container-center-img {
-	height: 250px
+	/*height: 250px*/
 }
 .footer-img {
-    height: 250px;
+    /*height: 250px;*/
 }
 .footer-img-contact {
-    height: 250px;
+    /*height: 250px;*/
 }
 .text-profile-under-one{
 	padding-top: 1px;
 	float: right !important;
 	margin-right: 3%;
+	margin-top: 16%;
 }
 }
 @media(max-width: 375px)
