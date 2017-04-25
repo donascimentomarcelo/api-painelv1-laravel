@@ -428,6 +428,20 @@ h3, .h3 {
 	/*font-family: 'Lobster', cursive;
 	font-family: 'Pacifico', cursive;*/
 }
+.btn-success:active:hover, .btn-success.active:hover, .open > .dropdown-toggle.btn-success:hover, .btn-success:active:focus, .btn-success.active:focus, .open > .dropdown-toggle.btn-success:focus, .btn-success:active.focus, .btn-success.active.focus, .open > .dropdown-toggle.btn-success.focus {
+    color: #fff;
+    background-color: rgba(51, 51, 51, 0.28);
+    border-color: #080808;
+}
+.btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled.focus, .btn-success[disabled].focus, fieldset[disabled] .btn-success.focus {
+    background-color: #080808;
+    border-color: #999;
+}
+.btn-success:hover {
+    color: #080808;
+    background-color: #ddd;
+    border-color: #080808;
+}
 
 /********************MENU-RESPONSIVE*********************/
 .hide-desktop{
