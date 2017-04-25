@@ -108,7 +108,12 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
        };
 
        $scope.sendEmail = function(data){
-          $http.post('')
+          var promise = $http.post('http://localhost:8081/email.php', data);
+              promise.then(function(data){
+                console.log(data);
+              }, function(responseError){
+                console.log(responseError);
+              });
        };
 
 }]).value('duScrollOffset', 30)

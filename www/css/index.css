@@ -301,11 +301,6 @@ a:hover, a:focus {
 	background-image: url(../img/1020/painel1020.jpg);
 	height: 380px;
 	width: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: relative;
-	background-attachment: fixed;
-    background-position: 50% 0;
 }
 .social-footer {
     margin-top: -8%;
@@ -329,11 +324,6 @@ a:hover, a:focus {
 	background-image: url(../img/768/painel768.jpg);
 	height: 380px;
 	width: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: relative;
-	background-attachment: fixed;
-    background-position: 50% 0;
 }
 .logo {
     height: 188px;
@@ -363,11 +353,7 @@ a:hover, a:focus {
 }
 .footer-img {
     background-image: url(../img/768/footer.jpg);
-    background-repeat: no-repeat;
-	background-size: cover;
-	position: relative;
-	background-attachment: fixed;
-    background-position: 50% 0;
+   
 }
 }
 
@@ -479,7 +465,7 @@ a:hover, a:focus {
 	background-size: cover;
 	position: relative;
 	background-attachment: fixed;
-    background-position: 50% 0;
+    background-position: 50% 0 !important;
 }
 .contact-container{
 	width: 90%;
@@ -508,16 +494,15 @@ section {
 	background-size: cover;
 	position: relative;
 	background-attachment: fixed;
-    background-position: 50% 0;
+    background-position: 50% 0 !important;
 }
 .container-center-img {
 	/*height: 250px*/
+	background-position: 50% 0 !important;
 }
 .footer-img {
     /*height: 250px;*/
-}
-.footer-img-contact {
-    /*height: 250px;*/
+	background-position: 50% 0 !important;
 }
 .text-profile-under-one{
 	padding-top: 1px;
