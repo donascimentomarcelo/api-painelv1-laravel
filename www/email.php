@@ -17,8 +17,8 @@ $Mailer->isHTML(true);
 $Mailer->Charset = 'UTF-8';
  
 $Mailer->SMTPAuth = true;
-$Mailer->SMTPDebug = 4;
-$Mailer->SMTPSecure = 'ssl';
+// $Mailer->SMTPDebug = true;
+$Mailer->SMTPSecure = 'tsl';
 $Mailer->Host = 'smtp.live.com';
 $Mailer->Port = 587;
 $Mailer->Username = 'marcelojunin2010@hotmail.com';
