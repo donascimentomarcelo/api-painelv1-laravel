@@ -15,10 +15,10 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('sandboxaab701623ed0400ebe3a04d4e9e9667b.mailgun.org'),
-        'secret' => env('key-1b9ec2bdcba5c29cd7dd0eceae5aaf8c'),
-        // 'domain' => env('marceloprogrammer.com'),
+        // 'domain' => env('sandboxaab701623ed0400ebe3a04d4e9e9667b.mailgun.org'),
         // 'secret' => env('key-1b9ec2bdcba5c29cd7dd0eceae5aaf8c'),
+        'domain' => env('http://marceloprogrammer.com'),
+        'secret' => env('key-1b9ec2bdcba5c29cd7dd0eceae5aaf8c'),
     ],
 
     'mandrill' => [
