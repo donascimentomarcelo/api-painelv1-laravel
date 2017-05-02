@@ -1,4 +1,4 @@
-angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angular-carousel','duScroll','circularMenu-directive'])
+angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angular-carousel','duScroll','circularMenu-directive','angular-loading-bar','angular.snackbar'])
 .config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
 	.state('home',{
@@ -10,18 +10,17 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
 })
 .value('duScrollDuration', 2000)
 .value('duScrollOffset', 30)
-.controller('myController',['$scope', 'Carousel', '$document', '$location', '$http', function($scope, Carousel, $document, $location, $http){
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Carregando...</div>';
+  }])
+.controller('myController',['$scope', 'Carousel', '$document', '$location', '$http','snackbar', function($scope, Carousel, $document, $location, $http, snackbar){
  
     		$scope.stuff = [
-    		"Olá!", 
-    		"Está procurando um site, sistema ou aplicativo?", 
-    		"Que maravilha!!! Você veio ao lugar certo!", 
-    		"Meu nome é Marcelo, e eu posso te ajudar a conseguir seu objetivo!",
-    		"Sou desenvolvedor, e por meio desse site, venho te apresentar um resumo do meu portifólio.",
-    		"Desenvolvo sites e sistema com as tecnologias atuais do mercado.",
-    		"Entre em contato!",
-    		"Ligue para 21 982525286",
-    		"Não perca mais tempo e envie um e-mail para contato@marceloprogrammer.com..." 
+        "Procura um Programador?", 
+        "Procura um Web Designer?", 
+        "Procura um aplicativo para a sua empresa?", 
+    		"Você veio ao lugar certo!", 
     		];
 
     		$scope.Carousel = Carousel;
@@ -108,12 +107,19 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
        };
 
        $scope.sendEmail = function(data){
-          var promise = $http.post('http://www.marceloprogrammer.com/email.php', data);
+          var promise = $http.post('http://marceloprogrammer.com/api/painel/email', data);
               promise.then(function(data){
+                ignoreLoadingBar: true;
+                delete $scope.data;
+                 snackbar.create("E-mail enviado com sucesso!");
                 console.log(data);
               }, function(responseError){
+                ignoreLoadingBar: true;
+                 snackbar.create("Houve um erro ao enviar o e-mail!");
+                 // delete $scope.data;
                 console.log(responseError);
               });
+
        };
 
 }]).value('duScrollOffset', 30)

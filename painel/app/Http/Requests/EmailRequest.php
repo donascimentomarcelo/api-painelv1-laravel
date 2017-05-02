@@ -27,6 +27,7 @@ class EmailRequest extends Request
             'name'=>'required',
             'email'=>'required',
             'description'=>'required',
+            'subject'=>'required',
         ];
     }
 }

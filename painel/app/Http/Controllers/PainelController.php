@@ -16,11 +16,16 @@ class PainelController extends Controller
 	}
     public function email(EmailRequest $request)
     {
-    	$send = Mail::send('welcome', ['key' => 'value'], function($message)
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $description = $request->input('description');
+        $subject = $request->input('subject');
+
+    	$send = Mail::send('email.contact', $request->all(), function($message) use($name, $email, $description, $subject)
     	{
-    		 $message->to('marcelo.cyborgs@gmail.com', 'Receiver Name')->subject('Laravel HTML Mail teste');
+    		$message->to('marcelojunin2010@hotmail.com', 'Marcelo Nascimento')->subject($subject);
             
-            $message->from('marcelo.cyborgs@gmail.com','Our Code World');
+            $message->from($email, $name);
     	});
         if(!$send)
         {

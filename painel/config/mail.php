@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'smtp-mail.outlook.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'marcelo.cyborgs@gmail.com', 'name' => 'Marcelo'],
+    'from' => ['address' => 'marcelojunin2010@hotmail.com', 'name' => 'Marcelo Nascimento'],
 
     /*
     |--------------------------------------------------------------------------
