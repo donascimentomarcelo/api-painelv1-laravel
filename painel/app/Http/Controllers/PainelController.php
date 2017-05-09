@@ -12,8 +12,9 @@ class PainelController extends Controller
 {
 	public function index()
 	{
-		return view('welcome');
+		return view('admin.painel.index');
 	}
+    
     public function email(EmailRequest $request)
     {
         $name = $request->input('name');

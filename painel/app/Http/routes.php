@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/','Auth\AuthController@getLogin');
-
+	Route::get('/','Auth\AuthController@getLogin');
 
 	Route::post('painel/email',['as' => 'painel.email', 'uses' => 'PainelController@email']);
 
@@ -22,6 +21,8 @@ Route::get('/','Auth\AuthController@getLogin');
 	Route::get('auth/register', 'Auth\AuthController@getRegister');
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-	Route::get('/home', function () {
-    return view('welcome');
-});
+	Route::group(['prefix'=>'admin', 'middleware'=>'verify', 'as'=>'admin.'],function(){
+	
+		Route::get('home',['as' => 'painel.index', 'uses' => 'PainelController@index']);
+	});
+	
