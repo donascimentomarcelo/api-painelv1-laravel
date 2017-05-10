@@ -4,7 +4,7 @@ namespace Painel\Http\Requests;
 
 use Painel\Http\Requests\Request;
 
-class EmailRequest extends Request
+class UserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,8 @@ class EmailRequest extends Request
         return [
             'name'=>'required',
             'email'=>'required',
-            'description'=>'required',
-            'subject'=>'required',
+            'password'=>'required',
+            'confirmpassword'=>'required',
         ];
     }
 }

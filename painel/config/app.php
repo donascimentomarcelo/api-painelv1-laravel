@@ -140,12 +140,13 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Painel\Providers\AppServiceProvider::class,
+        Painel\Providers\AuthServiceProvider::class,
+        Painel\Providers\EventServiceProvider::class,
+        Painel\Providers\RouteServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
     ],
 

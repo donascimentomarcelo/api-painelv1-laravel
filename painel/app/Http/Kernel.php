@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace Painel\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -13,11 +13,11 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \App\Http\Middleware\EncryptCookies::class,
+        \Painel\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \App\Http\Middleware\VerifyCsrfToken::class,
+        \Painel\Http\Middleware\VerifyCsrfToken::class,
         \Barryvdh\Cors\HandleCors::class,
     ];
 
@@ -27,9 +27,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth' => \Painel\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'verify' => \App\Http\Middleware\CheckRole::class,
+        'guest' => \Painel\Http\Middleware\RedirectIfAuthenticated::class,
+        'verify' => \Painel\Http\Middleware\CheckRole::class,
     ];
 }

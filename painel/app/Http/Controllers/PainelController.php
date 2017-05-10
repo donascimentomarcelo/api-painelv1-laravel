@@ -1,15 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Painel\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Http\Requests\EmailRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Painel\Http\Controllers\Controller;
+use Painel\Http\Requests;
+use Painel\Http\Requests\EmailRequest;
+use Painel\Http\Requests\UserRequest;
+use Painel\Models\User;
 
 class PainelController extends Controller
 {
+    private $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
+
 	public function index()
 	{
 		return view('admin.painel.index');
@@ -17,7 +27,21 @@ class PainelController extends Controller
 
     public function createUser()
     {
-        return view('admin.painel.createUser');
+        return view('admin.painel.create-user');
+    }
+
+    public function saveUser(UserRequest $userRequest)
+    {
+        $this->user->create($userRequest->all());
+          
+        return redirect()->route('admin.painel.userlist');
+    }
+
+    public function listUser()
+    {
+        $users = $this->user->paginate(5);
+
+        return view('admin.painel.list-user', compact('users'));
     }
     
     public function email(EmailRequest $request)
