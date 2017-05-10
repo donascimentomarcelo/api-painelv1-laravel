@@ -34,15 +34,10 @@
 			<div class="collapse navbar-collapse" id="navbar">
 				<ul class="nav navbar-nav">
 				@if(Auth::user())
-					@if(Auth::user()->role == "admin")
-						<li><a href="{{route('admin.categories.index')}}">Categorias</a></li>
-						<li><a href="{{route('admin.products.index')}}">Produtos</a></li>
-						<li><a href="{{route('admin.clients.index')}}">Clientes</a></li>
-						<li><a href="{{route('admin.cupoms.index')}}">Cupons</a></li>
-						<li><a href="{{route('admin.orders.index')}}">Pedidos</a></li>
-					@elseif(Auth::user()->role == "client")
-						<li><a href="{{route('customer.order.index')}}">Meus pedidos</a></li>
-					@endif
+					<ul class="nav navbar-nav">
+						<li><a href="{{route('admin.painel.index')}}">Home</a></li>
+						<li><a href="{{ url('/auth/register') }}">Registro de usuário</a></li>
+					</ul>
 				@endif
 				</ul>
 
@@ -50,9 +45,6 @@
 					@if(auth()->guest())
 						@if(!Request::is('auth/login'))
 							<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						@endif
-						@if(!Request::is('auth/register'))
-							<li><a href="{{ url('/auth/register') }}">Register</a></li>
 						@endif
 					@else
 						<li class="dropdown">

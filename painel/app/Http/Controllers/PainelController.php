@@ -14,6 +14,11 @@ class PainelController extends Controller
 	{
 		return view('admin.painel.index');
 	}
+
+    public function createUser()
+    {
+        return view('admin.painel.createUser');
+    }
     
     public function email(EmailRequest $request)
     {

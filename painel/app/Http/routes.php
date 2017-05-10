@@ -24,5 +24,6 @@
 	Route::group(['prefix'=>'admin', 'middleware'=>'verify', 'as'=>'admin.'],function(){
 	
 		Route::get('home',['as' => 'painel.index', 'uses' => 'PainelController@index']);
+		Route::get('auth/register',['as' => 'painel.createUser', 'uses' => 'PainelController@createUser']);
 	});
 	
