@@ -144,6 +144,8 @@ return [
         Painel\Providers\AuthServiceProvider::class,
         Painel\Providers\EventServiceProvider::class,
         Painel\Providers\RouteServiceProvider::class,
+         // aqui eu registro o service provider
+        Painel\Providers\RepositoryServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,

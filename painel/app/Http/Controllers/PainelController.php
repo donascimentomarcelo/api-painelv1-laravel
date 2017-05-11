@@ -12,6 +12,7 @@ use Painel\Http\Requests;
 use Painel\Http\Requests\EmailRequest;
 use Painel\Http\Requests\UserRequest;
 use Painel\Models\User;
+use Painel\Repositories\UserRepository;
 use Painel\Services\ProjectService;
 
 
@@ -21,7 +22,7 @@ class PainelController extends Controller
     private $user;
     private $projectService;
 
-    public function __construct(User $user, ProjectService $projectService)
+    public function __construct(UserRepository $user, ProjectService $projectService)
     {
         $this->user = $user;
         $this->projectService = $projectService;
