@@ -3,20 +3,28 @@
 namespace Painel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Painel\Http\Controllers\Controller;
 use Painel\Http\Requests;
 use Painel\Http\Requests\EmailRequest;
 use Painel\Http\Requests\UserRequest;
 use Painel\Models\User;
+use Painel\Services\ProjectService;
+
+
 
 class PainelController extends Controller
 {
     private $user;
+    private $projectService;
 
-    public function __construct(User $user)
+    public function __construct(User $user, ProjectService $projectService)
     {
         $this->user = $user;
+        $this->projectService = $projectService;
     }
 
 
@@ -43,7 +51,24 @@ class PainelController extends Controller
 
         return view('admin.painel.list-user', compact('users'));
     }
-    
+
+    public function createProject()
+    {
+        return view('admin.project.create-project');
+    }
+
+    public function saveProject(request $request)
+    {
+        $files = Input::file('images');
+        $return = $this->projectService->save($files, $request);
+        dd($return);
+    }
+
+    public function listProject()
+    {
+        
+    }
+
     public function email(EmailRequest $request)
     {
         $name = $request->input('name');
