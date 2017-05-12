@@ -20,7 +20,7 @@ class Uploads extends Model implements Transformable
 
     public function project()
     {
-    	return $this->hasOne(Projects::class, 'id', 'projects_id');
+    	return $this->hasMany(Projects::class, 'id', 'projects_id');
     }
 
 }

@@ -13,6 +13,7 @@ use Painel\Http\Requests\EmailRequest;
 use Painel\Http\Requests\UserRequest;
 use Painel\Models\User;
 use Painel\Repositories\ProjectsRepository;
+use Painel\Repositories\UploadsRepository;
 use Painel\Repositories\UserRepository;
 use Painel\Services\ProjectService;
 
@@ -24,12 +25,14 @@ class PainelController extends Controller
     private $user;
     private $projectService;
     private $projectRepository;
+    private $uploadRepository;
 
-    public function __construct(UserRepository $user, ProjectService $projectService, ProjectsRepository $projectRepository)
+    public function __construct(UserRepository $user, ProjectService $projectService, ProjectsRepository $projectRepository, UploadsRepository $uploadRepository)
     {
         $this->user = $user;
         $this->projectService = $projectService;
         $this->projectRepository = $projectRepository;
+        $this->uploadRepository = $uploadRepository;
     }
 
 
@@ -65,14 +68,24 @@ class PainelController extends Controller
     public function saveProject(Request $request)
     {
         $files = Input::file('images');
-        $id = $this->projectRepository->create($request->all());
-        $return = $this->projectService->save($files, $id);
-        dd($return);
+        $result = $this->projectService->validateFiles($files);
+        if($result == 1)
+        {
+            $id = $this->projectRepository->create($request->all());
+            $return = $this->projectService->save($files, $id);
+            return view('admin.project.list-project');
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public function listProject()
     {
-        
+        $projects = $this->uploadRepository->paginate(5);
+        dd($projects->projects);
+        return view('admin.project.list-project', compact('projects'));
     }
 
     public function email(EmailRequest $request)

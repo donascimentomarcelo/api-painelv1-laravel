@@ -19,7 +19,7 @@ class Projects extends Model implements Transformable
 
     public function uploads()
     {
-    	return $this->hasMany(Uploads::class);
+    	return $this->belongsTo(Uploads::class);
     }
 
 }
