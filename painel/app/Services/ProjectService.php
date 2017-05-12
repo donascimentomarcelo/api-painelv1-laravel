@@ -11,14 +11,13 @@ class ProjectService
 
 
 
-	public function save($files, $request)
+	public function save($files, $id)
 	{
-		// dd($files);
-		return $this->doUpload($files, $request);
+		return $this->doUpload($files, $id);
 
 	}
 
-	public function doUpload($files, $request)
+	public function doUpload($files, $id)
 	{
 		$file_count = count($files);
         $uploadcount = 0;
@@ -39,6 +38,7 @@ class ProjectService
             // $new_file_name = $key;
             // $newname = $new_file_name.'.'.$file_name_pieces[1];
             $upload_success = $file->move($destinationPath, $filename);
+            $data['projects_id'] = $id->id;
             $uploadcount ++;
 
             $extension = $file->getClientOriginalExtension();
@@ -46,7 +46,8 @@ class ProjectService
             $entry->mime = $file->getClientMimeType();
             $entry->original_filename = $filename;
             $entry->filename = $file->getFilename().'.'.$extension;
-            $entry->save();
+            // dd($data);
+            $entry->save($data);
             }
         }
     if($uploadcount == $file_count){

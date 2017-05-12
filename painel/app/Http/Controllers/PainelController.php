@@ -12,8 +12,10 @@ use Painel\Http\Requests;
 use Painel\Http\Requests\EmailRequest;
 use Painel\Http\Requests\UserRequest;
 use Painel\Models\User;
+use Painel\Repositories\ProjectsRepository;
 use Painel\Repositories\UserRepository;
 use Painel\Services\ProjectService;
+
 
 
 
@@ -21,11 +23,13 @@ class PainelController extends Controller
 {
     private $user;
     private $projectService;
+    private $projectRepository;
 
-    public function __construct(UserRepository $user, ProjectService $projectService)
+    public function __construct(UserRepository $user, ProjectService $projectService, ProjectsRepository $projectRepository)
     {
         $this->user = $user;
         $this->projectService = $projectService;
+        $this->projectRepository = $projectRepository;
     }
 
 
@@ -58,10 +62,11 @@ class PainelController extends Controller
         return view('admin.project.create-project');
     }
 
-    public function saveProject(request $request)
+    public function saveProject(Request $request)
     {
         $files = Input::file('images');
-        $return = $this->projectService->save($files, $request);
+        $id = $this->projectRepository->create($request->all());
+        $return = $this->projectService->save($files, $id);
         dd($return);
     }
 
