@@ -50,26 +50,45 @@ class ProjectService
     {
         $file_count = count($files);
         $uploadcount = 0;
-        foreach($files as $file) {
-          
-            $destinationPath = 'uploads/project';
-            $filename = $file->getClientOriginalName();
+        if (is_array($files) || is_object($files))
+        {
+          foreach($files as $file) {
+            
+              $destinationPath = 'uploads/project';
+              $filename = $file->getClientOriginalName();
 
-            $filename = $this->renameFile($filename);
-            $upload_success = $file->move($destinationPath, $filename);
-            
-            $uploadcount ++;
+              $filename = $this->renameFile($filename);
+              $upload_success = $file->move($destinationPath, $filename);
+              
+              $uploadcount ++;
 
-            $extension = $file->getClientOriginalExtension();
-            $entry = new Uploads();
-            $entry->mime = $file->getClientMimeType();
-            $entry->original_filename = $filename;
-            $entry->filename = $file->getFilename().'.'.$extension;
-            
-            $entry->way = $this->way();
-            $arr[] = $entry;
-            
-        }
+              $extension = $file->getClientOriginalExtension();
+              $entry = new Uploads();
+              $entry->mime = $file->getClientMimeType();
+              $entry->original_filename = $filename;
+              $entry->filename = $file->getFilename().'.'.$extension;
+              
+              $entry->way = $this->way();
+              $arr[] = $entry;
+              
+          }
+       }
+       else
+       {
+              $destinationPath = 'uploads/project';
+              $filename = '12311d51d5d1ed';
+              $filename = $this->renameFile($filename);
+              $upload_success = $files->move($destinationPath, $filename);
+             
+              $extension = $files->getClientOriginalExtension();
+              $entry = new Uploads();
+              $entry->mime = $files->getClientMimeType();
+              $entry->original_filename = $filename;
+              $entry->filename = $files->getFilename().'.'.$extension;
+              
+              $entry->way = $this->way();
+              $arr = $entry;
+       }
         return $arr;
     }
 
