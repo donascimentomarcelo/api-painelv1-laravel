@@ -11,16 +11,16 @@ class Uploads extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-    			'filename',
-    			'way',
-    			'mime',
-    			'original_filename',
-    			'projects_id'
+    			'projects_id',
+                'filename',
+                'way',
+                'mime',
+                'original_filename',
     			];
 
-    public function project()
+    public function projects()
     {
-    	return $this->hasMany(Projects::class, 'id', 'projects_id');
+    	return $this->hasOne(Projects::class, 'id', 'projects_id');
     }
 
 }

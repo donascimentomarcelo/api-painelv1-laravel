@@ -1,5 +1,5 @@
 @extends('app')
-
+{!! Html::style('css/style.css') !!}
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -24,6 +24,7 @@
 								<th>Nome do Projeto</th>
 								<th>Link</th>
 								<th>Imagens</th>
+								<th>Opções</th>
 							</tr>
 							<tbody>
 								@foreach($projects as $project)
@@ -31,6 +32,25 @@
 									<td>{{$project->id}}</td>
 									<td>{{$project->name}}</td>
 									<td>{{$project->link}}</td>
+									<td>
+										<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{$project->id}}">Exibir</button>	
+									</td>
+									<td>
+										<a href="{{route('admin.painel.edit',['id'=>$project->id])}}" class="btn btn-success btn-sm">Editar</a>
+									</td>
+								</tr>
+								<tr >
+									<td colspan="5">
+										<div id="{{$project->id}}" class="collapse">
+											<div class="row">
+												@foreach($project->upload as $key)
+												<div class="col-sm-4">
+													<img src="{{$key->way}}{{$key->original_filename}}" class="img-project" alt="">
+												</div>
+												@endforeach
+											</div>
+										</div>
+									</td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -42,4 +62,5 @@
 		</div>
 	</div>
 </div>
+
 @endsection

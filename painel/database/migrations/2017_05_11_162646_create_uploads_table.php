@@ -19,6 +19,7 @@ class CreateUploadsTable extends Migration
             $table->string('way');
             $table->string('mime');
             $table->string('original_filename');
+            $table->bigInteger('order');
             $table->integer('projects_id')->unsigned();
             $table->foreign('projects_id')->references('id')->on('projects');
             $table->timestamps();

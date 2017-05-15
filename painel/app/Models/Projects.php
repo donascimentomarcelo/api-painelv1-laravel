@@ -17,9 +17,9 @@ class Projects extends Model implements Transformable
     			'description'
     			];
 
-    public function uploads()
+    public function upload()
     {
-    	return $this->belongsTo(Uploads::class);
+    	return $this->hasMany(Uploads::class);
     }
 
 }

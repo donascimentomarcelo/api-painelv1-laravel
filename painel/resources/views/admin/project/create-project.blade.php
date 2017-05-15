@@ -20,32 +20,16 @@
 					
 					{!! Form::open(['route'=>'admin.painel.create.project', 'class'=>'form', 'files'=>true])!!}
 						{!! csrf_field() !!}
-						<div class="form-group">
-						    {!! Form::label('Nome', 'Nome') !!}
-						    {!! Form::text('name', null, ['class' => 'form-control']) !!}
-						</div>
-						<div class="form-group">
-						    {!! Form::label('Categoria', 'Categoria') !!}
-						    {!! Form::text('category', null, ['class' => 'form-control']) !!}
-						</div>
-
-						<div class="form-group">
-						    {!! Form::label('Link', 'Link') !!}
-						    {!! Form::text('link', null, ['class' => 'form-control']) !!}
-						</div>
-
-						<div class="form-group">
-						    {!! Form::label('Descrição', 'Descrição') !!}
-						    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-						</div>
 						
-						<div class="form-group">
-							<span class="btn btn-default btn-file">
-								{!! Form::file('images[]', array('multiple'=>true, 'class'=>'custom-file-input')) !!}
-								<span class="glyphicon glyphicon-folder-open"></span> Selecione as imagens
-							</span>
-						</div>
+							@include('admin.project._form')
 
+							<div class="form-group">
+								<span class="btn btn-default btn-file">
+									{!! Form::file('images[]', array('multiple'=>true, 'class'=>'custom-file-input')) !!}
+									<span class="glyphicon glyphicon-folder-open"></span> Selecione as imagens
+								</span>
+							</div>
+						
 						<div class="form-group">
 						{!! Form::submit('Criar Projeto', ['class'=>'btn btn-primary'])!!}
 						</div>

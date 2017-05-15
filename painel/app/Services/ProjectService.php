@@ -54,7 +54,7 @@ class ProjectService
 
     public function way()
     {
-        return 'uploads/project/';
+        return 'http://localhost:8000/uploads/project/';
     }
 
     public function renameFile($filename)

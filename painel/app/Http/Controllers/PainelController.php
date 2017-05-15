@@ -73,7 +73,7 @@ class PainelController extends Controller
         {
             $id = $this->projectRepository->create($request->all());
             $return = $this->projectService->save($files, $id);
-            return view('admin.project.list-project');
+            return redirect()->route('admin.painel.projectlist');
         }
         else
         {
@@ -81,10 +81,34 @@ class PainelController extends Controller
         }
     }
 
+    public function editProject($id)
+    {
+        $projects = $this->projectRepository->find($id);
+
+        return view('admin.project.edit', compact('projects'));
+    }
+
+    public function updateProject(Request $request, $id)
+    {
+        $files = Input::file('images');
+        // dd($request->all());
+        foreach($files as $file) 
+        {
+           dd($file);
+        }
+    }
+
+    public function editImage($id)
+    {
+        $upload = $this->uploadRepository->find($id);
+
+        return view('admin.project.image', compact('upload'));
+    }
+
     public function listProject()
     {
-        $projects = $this->uploadRepository->paginate(5);
-        dd($projects->projects);
+        $projects = $this->projectRepository->paginate(5);
+
         return view('admin.project.list-project', compact('projects'));
     }
 
