@@ -27,12 +27,9 @@ class PainelController extends Controller
     private $projectRepository;
     private $uploadRepository;
 
-    public function __construct(UserRepository $user, ProjectService $projectService, ProjectsRepository $projectRepository, UploadsRepository $uploadRepository)
+    public function __construct(UserRepository $user)
     {
         $this->user = $user;
-        $this->projectService = $projectService;
-        $this->projectRepository = $projectRepository;
-        $this->uploadRepository = $uploadRepository;
     }
 
 
@@ -58,58 +55,6 @@ class PainelController extends Controller
         $users = $this->user->paginate(5);
 
         return view('admin.painel.list-user', compact('users'));
-    }
-
-    public function createProject()
-    {
-        return view('admin.project.create-project');
-    }
-
-    public function saveProject(Request $request)
-    {
-        $files = Input::file('images');
-        $result = $this->projectService->validateFiles($files);
-        if($result == 1)
-        {
-            $id = $this->projectRepository->create($request->all());
-            $return = $this->projectService->save($files, $id);
-            return redirect()->route('admin.painel.projectlist');
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
-    public function editProject($id)
-    {
-        $projects = $this->projectRepository->find($id);
-
-        return view('admin.project.edit', compact('projects'));
-    }
-
-    public function updateProject(Request $request, $id)
-    {
-        $files = Input::file('images');
-        // dd($request->all());
-        foreach($files as $file) 
-        {
-           dd($file);
-        }
-    }
-
-    public function editImage($id)
-    {
-        $upload = $this->uploadRepository->find($id);
-
-        return view('admin.project.image', compact('upload'));
-    }
-
-    public function listProject()
-    {
-        $projects = $this->projectRepository->paginate(5);
-
-        return view('admin.project.list-project', compact('projects'));
     }
 
     public function email(EmailRequest $request)

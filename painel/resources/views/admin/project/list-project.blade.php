@@ -33,10 +33,14 @@
 									<td>{{$project->name}}</td>
 									<td>{{$project->link}}</td>
 									<td>
-										<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{$project->id}}">Exibir</button>	
+										<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{$project->id}}">
+											<span class="glyphicon glyphicon-picture"></span>
+										</button>	
 									</td>
 									<td>
-										<a href="{{route('admin.painel.edit',['id'=>$project->id])}}" class="btn btn-success btn-sm">Editar</a>
+										<a href="{{route('admin.painel.edit',['id'=>$project->id])}}" class="btn btn-success btn-sm">Editar
+											<span class="glyphicon glyphicon-pencil"></span>
+										</a>
 									</td>
 								</tr>
 								<tr >

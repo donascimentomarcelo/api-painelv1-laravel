@@ -5,21 +5,50 @@ namespace Painel\Services;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Painel\Models\Uploads;
+use Painel\Repositories\UploadsRepository;
+
 
 
 class ProjectService 
 {
+  private $uploadsRepository;
+
+  public function __construct(UploadsRepository $uploadsRepository)
+  {
+    $this->uploadsRepository = $uploadsRepository;
+  }
 
 
 
-	public function save($files, $id)
-	{
-		return $this->doUpload($files, $id);
-	}
+    public function way()
+    {
+        return 'http://localhost:8000/uploads/project/';
+    }
 
-	public function doUpload($files, $id)
-	{
-		$file_count = count($files);
+    public function save($files, $id)
+    {
+        $arr = $this->doUpload($files);
+        foreach($arr as $entry)
+        {
+          $entry->projects_id = $id->id;
+          $entry->save();
+        }
+        return;
+    }
+
+    public function updateImage($files, $id)
+    {
+         $arr = $this->doUpload($files);
+         foreach($arr as $entry)
+         {
+          $this->uploadsRepository->update($entry, $id);
+         }
+        return;
+    }
+
+    public function doUpload($files)
+    {
+        $file_count = count($files);
         $uploadcount = 0;
         foreach($files as $file) {
           
@@ -36,26 +65,14 @@ class ProjectService
             $entry->mime = $file->getClientMimeType();
             $entry->original_filename = $filename;
             $entry->filename = $file->getFilename().'.'.$extension;
-            $entry->projects_id = $id->id;
+            
             $entry->way = $this->way();
-            $entry->save();
+            $arr[] = $entry;
             
         }
-    if($uploadcount == $file_count){
-
-      // return Redirect::to('upload');
-        echo '1';
-    } 
-    else {
-      // return Redirect::to('upload')->withInput()->withErrors($validator);
-        echo '0';
+        return $arr;
     }
-	}
 
-    public function way()
-    {
-        return 'http://localhost:8000/uploads/project/';
-    }
 
     public function renameFile($filename)
     {
@@ -78,14 +95,7 @@ class ProjectService
         foreach($files as $file) {
           $rules = array('file' => 'required|mimes:png,jpeg,jpg'); 
           $validator = Validator::make(array('file'=> $file), $rules);
-          if($validator->passes()){
-            return 1;
-          }
-          else
-          {
-            // $validator['info'] = 'Serão aceitas apenas images png, jpeg e jpg!';
-            return 0;
-          }
+         return $validator;
         }
     }
 
