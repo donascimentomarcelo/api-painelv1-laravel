@@ -2,6 +2,7 @@
 
 namespace Painel\Services;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Painel\Models\Uploads;
@@ -27,10 +28,15 @@ class ProjectService
 
     public function save($files, $id)
     {
+        if(is_object($id))
+        {
+          $id = $id->id;
+        }
+
         $arr = $this->doUpload($files);
         foreach($arr as $entry)
         {
-          $entry->projects_id = $id->id;
+          $entry->projects_id = $id;
           $entry->save();
         }
         return;
@@ -39,12 +45,36 @@ class ProjectService
     public function updateImage($files, $id)
     {
          $arr = $this->doUpload($files);
-         // $arr = (object)$arr;
+
          foreach ($arr as $key) {
-          $key = array('filename' => $key->filename );
+          $key = array(
+            'filename' => $key->filename,
+            'original_filename'=> $key->original_filename,
+            'mime'=> $key->mime,
+            );
+
+          Uploads::where('id', $id)->update($key);
          }
-         dd($key);
-        return $this->uploadsRepository->update($arr, $id);
+        return;
+
+    }
+
+    public function removeUpload($upload)
+    {
+
+      try {
+
+        Uploads::where('original_filename', $upload->original_filename)->delete();
+
+        unlink(public_path('uploads/project/'.$upload->original_filename));
+        
+        return;
+
+      } catch (Exception $e) {
+
+        throw $e;
+      
+      }
 
     }
 
@@ -52,14 +82,13 @@ class ProjectService
     {
         $file_count = count($files);
         $uploadcount = 0;
-        // dd($files);
           foreach($files as $file) {
             
               $destinationPath = 'uploads/project';
               $filename = $file->getClientOriginalName();
 
               $filename = $this->renameFile($filename);
-              // $upload_success = $file->move($destinationPath, $filename);
+              $upload_success = $file->move($destinationPath, $filename);
               
               $uploadcount ++;
 

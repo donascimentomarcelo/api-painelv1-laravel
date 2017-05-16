@@ -10,7 +10,12 @@
 					
 						@include('errors._check')
 
-						{!! Form::model($upload, ['route'=>['admin.painel.image.update', $upload->id], 'files'=>true])!!}
+						<div class="alert alert-danger alert-del-img">
+							<strong>Deseja escluir esta imagem?</strong><br>
+							Ao excluir a imagem será removida das configurações assim sendo não poderá ser recuperada novamente.
+						</div>
+
+						{!! Form::model($upload, ['route'=>['admin.painel.image.destroy', $upload->id]])!!}
 						
 						<div class="align-image">
 							<label for="">Imagem do projeto</label>
@@ -18,21 +23,8 @@
 								<img src="{{$upload->way}}{{$upload->original_filename}}" class="img-project-edit" alt="">
 							</div>
 						</div>
-
 						<div class="form-group">
-							<label for="order">Ordem da imagem</label>
-							<input type="number" id="order" name="order" class="form-control">
-						</div>
-
-						<div class="form-group">
-							<span class="btn btn-default btn-file">
-								{!! Form::file('images[]', array('multiple'=>true, 'class'=>'custom-file-input')) !!}
-								<span class="glyphicon glyphicon-folder-open"></span> Selecione outra imagem
-							</span>
-						</div>
-						
-						<div class="form-group">
-							{!! Form::submit('Alterar Imagem', ['class'=>'btn btn-primary'])!!}
+							{!! Form::submit('Excluir Imagem', ['class'=>'btn btn-danger'])!!}
 						</div>
 
 						{!! Form::close()!!}
@@ -42,3 +34,4 @@
 		</div>
 	</div>
 	@endsection
+

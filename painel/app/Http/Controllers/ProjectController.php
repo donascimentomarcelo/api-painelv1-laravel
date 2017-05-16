@@ -85,4 +85,41 @@ class ProjectController extends Controller
           
     }
 
+    public function deleteImage($id)
+    {
+        $upload = $this->uploadRepository->find($id);
+
+        return view('admin.project.delete', compact('upload'));
+    }
+
+    public function destroyImage($id)
+    {
+        $upload = $this->uploadRepository->find($id);
+
+        $this->projectService->removeUpload($upload);
+
+        return redirect()->route('admin.painel.projectlist');
+    }
+
+    public function addImage($id)
+    {
+        $projects = $this->projectRepository->find($id);
+
+        return view('admin.project.add', compact('projects'));
+    }
+
+    public function saveImage($id)
+    {
+        $files = Input::file('images');
+        $validator = $this->projectService->validateFiles($files);
+          if($validator->fails()){
+            return redirect('admin/image/add/'.$id)
+                        ->withErrors($validator)
+                        ->withInput();
+          }
+        $return = $this->projectService->save($files, $id);
+        return redirect()->route('admin.painel.projectlist');
+
+    }
+
 }
