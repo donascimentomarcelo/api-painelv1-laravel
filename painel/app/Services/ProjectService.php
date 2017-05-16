@@ -39,8 +39,11 @@ class ProjectService
     public function updateImage($files, $id)
     {
          $arr = $this->doUpload($files);
-         $arr = (object)$arr;
-         dd($arr);
+         // $arr = (object)$arr;
+         foreach ($arr as $key) {
+          $key = array('filename' => $key->filename );
+         }
+         dd($key);
         return $this->uploadsRepository->update($arr, $id);
 
     }
