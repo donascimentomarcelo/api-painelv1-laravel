@@ -33,7 +33,7 @@ class ProjectController extends Controller
         $files = Input::file('images');
         $validator = $this->projectService->validateFiles($files);
         if($validator->fails()){
-            return redirect('admin/image/edit/'.$id)
+            return redirect('project/save')
                         ->withErrors($validator)
                         ->withInput();
           }
@@ -79,7 +79,9 @@ class ProjectController extends Controller
                         ->withErrors($validator)
                         ->withInput();
           }
-        $this->projectService->updateImage($id, $files);
+        $this->projectService->updateImage($files, $id);
+
+        return redirect()->route('admin.painel.projectlist');
           
     }
 

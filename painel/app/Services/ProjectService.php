@@ -39,26 +39,24 @@ class ProjectService
     public function updateImage($files, $id)
     {
          $arr = $this->doUpload($files);
-         foreach($arr as $entry)
-         {
-          $this->uploadsRepository->update($entry, $id);
-         }
-        return;
+         $arr = (object)$arr;
+         dd($arr);
+        return $this->uploadsRepository->update($arr, $id);
+
     }
 
     public function doUpload($files)
     {
         $file_count = count($files);
         $uploadcount = 0;
-        if (is_array($files) || is_object($files))
-        {
+        // dd($files);
           foreach($files as $file) {
             
               $destinationPath = 'uploads/project';
               $filename = $file->getClientOriginalName();
 
               $filename = $this->renameFile($filename);
-              $upload_success = $file->move($destinationPath, $filename);
+              // $upload_success = $file->move($destinationPath, $filename);
               
               $uploadcount ++;
 
@@ -72,23 +70,7 @@ class ProjectService
               $arr[] = $entry;
               
           }
-       }
-       else
-       {
-              $destinationPath = 'uploads/project';
-              $filename = '12311d51d5d1ed';
-              $filename = $this->renameFile($filename);
-              $upload_success = $files->move($destinationPath, $filename);
-             
-              $extension = $files->getClientOriginalExtension();
-              $entry = new Uploads();
-              $entry->mime = $files->getClientMimeType();
-              $entry->original_filename = $filename;
-              $entry->filename = $files->getFilename().'.'.$extension;
-              
-              $entry->way = $this->way();
-              $arr = $entry;
-       }
+      
         return $arr;
     }
 
