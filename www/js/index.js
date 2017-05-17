@@ -122,4 +122,19 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
 
        };
 
+       var loadProject = function(){
+        var promise = $http.get('http://localhost:8000/api/project/list');
+          promise.then(function (data){
+            ignoreLoadingBar: true;
+            console.log(data.data.data);
+            $scope.dataProjects = data.data.data;
+          },
+           function(responseError){
+            ignoreLoadingBar: true;
+            console.log(responseError);
+          });
+       };
+
+       loadProject();
+
 }]).value('duScrollOffset', 30)

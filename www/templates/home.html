@@ -79,77 +79,22 @@
 			<div class="row bottom-content">
 				<h2 class="project">Conheça alguns de meus projetos</h2>
 				<div class="align-projects">
-					<div class="col-6 col-md-4">
-						<h2>Projeto 1</h2>
-							<div class="portifolio">
-								<section>
-					            <h2>Carousel with timer (cancels on mouseover)</h2>
-						            <div ng-carousel ng-carousel-name="project1" ng-carousel-timer="5000">
-						                <slidecontainer>
-						                    <slide>
-						                    	<img src="img/center0.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/footer.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/painel2.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/footer2.jpg">
-						                    </slide>
-						                </slidecontainer>
-						            </div>
-						        </section>
-							</div>
-					</div>
-					<div class="col-6 col-md-4">
-						<h2>Projeto 2</h2>
-							<div class="portifolio">
-								<section>
-					            <h2>Carousel with timer (cancels on mouseover)</h2>
-						            <div ng-carousel ng-carousel-name="project2" ng-carousel-timer="5000">
-						                <slidecontainer>
-						                    <slide>
-						                    	<img src="img/center0.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/footer.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/painel2.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/footer2.jpg">
-						                    </slide>
-						                </slidecontainer>
-						            </div>
-						        </section>
-							</div>
-					</div>
-					<div class="col-6 col-md-4">
-						<h2>Projeto 3</h2>
-							<div class="portifolio">
-								<section>
-						            <h2>Carousel with timer (cancels on mouseover)</h2>
-						            <div ng-carousel ng-carousel-name="project3" ng-carousel-timer="5000">
-						                <slidecontainer>
-						                    <slide>
-						                    	<img src="img/center0.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/footer.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/painel2.jpg">
-						                    </slide>
-						                    <slide>
-						                    	<img src="img/footer2.jpg">
-						                    </slide>
-						                </slidecontainer>
-						            </div>
-						        </section>
-							</div>
+					<div class="col-6 col-md-4" ng-repeat="dataProject in dataProjects">
+						<h2>{{dataProject.name}}</h2>
+						<div class="portifolio">
+							<section>
+								<div>
+									<h2>{{dataProject.link}}</h2>
+									<div ng-carousel ng-carousel-name="project1" ng-carousel-timer="5000">
+
+										<slidecontainer >
+											<slide src=""></slide>
+											
+										</slidecontainer>
+									</div>
+								</div>
+							</section>
+						</div>
 					</div>
 				</div>
 			</div>
