@@ -4,6 +4,8 @@ namespace Painel\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use Painel\Models\Projects;
+use Painel\Models\Uploads;
+use Painel\Transformers\UploadsTransformer;
 
 /**
  * Class ProjectsTransformer
@@ -11,7 +13,8 @@ use Painel\Models\Projects;
  */
 class ProjectsTransformer extends TransformerAbstract
 {
-
+    protected $defaultIncludes   = ['upload'];
+    // protected $availableIncludes = ['uploads'];
     /**
      * Transform the \Projects entity
      * @param \Projects $model
@@ -22,9 +25,21 @@ class ProjectsTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-            'name bla'   => $model->name,
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'name'       => $model->name,
+            'category'   => $model->category,
+            'link'       => $model->link,
+            'description'=> $model->description
         ];
+    }
+
+    public function includeUpload(Projects $model)
+    {
+
+        if(!$model->upload)
+        {
+            return null;
+        }
+
+        return $this->collection($model->upload, new UploadsTransformer());
     }
 }

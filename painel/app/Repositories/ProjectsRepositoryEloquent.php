@@ -38,6 +38,6 @@ class ProjectsRepositoryEloquent extends BaseRepository implements ProjectsRepos
 
     public function presenter()
     {
-        return \Painel\Presenters\ProjectsPresenter::class;
+        return ProjectsPresenter::class;
     }
 }

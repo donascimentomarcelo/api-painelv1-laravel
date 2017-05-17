@@ -44,7 +44,7 @@ class ProjectController extends Controller
 
     public function editProject($id)
     {
-        $projects = $this->projectRepository->find($id);
+        $projects = $this->projectRepository->skipPresenter()->find($id);
 
         return view('admin.project.edit', compact('projects'));
     }
@@ -65,7 +65,7 @@ class ProjectController extends Controller
 
     public function editImage($id)
     {
-        $upload = $this->uploadRepository->find($id);
+        $upload = $this->uploadRepository->skipPresenter()->find($id);
 
         return view('admin.project.image', compact('upload'));
     }
@@ -87,14 +87,14 @@ class ProjectController extends Controller
 
     public function deleteImage($id)
     {
-        $upload = $this->uploadRepository->find($id);
+        $upload = $this->uploadRepository->skipPresenter()->find($id);
 
         return view('admin.project.delete', compact('upload'));
     }
 
     public function destroyImage($id)
     {
-        $upload = $this->uploadRepository->find($id);
+        $upload = $this->uploadRepository->skipPresenter()->find($id);
 
         $this->projectService->removeUpload($upload);
 
@@ -103,7 +103,7 @@ class ProjectController extends Controller
 
     public function addImage($id)
     {
-        $projects = $this->projectRepository->find($id);
+        $projects = $this->projectRepository->skipPresenter()->find($id);
 
         return view('admin.project.add', compact('projects'));
     }

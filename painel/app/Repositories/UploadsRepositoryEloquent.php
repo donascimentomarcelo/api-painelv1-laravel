@@ -2,11 +2,12 @@
 
 namespace Painel\Repositories;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Painel\Repositories\UploadsRepository;
 use Painel\Models\Uploads;
+use Painel\Presenters\UploadsPresenter;
+use Painel\Repositories\UploadsRepository;
 use Painel\Validators\UploadsValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class UploadsRepositoryEloquent
@@ -32,5 +33,10 @@ class UploadsRepositoryEloquent extends BaseRepository implements UploadsReposit
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+     public function presenter()
+    {
+        return UploadsPresenter::class;
     }
 }

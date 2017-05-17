@@ -42,3 +42,4 @@
 		
 	});
 	
+	Route::get('api/project/list',['as' => 'api.project.list', 'uses' => 'Api\ApiProjectController@ApiListProject']);
