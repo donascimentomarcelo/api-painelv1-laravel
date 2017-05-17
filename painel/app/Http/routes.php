@@ -21,6 +21,8 @@
 	Route::get('auth/register', 'Auth\AuthController@getRegister');
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+			// Route::get('project/list',['as' => 'admin.painel.projectlist', 'uses' => 'ProjectController@listProject']);
+
 	Route::group(['prefix'=>'admin', 'middleware'=>'verify', 'as'=>'admin.'],function(){
 	
 		Route::get('home',['as' => 'painel.index', 'uses' => 'PainelController@index']);

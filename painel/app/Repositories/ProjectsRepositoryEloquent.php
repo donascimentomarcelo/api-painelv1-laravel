@@ -2,11 +2,12 @@
 
 namespace Painel\Repositories;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Painel\Repositories\ProjectsRepository;
 use Painel\Models\Projects;
+use Painel\Presenters\ProjectsPresenter;
+use Painel\Repositories\ProjectsRepository;
 use Painel\Validators\ProjectsValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class ProjectsRepositoryEloquent
@@ -32,5 +33,11 @@ class ProjectsRepositoryEloquent extends BaseRepository implements ProjectsRepos
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+
+    public function presenter()
+    {
+        return \Painel\Presenters\ProjectsPresenter::class;
     }
 }
