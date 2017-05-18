@@ -1,4 +1,14 @@
-angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angular-carousel','duScroll','circularMenu-directive','angular-loading-bar','angular.snackbar'])
+angular.module('myApp', [
+              'angular-carousel',
+              'ui.router',
+              'angularTypewrite',
+              'angular-parallax',
+              'duScroll',
+              'circularMenu-directive',
+              'angular-loading-bar',
+              'angular.snackbar',
+              'ui.bootstrap']
+  )
 .config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
 	.state('home',{
@@ -14,7 +24,17 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
     cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Carregando...</div>';
   }])
-.controller('myController',['$scope', 'Carousel', '$document', '$location', '$http','snackbar', '$sce', function($scope, Carousel, $document, $location, $http, snackbar, $sce){
+.controller('myController',
+                    ['$scope', 
+                     '$document', 
+                     '$location', 
+                     '$http',
+                     'snackbar',
+                           function($scope, 
+                                    $document, 
+                                    $location, 
+                                    $http, 
+                                    snackbar){
  
     		$scope.stuff = [
         "Procura um Programador?", 
@@ -22,8 +42,6 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
         "Procura um aplicativo para a sua empresa?", 
     		"Você veio ao lugar certo!", 
     		];
-
-    		$scope.Carousel = Carousel;
      
           $scope.menuConfig3 = {
             "buttonWidth": 60,
@@ -134,9 +152,11 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
             console.log(responseError);
           });
        };
-       
-       $scope.way = $sce.trustAsResourceUrl('http://localhost:8000/uploads/project/');
-       
+       // $scope.way = $sce.trustAsResourceUrl('http://localhost:8000/uploads/project/');
+       $scope.getIframeSrc = function () {
+        return 'http://localhost:8000/uploads/project/';
+      };
+      $scope.myInterval = 3000;
        loadProject();
 
 }]).value('duScrollOffset', 30)

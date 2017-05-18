@@ -131,6 +131,10 @@
 .bottom-content{
 	margin-bottom: 20%;
 }
+.img-project-show{
+	margin-left: 5%;
+	margin-right: 5%;
+}
 /*****************PROJECT*******************/
 
 /*****************CONTACT*******************/
@@ -219,6 +223,20 @@
 .ng-carousel slide:not(.empty):nth-child(odd) {
   background-color: #aaa;
   color: #ccc;
+}
+#slides_control > div{
+  height: 200px;
+}
+img{
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
 }
 /*****************CAROUSEL*******************/
 
