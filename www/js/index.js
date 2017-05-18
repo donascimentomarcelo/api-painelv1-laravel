@@ -14,7 +14,7 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
     cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Carregando...</div>';
   }])
-.controller('myController',['$scope', 'Carousel', '$document', '$location', '$http','snackbar', function($scope, Carousel, $document, $location, $http, snackbar){
+.controller('myController',['$scope', 'Carousel', '$document', '$location', '$http','snackbar', '$sce', function($scope, Carousel, $document, $location, $http, snackbar, $sce){
  
     		$scope.stuff = [
         "Procura um Programador?", 
@@ -134,7 +134,9 @@ angular.module('myApp', ['ui.router','angularTypewrite','angular-parallax','angu
             console.log(responseError);
           });
        };
-
+       
+       $scope.way = $sce.trustAsResourceUrl('http://localhost:8000/uploads/project/');
+       
        loadProject();
 
 }]).value('duScrollOffset', 30)

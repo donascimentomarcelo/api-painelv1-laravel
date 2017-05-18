@@ -86,10 +86,8 @@
 								<div>
 									<h2>{{dataProject.link}}</h2>
 									<div ng-carousel ng-carousel-name="project1" ng-carousel-timer="5000">
-
-										<slidecontainer >
-											<slide src=""></slide>
-											
+										<slidecontainer ng-repeat="o in dataProject.upload.data">
+											<slide ng-src="{{o.original_filename}}"></slide>
 										</slidecontainer>
 									</div>
 								</div>
