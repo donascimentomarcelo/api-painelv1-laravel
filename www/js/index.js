@@ -157,6 +157,7 @@ angular.module('myApp', [
         return 'http://localhost:8000/uploads/project/';
       };
       $scope.myInterval = 3000;
+      $scope.carouselIndex3 = 5;
        loadProject();
 
 }]).value('duScrollOffset', 30)

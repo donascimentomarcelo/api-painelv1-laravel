@@ -83,9 +83,9 @@
 						<h2>{{dataProject.name}}</h2>
 						<div class="portifolio">
 							<h2>{{dataProject.link}}</h2>
-							<div ng-repeat="image in dataProject.upload.data" ng-show="$index === 0" class="">
+						<!-- 	<div ng-repeat="image in dataProject.upload.data" ng-show="$index === 0" class="">
 								<img src="{{image.way + image.original_filename}}" class="img-project-show">
-							</div>
+							</div> -->
 							<!-- <carousel interval="myInterval">
 								<slide ng-repeat="image in dataProject.upload.data" active="slide.active" id="slides_control">
 									<img ng-src="{{image.way + image.original_filename}}">
@@ -98,7 +98,7 @@
 								<div class="carousel-demo">
 									<ul rn-carousel rn-carousel-index="carouselIndex3" rn-carousel-transition="hexagon" rn-carousel-buffered class="carousel3">
 										<li ng-repeat="image in dataProject.upload.data">
-											<div ng-style="{'background-image': 'url(' + image.way + image.original_filename + ')'}"  class="bgimage">
+											<div ng-style="{'background-image': 'url(http://localhost:8000/uploads/project/' +  image.original_filename + ')'}"  class="bgimage">
 											</div>
 											
 										</li>
