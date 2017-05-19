@@ -23,7 +23,8 @@ class ProjectService
 
     public function way()
     {
-        return 'http://localhost:8000/uploads/project/';
+        return 'http://marceloprogrammer.com/api/uploads/project/';
+        // return 'http://localhost:8000/uploads/project/';
     }
 
     public function save($files, $id)
@@ -66,7 +67,7 @@ class ProjectService
 
         Uploads::where('original_filename', $upload->original_filename)->delete();
 
-        unlink(public_path('uploads/project/'.$upload->original_filename));
+        unlink(public_path('api/uploads/project/'.$upload->original_filename));
         
         return;
 

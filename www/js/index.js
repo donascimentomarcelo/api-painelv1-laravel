@@ -30,11 +30,13 @@ angular.module('myApp', [
                      '$location', 
                      '$http',
                      'snackbar',
+                     'Carousel',
                            function($scope, 
                                     $document, 
                                     $location, 
                                     $http, 
-                                    snackbar){
+                                    snackbar,
+                                    Carousel){
  
     		$scope.stuff = [
         "Procura um Programador?", 
@@ -142,6 +144,7 @@ angular.module('myApp', [
 
        var loadProject = function(){
         var promise = $http.get('http://localhost:8000/api/project/list');
+        // var promise = $http.get('http://marceloprogrammer.com/api/api/project/list');
           promise.then(function (data){
             ignoreLoadingBar: true;
             console.log(data.data.data);
@@ -156,8 +159,7 @@ angular.module('myApp', [
        $scope.getIframeSrc = function () {
         return 'http://localhost:8000/uploads/project/';
       };
-      $scope.myInterval = 3000;
-      $scope.carouselIndex3 = 5;
+      $scope.Carousel = Carousel;
        loadProject();
 
 }]).value('duScrollOffset', 30)

@@ -209,7 +209,7 @@
 
 /*****************CAROUSEL*******************/
 .ng-carousel slide {
-    background-color: #999;
+    background-color: rgba(255, 255, 255, .15);
     text-align: center;
     font-size: 148px;
     line-height: 300px;
@@ -221,7 +221,7 @@
 }
 
 .ng-carousel slide:not(.empty):nth-child(odd) {
-  background-color: #aaa;
+  background-color: rgba(255, 255, 255, .15);
   color: #ccc;
 }
 #slides_control > div{
@@ -229,7 +229,9 @@
 }
 img{
   margin:auto;
-  width: 400px;
+  /*width: 400px;*/
+  width: 80%;
+  height: 500px;
 }
 #slides_control {
   position:absolute;
@@ -237,6 +239,9 @@ img{
   left:50%;
   top:20px;
  margin-left:-200px;
+}
+.ng-carousel{
+	height: 500px;
 }
 /*****************CAROUSEL*******************/
 
@@ -549,6 +554,13 @@ section {
 	margin-right: 3%;
 	margin-top: 16%;
 }
+img{
+	width: 100%;
+	/*height: 300px;*/
+}
+/*.ng-carousel {
+    height: 300px;
+}*/
 }
 @media(max-width: 375px)
 {

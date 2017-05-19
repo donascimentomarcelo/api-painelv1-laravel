@@ -79,10 +79,10 @@
 			<div class="row bottom-content">
 				<h2 class="project">Conheça alguns de meus projetos</h2>
 				<div class="align-projects">
-					<div class="col-6 col-md-4" ng-repeat="dataProject in dataProjects">
+					<div class="" ng-repeat="dataProject in dataProjects">
 						<h2>{{dataProject.name}}</h2>
 						<div class="portifolio">
-							<h2>{{dataProject.link}}</h2>
+							<h5><a ng-href="//{{ dataProject.link}}" TARGET="_blank">{{dataProject.link}}</a></h5>
 						<!-- 	<div ng-repeat="image in dataProject.upload.data" ng-show="$index === 0" class="">
 								<img src="{{image.way + image.original_filename}}" class="img-project-show">
 							</div> -->
@@ -94,17 +94,26 @@
 									</div>
 								</slide>
 							</carousel> -->
-							<!-- <div ng-carousel ng-carousel-name="project1" ng-carousel-timer="5000">
-								<div class="carousel-demo">
-									<ul rn-carousel rn-carousel-index="carouselIndex3" rn-carousel-transition="hexagon" rn-carousel-buffered class="carousel3">
-										<li ng-repeat="image in dataProject.upload.data">
-											<div ng-style="{'background-image': 'url(http://localhost:8000/uploads/project/' +  image.original_filename + ')'}"  class="bgimage">
-											</div>
-											
-										</li>
-									</ul>
-								</div>
+							<!-- <div ng-carousel ng-carousel-name="project1" ng-carousel-timer="5000"> -->
+							<!-- 	<div class="carousel-demo">
+								<ul rn-carousel rn-carousel-index="carouselIndex3" rn-carousel-transition="hexagon" rn-carousel-buffered class="carousel3">
+									<li ng-repeat="image in dataProject.upload.data">
+										<div ng-style="{'background-image': 'url(http://localhost:8000/uploads/project/' +  image.original_filename + ')'}"  class="bgimage">
+										</div>
+										
+									</li>
+								</ul>
 							</div> -->
+							<!-- </div> -->
+							<div ng-carousel ng-carousel-name="example-carousel{{$index}}" ng-carousel-timer="50000">
+								<slidecontainer>
+									<slide ng-repeat="image in dataProject.upload.data">
+										<img data-ng-src="{{image.way + image.original_filename}}">
+									</slide>
+								</slidecontainer>
+							</div>
+							<h5>{{dataProject.description}}</h5>
+							<hr>
 						</div>
 					</div>
 				</div>

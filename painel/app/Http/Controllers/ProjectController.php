@@ -37,7 +37,7 @@ class ProjectController extends Controller
                         ->withErrors($validator)
                         ->withInput();
           }
-        $id = $this->projectRepository->create($request->all());
+        $id = $this->projectRepository->skipPresenter()->create($request->all());
         $return = $this->projectService->save($files, $id);
         return redirect()->route('admin.painel.projectlist');
     }
