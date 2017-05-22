@@ -16,6 +16,7 @@ class Uploads extends Model implements Transformable
                 'way',
                 'mime',
                 'original_filename',
+                'order',
     			];
 
     public function projects()

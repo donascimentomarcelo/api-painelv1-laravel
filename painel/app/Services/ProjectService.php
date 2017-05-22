@@ -23,8 +23,8 @@ class ProjectService
 
     public function way()
     {
-        return 'http://marceloprogrammer.com/api/uploads/project/';
-        // return 'http://localhost:8000/uploads/project/';
+        // return 'http://marceloprogrammer.com/api/uploads/project/';
+        return 'http://localhost:8000/uploads/project/';
     }
 
     public function save($files, $id)

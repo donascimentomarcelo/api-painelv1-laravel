@@ -29,7 +29,7 @@
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a>
 
-									<a href="{{route('admin.painel.image',['id'=>$key->id])}}" class="btn btn-primary btn-sm">
+									<a href="{{route('admin.single.order',['id'=>$key->id])}}" class="btn btn-primary btn-sm">
 										<span class="glyphicon glyphicon-sort"></span>
 									</a>
 

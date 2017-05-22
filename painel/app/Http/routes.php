@@ -43,7 +43,7 @@
 
 		Route::get('image/multiple/{id}',['as' => 'multiple.order', 'uses' => 'ImageController@indexMultiple']);
 		Route::post('image/multiple/{id}',['as' => 'image.update.multiple', 'uses' => 'ImageController@updateMultiple']);
-		Route::get('image/single/{id}',['as' => 'image.single.order', 'uses' => 'ImageController@indexSingle']);
+		Route::get('image/single/{id}',['as' => 'single.order', 'uses' => 'ImageController@indexSingle']);
 		Route::post('image/single/{id}',['as' => 'image.update.single', 'uses' => 'ImageController@updateSingle']);
 		
 	});
