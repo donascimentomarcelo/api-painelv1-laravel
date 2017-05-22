@@ -23,7 +23,8 @@ class UploadsTransformer extends TransformerAbstract
         return [
             'id'                => (int) $model->id,
             'original_filename' => $model->original_filename,
-            'way'               => $model->way
+            'way'               => $model->way,
+            'order'             => (int)$model->order
         ];
     }
 }

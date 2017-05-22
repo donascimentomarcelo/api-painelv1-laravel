@@ -85,7 +85,7 @@
 							<h5><a ng-href="//{{ dataProject.link}}" TARGET="_blank">{{dataProject.link}}</a></h5>
 							<div ng-carousel ng-carousel-name="example-carousel{{$index}}" ng-carousel-timer="5000">
 								<slidecontainer>
-									<slide ng-repeat="image in dataProject.upload.data">
+									<slide ng-repeat="image in dataProject.upload.data | orderBy:'order'">
 										<img data-ng-src="{{image.way + image.original_filename}}">
 									</slide>
 								</slidecontainer>

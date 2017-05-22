@@ -43,8 +43,10 @@ class ProjectService
         return;
     }
 
-    public function updateImage($files, $id)
+    public function updateImage($files, $id, $dataImage)
     {
+         $this->destroyImageRepository($dataImage);
+
          $arr = $this->doUpload($files);
 
          foreach ($arr as $key) {
@@ -65,10 +67,10 @@ class ProjectService
 
       try {
 
+        $this->destroyImageRepository($upload);
+
         Uploads::where('original_filename', $upload->original_filename)->delete();
 
-        unlink(public_path('api/uploads/project/'.$upload->original_filename));
-        
         return;
 
       } catch (Exception $e) {
@@ -77,6 +79,13 @@ class ProjectService
       
       }
 
+    }
+
+    public function destroyImageRepository($image)
+    {
+      File::delete('uploads/project/'.$image->original_filename);
+
+      return;
     }
 
     public function doUpload($files)
@@ -100,6 +109,10 @@ class ProjectService
               $entry->filename = $file->getFilename().'.'.$extension;
               
               $entry->way = $this->way();
+
+              $entry->order = $uploadcount;
+
+
               $arr[] = $entry;
               
           }

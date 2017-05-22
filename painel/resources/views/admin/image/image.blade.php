@@ -12,6 +12,13 @@
 
 						{!! Form::model($upload, ['route'=>['admin.painel.image.update', $upload->id], 'files'=>true])!!}
 						
+						<div class="alert alert-warning alert-del-img">
+							<strong>Informações sobre alteração de imagem.</strong><br>
+							Ao alterar a imagem a mesma será removida das configurações assim sendo não poderá ser recuperada novamente.<br>
+							Selecione a ordem que deseja que a imagem seja exibida. <br>
+							A ordem será seguida de acordo com a numeração vinculada a cada imagem.
+						</div>
+
 						<div class="align-image">
 							<label for="">Imagem do projeto</label>
 							<div class="form-group">

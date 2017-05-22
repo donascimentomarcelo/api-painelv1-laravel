@@ -33,12 +33,18 @@
 		Route::get('project/list',['as' => 'painel.projectlist', 'uses' => 'ProjectController@listProject']);
 		Route::get('project/edit/{id}',['as' => 'painel.edit', 'uses' => 'ProjectController@editProject']);
 		Route::post('project/update/{id}',['as' => 'painel.update', 'uses' => 'ProjectController@updateProject']);
-		Route::get('image/edit/{id}',['as' => 'painel.image', 'uses' => 'ProjectController@editImage']);
-		Route::post('image/update/{id}',['as' => 'painel.image.update', 'uses' => 'ProjectController@updateImage']);
-		Route::get('image/delete/{id}',['as' => 'painel.image.delete', 'uses' => 'ProjectController@deleteImage']);
-		Route::post('image/destroy/{id}',['as' => 'painel.image.destroy', 'uses' => 'ProjectController@destroyImage']);
-		Route::get('image/add/{id}',['as' => 'painel.image.add', 'uses' => 'ProjectController@addImage']);
-		Route::post('image/save/{id}',['as' => 'painel.image.save', 'uses' => 'ProjectController@saveImage']);
+
+		Route::get('image/edit/{id}',['as' => 'painel.image', 'uses' => 'ImageController@editImage']);
+		Route::post('image/update/{id}',['as' => 'painel.image.update', 'uses' => 'ImageController@updateImage']);
+		Route::get('image/delete/{id}',['as' => 'painel.image.delete', 'uses' => 'ImageController@deleteImage']);
+		Route::post('image/destroy/{id}',['as' => 'painel.image.destroy', 'uses' => 'ImageController@destroyImage']);
+		Route::get('image/add/{id}',['as' => 'painel.image.add', 'uses' => 'ImageController@addImage']);
+		Route::post('image/save/{id}',['as' => 'painel.image.save', 'uses' => 'ImageController@saveImage']);
+
+		Route::get('image/multiple/{id}',['as' => 'multiple.order', 'uses' => 'ImageController@indexMultiple']);
+		Route::post('image/multiple/{id}',['as' => 'image.update.multiple', 'uses' => 'ImageController@updateMultiple']);
+		Route::get('image/single/{id}',['as' => 'image.single.order', 'uses' => 'ImageController@indexSingle']);
+		Route::post('image/single/{id}',['as' => 'image.update.single', 'uses' => 'ImageController@updateSingle']);
 		
 	});
 	

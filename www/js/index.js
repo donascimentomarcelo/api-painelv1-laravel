@@ -76,7 +76,6 @@ angular.module('myApp', [
             console.log(responseError);
           });
        };
-       // $scope.way = $sce.trustAsResourceUrl('http://localhost:8000/uploads/project/');
 
       $scope.Carousel = Carousel;
        loadProject();

@@ -63,63 +63,8 @@ class ProjectController extends Controller
         return view('admin.project.list-project', compact('projects'));
     }
 
-    public function editImage($id)
-    {
-        $upload = $this->uploadRepository->skipPresenter()->find($id);
+    
 
-        return view('admin.project.image', compact('upload'));
-    }
-
-    public function updateImage($id, Request $request)
-    {
-        $files = Input::file('images');
-        $validator = $this->projectService->validateFiles($files);
-          if($validator->fails()){
-            return redirect('admin/image/edit/'.$id)
-                        ->withErrors($validator)
-                        ->withInput();
-          }
-        $this->projectService->updateImage($files, $id);
-
-        return redirect()->route('admin.painel.projectlist');
-          
-    }
-
-    public function deleteImage($id)
-    {
-        $upload = $this->uploadRepository->skipPresenter()->find($id);
-
-        return view('admin.project.delete', compact('upload'));
-    }
-
-    public function destroyImage($id)
-    {
-        $upload = $this->uploadRepository->skipPresenter()->find($id);
-
-        $this->projectService->removeUpload($upload);
-
-        return redirect()->route('admin.painel.projectlist');
-    }
-
-    public function addImage($id)
-    {
-        $projects = $this->projectRepository->skipPresenter()->find($id);
-
-        return view('admin.project.add', compact('projects'));
-    }
-
-    public function saveImage($id)
-    {
-        $files = Input::file('images');
-        $validator = $this->projectService->validateFiles($files);
-          if($validator->fails()){
-            return redirect('admin/image/add/'.$id)
-                        ->withErrors($validator)
-                        ->withInput();
-          }
-        $return = $this->projectService->save($files, $id);
-        return redirect()->route('admin.painel.projectlist');
-
-    }
+   
 
 }
