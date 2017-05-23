@@ -38,5 +38,9 @@ class RepositoryServiceProvider extends ServiceProvider
                 "Painel\Repositories\UploadsRepository",
                 "Painel\Repositories\UploadsRepositoryEloquent"
             );
+            $this->app->bind(
+                "Painel\Repositories\EmailRepository",
+                "Painel\Repositories\EmailRepositoryEloquent"
+            );
     }
 }
