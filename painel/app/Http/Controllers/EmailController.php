@@ -37,24 +37,28 @@ class EmailController extends Controller
         $description = 'teste';
         $subject = 'teste';
 
-        $data = array('description'=>$description, 'subject'=>$subject, 'email'=>$emails);
+        $data = array('description'=>$description, 'subject'=>$subject);
 
         foreach ($emails as $email) 
         {
 
             $send = Mail::send('email.email-multiple', $data, function($message) use($email, $description, $subject)
             {
-                $message->to('marcelojunin2010@hotmail.com', 'Marcelo Nascimento')->subject($subject);
+                $message->to($email)->subject($subject);
+               
 
-                $message->from($email);
+                    $message->from('marcelojunin2010@hotmail.com');
+                    
+                
+
             });
 
+        }
             if(!$send)
             {
                 return 0;
             }
             return 1;
-        }
     }
 
 
