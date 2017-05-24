@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Painel\Http\Controllers\Controller;
 use Painel\Http\Requests;
+use Painel\Http\Requests\NewsRequest;
 use Painel\Repositories\EmailRepository;
+use Painel\Repositories\NewsRepository;
 use Painel\Services\EmailService;
 
 
@@ -14,52 +16,63 @@ class EmailController extends Controller
 {
     private $emailRepository;
     private $emailService;
+    private $newsRepository;
 
-    public function __construct(EmailRepository $emailRepository, EmailService $emailService)
+    public function __construct(EmailRepository $emailRepository, EmailService $emailService, NewsRepository $newsRepository)
     {
         $this->emailRepository = $emailRepository;
         $this->emailService = $emailService;
+        $this->newsRepository = $newsRepository;
     }
 
-    public function listEmail()
+    public function create(Request $request)
     {
+        $request = $request->all();
+
+        $request['status'] = 'inactive';
+        
+        $this->emailService->emailConfirmation($request);
+
         
     }
-    
-    public function saveEmail()
+
+    public function editStatusEmail($id)
     {
+        $emails =  $this->emailRepository->find($id);
+
+        return view('admin.email.edit', compact('emails'));
+    }
+
+    public function updateStatusEmail($id)
+    {
+        $this->emailRepository->update();
+    }
+
+    public function show()
+    {
+        $emails = $this->emailRepository->paginate(10);
+
+        return view('admin.email.list', compact('emails'));
+    }
+
+    public function sendEmail(NewsRequest $request)
+    {
+        $this->newsRepository->create($request->all());
         
+        $this->emailService->sendService($request->all());
+
+        return redirect()->route('admin.painel.news.list');
     }
 
-    public function sendEmail()
+    public function updateSendEmail(NewsRequest $request, $id)
     {
-        $emails = $this->emailRepository->EmailByStatus();
-        $description = 'teste';
-        $subject = 'teste';
+        $this->newsRepository->update($request->all(), $id);
 
-        $data = array('description'=>$description, 'subject'=>$subject);
+        $this->emailService->sendService($request->all());
 
-        foreach ($emails as $email) 
-        {
-
-            $send = Mail::send('email.email-multiple', $data, function($message) use($email, $description, $subject)
-            {
-                $message->to($email)->subject($subject);
-               
-
-                    $message->from('marcelojunin2010@hotmail.com');
-                    
-                
-
-            });
-
-        }
-            if(!$send)
-            {
-                return 0;
-            }
-            return 1;
+        return redirect()->route('admin.painel.news.list');
     }
 
+   
 
 }

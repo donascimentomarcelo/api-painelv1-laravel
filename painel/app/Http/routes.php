@@ -14,6 +14,7 @@
 	Route::get('/','Auth\AuthController@getLogin');
 
 	Route::post('painel/email',['as' => 'painel.email', 'uses' => 'PainelController@email']);
+	Route::post('emails/create',['as' => 'painel.emails.create', 'uses' => 'EmailController@create']);
 
 	Route::get('auth/login', 'Auth\AuthController@getLogin');
 	Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -45,9 +46,18 @@
 		Route::post('image/multiple/{id}',['as' => 'image.update.multiple', 'uses' => 'ImageController@updateMultiple']);
 		Route::get('image/single/{id}',['as' => 'single.order', 'uses' => 'ImageController@indexSingle']);
 		Route::post('image/single/{id}',['as' => 'image.update.single', 'uses' => 'ImageController@updateSingle']);
-
 		
+		Route::get('news/create',['as' => 'painel.news.create', 'uses' => 'NewsController@create']);
+		Route::get('news/list',['as' => 'painel.news.list', 'uses' => 'NewsController@show']);
+		Route::get('news/edit/{id}',['as' => 'painel.news.edit', 'uses' => 'NewsController@edit']);
+		Route::post('news/update/{id}',['as' => 'painel.news.update', 'uses' => 'NewsController@update']);
+
+		Route::post('news/send',['as' => 'painel.email.send', 'uses' => 'EmailController@sendEmail']);
+		Route::post('news/update/{id}',['as' => 'painel.email.update', 'uses' => 'EmailController@updateSendEmail']);
+
+		Route::get('emails/list',['as' => 'painel.emails.list', 'uses' => 'EmailController@show']);
+
 	});
-	Route::get('email/send/multiple',['as' => 'email.send', 'uses' => 'EmailController@sendEmail']);
+	// Route::get('email/send/multiple',['as' => 'email.send', 'uses' => 'EmailController@sendEmail']);
 	
 	Route::get('api/project/list',['as' => 'api.project.list', 'uses' => 'Api\ApiProjectController@ApiListProject']);

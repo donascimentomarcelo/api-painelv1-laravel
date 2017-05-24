@@ -9,15 +9,13 @@
 
 </head>
 <body>
-	<div class="container background" style="background-color: rgba(221, 221, 221, 0.09); padding-left: 5%;">
+	<div class="container background" style="background-color: rgba(221, 221, 221, 0.09); padding-left: 5%;    width: 60%; margin-left: auto; margin-right: auto;">
 		<div class="row">
 			<div class="col">
-				<h2>Olá! Marcelo Nascimento!</h2>
+				<h2 style="text-align: center;">{!!$title!!}</h2>
 				<hr>
 					<h5></h5>
-				<h4>Gostaria de tratar com você sobre o seguinte assunto: {!!$subject!!}</h4>
-					<h5></h5>
-				<h4>Conteúdo: {!!$description!!}</h4>
+					<h4> {!!$description!!}</h4>
 					<h5></h5>
 			</div>
 		</div>

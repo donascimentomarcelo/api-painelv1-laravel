@@ -12,7 +12,7 @@
 	<div class="container background" style="background-color: rgba(221, 221, 221, 0.09); padding-left: 5%;">
 		<div class="row">
 			<div class="col">
-				<h2>Olá Marcelo Nascimento!</h2>
+				<h4>E-mail de Contato</h4>
 				<hr>
 				<h4>Meu nome é {!!$name!!},</h4>
 					<h5></h5>
