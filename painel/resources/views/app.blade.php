@@ -29,7 +29,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Menu</a>
+				<a class="navbar-brand" href="http://marceloprogrammer.com">Marcelo Programmer</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="navbar">
@@ -70,11 +70,7 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					@if(auth()->guest())
-						@if(!Request::is('auth/login'))
-							<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						@endif
-					@else
+					@if(!auth()->guest())
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">

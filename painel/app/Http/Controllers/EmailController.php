@@ -25,15 +25,19 @@ class EmailController extends Controller
         $this->newsRepository = $newsRepository;
     }
 
-    public function create(Request $request)
+    // public function create(Request $request)
+    // {
+    //     return $this->emailService->emailConfirmation($request->all());
+   
+    // }
+
+    public function emailConfirmation($id)
     {
-        $request = $request->all();
+        $this->emailRepository->find($id);
 
-        $request['status'] = 'inactive';
+        $this->emailService->updateStatusConfirmation($id);
         
-        $this->emailService->emailConfirmation($request);
-
-        
+        return redirect()->route('emails.success');
     }
 
     public function editStatusEmail($id)

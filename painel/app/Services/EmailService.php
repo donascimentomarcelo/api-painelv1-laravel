@@ -4,6 +4,7 @@ namespace Painel\Services;
 
 use Illuminate\Support\Facades\Mail;
 use Painel\Repositories\EmailRepository;
+use Painel\Models\Email;
 
 class EmailService 
 {
@@ -32,6 +33,54 @@ class EmailService
 				$message->from('marcelojunin2010@hotmail.com', 'Marcelo Nascimento');
 			});
 
+		}
+
+		return;
+	}
+
+	public function emailConfirmation($request)
+	{
+
+		$name = $request['name'];
+
+		$email = $request['email'];
+
+		$return  = $this->emailRepository->create($request);
+
+		$arr = array(
+			'name'=>$name,
+			'email'=>$email,
+			'id'=>$return['id']
+			);
+
+		$send = Mail::send('email.confirmation', $arr, function($message) use($email, $name)
+		{
+			$message->to($email)->subject('E-mail de confirmação');
+
+			$message->from('marcelojunin2010@hotmail.com', 'Marcelo Nascimento');
+		});
+
+		if(!$send)
+		{
+			return 0;
+		}
+		else
+		{
+			
+			return 1;
+			
+		}
+
+	}
+
+	public function updateStatusConfirmation($id)
+	{
+		try {
+
+			Email::where('id', $id)->update(['status'=>'active']);
+			
+		} catch (Exception $e) {
+			throw $e;
 		}
 
 		return;
