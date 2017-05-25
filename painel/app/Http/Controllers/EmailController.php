@@ -30,7 +30,10 @@ class EmailController extends Controller
     //     return $this->emailService->emailConfirmation($request->all());
    
     // }
-
+    public function successConfirmation()
+    {
+        return view('email.success-confirmation');
+    }
     public function emailConfirmation($id)
     {
         $this->emailRepository->find($id);

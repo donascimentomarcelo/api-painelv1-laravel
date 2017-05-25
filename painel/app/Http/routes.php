@@ -16,9 +16,7 @@
 	Route::post('painel/email',['as' => 'painel.email', 'uses' => 'PainelController@email']);
 	Route::post('emails/create',['as' => 'painel.emails.create', 'uses' => 'Api\ApiProjectController@create']);
 	Route::get('emails/update/{id}/confirmation',['as' => 'email.confirmation', 'uses' => 'EmailController@emailConfirmation']);
-	Route::get('emails/success',function(){
-		return view('email.success-confirmation');
-	});
+	Route::get('emails/success', ['as' => 'emails.success', 'uses' => 'EmailController@successConfirmation']);
 
 	Route::get('auth/login', 'Auth\AuthController@getLogin');
 	Route::post('auth/login', 'Auth\AuthController@postLogin');

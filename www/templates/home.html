@@ -105,7 +105,8 @@
 		<div class="contact-container">
 			<div class="container">
 				<div class="row">
-					<div class="col">
+					<div class="col-md-6">
+					<h1>Entre em contato</h1>
 						<form name="form" class="form">
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="Seu nome..." ng-model="data.name" ng-required="true">
@@ -121,6 +122,22 @@
 							</div>
 							<div class="form-group">
 								<button type="button" class="btn btn-success btn-send" ng-click="sendEmail(data)" ng-disabled="form.$invalid">Enviar</button>
+							</div>
+							<div class="snackbar-container" data-snackbar="true" data-snackbar-duration="3000" data-snackbar-remove-delay="3000"></div>
+							<div id="loading-bar-container"></div>
+						</form>
+					</div>
+					<div class="col-md-6">
+					<h1>Cadastre-se</h1>
+						<form name="news" class="form">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Seu nome..." ng-model="news.name" ng-required="true">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Seu e-mail..." ng-model="news.email" ng-required="true">
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-success btn-send" ng-click="registerNews(news)" ng-disabled="news.$invalid">Registrar</button>
 							</div>
 							<div class="snackbar-container" data-snackbar="true" data-snackbar-duration="3000" data-snackbar-remove-delay="3000"></div>
 							<div id="loading-bar-container"></div>

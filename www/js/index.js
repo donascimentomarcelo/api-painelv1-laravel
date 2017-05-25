@@ -63,7 +63,14 @@ angular.module('myApp', [
                 console.log(responseError);
               });
        };
-
+       $scope.registerNews = function(data){
+        var promise = $http.post('http://marceloprogrammer.com/api/emails/create', data);
+        promise.then(function(data){
+          snackbar.create("Verifique sua caixa de e-mail para validação");
+        }, function(responseError){
+          snackbar.create("Houve um erro no cadastro!");
+        })
+       }
        var loadProject = function(){
         var promise = $http.get('http://localhost:8000/api/project/list');
         // var promise = $http.get('http://marceloprogrammer.com/api/api/project/list');
