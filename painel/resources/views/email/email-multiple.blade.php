@@ -9,14 +9,16 @@
 
 </head>
 <body>
-	<div class="container background" style="background-color: rgba(221, 221, 221, 0.09); padding-left: 5%;    width: 60%; margin-left: auto; margin-right: auto;">
-		<div class="row">
-			<div class="col">
-				<h2 style="text-align: center;">{!!$title!!}</h2>
-				<hr>
+	<div class="container background" style="background-color: rgba(221, 221, 221, 0.09); padding-left: 5%;    width: 80%; margin-left: auto; margin-right: auto;">
+		<div class="align" style="width: 90%; margin-right: auto; margin-left: auto;">
+			<div class="row">
+				<div class="col">
+					<h2 style="text-align: center;">{!!$title!!}</h2>
+					<hr>
 					<h5></h5>
 					<h4> {!!$description!!}</h4>
 					<h5></h5>
+				</div>
 			</div>
 		</div>
 		<hr>

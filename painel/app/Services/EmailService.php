@@ -23,19 +23,57 @@ class EmailService
 
 		$emails = $this->emailRepository->EmailByStatus();
 
-		foreach ($emails as $email) 
+
+		if(empty($request->mime) || empty($request->original_filename) || empty($request->filename))
 		{
+			$arr = array(
+				'title'=>$title,
+				'subject'=>$subject,
+				'description'=>$description,
+				);
 
-			$send = Mail::send('email.email-multiple', $request, function($message) use($email, $description, $subject, $title)
+			foreach ($emails as $email) 
 			{
-				$message->to($email)->subject($subject);
-				
-				$message->from('marcelojunin2010@hotmail.com', 'Marcelo Nascimento');
-			});
 
+				$send = Mail::send('email.email-multiple', $arr, function($message) use($email, $subject)
+				{
+					$message->to($email)->subject($subject);
+
+					$message->from('marcelojunin2010@hotmail.com', 'Marcelo Nascimento');
+				});
+
+			}
+
+			return;
+		}
+		else
+		{
+			$arr = array(
+				'title'=>$title,
+				'subject'=>$subject,
+				'description'=>$description,
+				'mime'=>$request->mime,
+				'original_filename'=>$request->original_filename,
+				'filename'=>$request->filename,
+				'way'=>$request->way
+				);
+			
+			foreach ($emails as $email) 
+			{
+
+				$send = Mail::send('email.email-multiple-with-image', $arr, function($message) use($email, $subject)
+				{
+					$message->to($email)->subject($subject);
+
+					$message->from('marcelojunin2010@hotmail.com', 'Marcelo Nascimento');
+				});
+
+			}
+
+			return;
 		}
 
-		return;
+		
 	}
 
 	public function emailConfirmation($request)

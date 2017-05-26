@@ -10,6 +10,7 @@ use Painel\Http\Requests\NewsRequest;
 use Painel\Repositories\EmailRepository;
 use Painel\Repositories\NewsRepository;
 use Painel\Services\EmailService;
+use Painel\Services\NewsService;
 
 
 class EmailController extends Controller
@@ -17,19 +18,16 @@ class EmailController extends Controller
     private $emailRepository;
     private $emailService;
     private $newsRepository;
+    private $newsService;
 
-    public function __construct(EmailRepository $emailRepository, EmailService $emailService, NewsRepository $newsRepository)
+    public function __construct(EmailRepository $emailRepository, EmailService $emailService, NewsRepository $newsRepository, NewsService $newsService)
     {
         $this->emailRepository = $emailRepository;
         $this->emailService = $emailService;
         $this->newsRepository = $newsRepository;
+        $this->newsService = $newsService;
     }
 
-    // public function create(Request $request)
-    // {
-    //     return $this->emailService->emailConfirmation($request->all());
-   
-    // }
     public function successConfirmation()
     {
         return view('email.success-confirmation');
@@ -64,16 +62,16 @@ class EmailController extends Controller
 
     public function sendEmail(NewsRequest $request)
     {
-        $this->newsRepository->create($request->all());
-        
-        $this->emailService->sendService($request->all());
+        $return = $this->newsService->createNews($request->all());
+
+        $this->emailService->sendService($return);
 
         return redirect()->route('admin.painel.news.list');
     }
 
     public function updateSendEmail(NewsRequest $request, $id)
     {
-        $this->newsRepository->update($request->all(), $id);
+        $this->newsService->updateNews($request->all(), $id);
 
         $this->emailService->sendService($request->all());
 

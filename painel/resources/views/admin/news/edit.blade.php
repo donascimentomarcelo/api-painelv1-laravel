@@ -15,11 +15,18 @@
 						Você pode alterar a publicação e reenviar ou você pode apenas reenviar sem realizar alterações.
 					</div>
 
-					{!! Form::model($news, ['route'=>['admin.painel.email.update', $news->id]])!!}
+					{!! Form::model($news, ['route'=>['admin.painel.email.update', $news->id], 'files'=>true])!!}
 					
 					{!! csrf_field() !!}
 
 					@include('admin.news._form')
+
+					<div class="form-group">
+						<span class="btn btn-default btn-file">
+							{!! Form::file('images[]', array('class'=>'custom-file-input')) !!}
+							<span class="glyphicon glyphicon-folder-open"></span> Selecione uma imagem
+						</span>
+					</div>
 
 					<div class="form-group">
 					{!! Form::submit('Salvar e Enviar', ['class'=>'btn btn-primary'])!!}

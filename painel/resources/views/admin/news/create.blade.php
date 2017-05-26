@@ -17,7 +17,7 @@
 							</ul>
 						</div>
 					@endif
-					{!! Form::open(['route'=>'admin.painel.email.send', 'class'=>'form'])!!}
+					{!! Form::open(['route'=>'admin.painel.email.send', 'class'=>'form', 'files'=>true])!!}
 					
 					<div class="alert alert-warning alert-del-img">
 					<strong>Informações Importantes.</strong><br>
@@ -27,6 +27,13 @@
 						{!! csrf_field() !!}
 
 						@include('admin.news._form')
+
+						<div class="form-group">
+							<span class="btn btn-default btn-file">
+								{!! Form::file('images[]', array('class'=>'custom-file-input')) !!}
+								<span class="glyphicon glyphicon-folder-open"></span> Selecione uma imagem
+							</span>
+						</div>
 
 						<div class="form-group">
 						 	{!! Form::submit('Enviar', ['class'=>'btn btn-primary'])!!}
