@@ -2,6 +2,7 @@
 
 namespace Painel\Services;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Painel\Models\News;
@@ -56,7 +57,10 @@ class NewsService
 		{
 			$dataFile = $this->newsRepository->find($id);
 			
-			$this->destroyImageRepository($dataFile);
+				if(!empty($dataFile['original_filename']))
+				{
+					$this->destroyImageRepository($dataFile);
+				}
 
 			$entrys = $this->doUpload($files);
 			
@@ -84,7 +88,7 @@ class NewsService
 
 	public function destroyImageRepository($dataFile)
     {
-      File::delete('uploads/news/'.$dataFile->original_filename);
+      File::delete('uploads/news/'.$dataFile['original_filename']);
 
       return;
     }
