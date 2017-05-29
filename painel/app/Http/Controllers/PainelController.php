@@ -52,9 +52,16 @@ class PainelController extends Controller
 
     public function listUser()
     {
+        // $users = $this->user->skipPresenter()->paginate(5);
+
+        // return view('admin.painel.list-user', compact('users'));
+        return view('admin.painel.list-user');
+    }
+    public function indexList()
+    {
         $users = $this->user->paginate(5);
 
-        return view('admin.painel.list-user', compact('users'));
+        return $users;
     }
 
     public function email(EmailRequest $request)

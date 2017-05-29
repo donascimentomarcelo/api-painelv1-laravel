@@ -1,41 +1,36 @@
 @extends('app')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
+
+{!! Html::script('js/angular/lib/loading-bar.js') !!}
+{!! Html::style('js/angular/lib/loading-bar.css') !!}
+
+{!! Html::script('js/angular/user/userCtrl.js') !!}
+
+<div class="container-fluid" ng-app="user">
+	<div class="row" ng-controller="userCtrl">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">Lista de usuário</div>
 				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-					<table class="table">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Nome</th>
-								<th>E-mail/Login</th>
-							</tr>
-							<tbody>
-								@foreach($users as $user)
+					<div dw-loading="key" dw-loading-options="options">
+						<table class="table">
+							<thead>
 								<tr>
-									<td>{{$user->id}}</td>
-									<td>{{$user->name}}</td>
-									<td>{{$user->email}}</td>
+									<th>ID</th>
+									<th>Nome</th>
+									<th>E-mail/Login</th>
 								</tr>
-								@endforeach
-							</tbody>
-						</thead>
-					</table>
-					{!! $users->render() !!}
+								<tbody>
+									<tr ng-repeat="user in users">
+										<td><% user.id %></td>
+										<td><% user.name %></td>
+										<td><% user.email %></td>
+									</tr>
+								</tbody>
+							</thead>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

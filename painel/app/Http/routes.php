@@ -30,6 +30,7 @@
 		Route::get('painel/register',['as' => 'painel.user', 'uses' => 'PainelController@createUser']);
 		Route::post('painel/save',['as' => 'painel.create.user', 'uses' => 'PainelController@saveUser']);
 		Route::get('painel/list',['as' => 'painel.userlist', 'uses' => 'PainelController@listUser']);
+		Route::get('painel/index',['as' => 'painel.userIndex', 'uses' => 'PainelController@indexList']);
 
 		Route::get('project/register',['as' => 'painel.project', 'uses' => 'ProjectController@createProject']);
 		Route::post('project/save',['as' => 'painel.create.project', 'uses' => 'ProjectController@saveProject']);
