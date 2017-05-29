@@ -13,27 +13,33 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Lista de usuário</div>
 				<div class="panel-body">
-					<div dw-loading="key" dw-loading-options="options">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Nome</th>
-									<th>E-mail/Login</th>
+					<div id="loading-bar-container"></div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nome</th>
+								<th>E-mail/Login</th>
+							</tr>
+							<tbody>
+								<tr ng-repeat="user in users">
+									<td><% user.id %></td>
+									<td><% user.name %></td>
+									<td><% user.email %></td>
 								</tr>
-								<tbody>
-									<tr ng-repeat="user in users">
-										<td><% user.id %></td>
-										<td><% user.name %></td>
-										<td><% user.email %></td>
-									</tr>
-								</tbody>
-							</thead>
-						</table>
-					</div>
+							</tbody>
+						</thead>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<style>
+	#loading-bar .bar {
+		position: relative;
+		background: #333;
+		height: 7px;
+	}
+</style>
 @endsection

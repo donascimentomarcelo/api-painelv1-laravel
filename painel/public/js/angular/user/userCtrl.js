@@ -3,6 +3,10 @@ angular.module('user', ['cfp.loadingBar'])
   $interpolateProvider.startSymbol('<%');
   $interpolateProvider.endSymbol('%>');
 })
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+	cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Carregando...</div>';
+}])
 .controller('userCtrl',[ '$scope', '$http','cfpLoadingBar', 
 	function($scope, $http, cfpLoadingBar){
 	
