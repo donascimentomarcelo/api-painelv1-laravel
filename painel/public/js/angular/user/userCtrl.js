@@ -22,6 +22,17 @@ angular.module('user', ['cfp.loadingBar'])
 		});
 	};
 
+	$scope.save = function(data){
+		cfpLoadingBarProvider.start();
+		var promise = $http.post('admin/painel/save', data);
+		promise.then(function(data){
+			cfpLoadingBar.complete();
+			console.log(data)
+		},function(dataError){
+			cfpLoadingBar.complete();
+		})
+	}
+
 
 	$scope.load();
 

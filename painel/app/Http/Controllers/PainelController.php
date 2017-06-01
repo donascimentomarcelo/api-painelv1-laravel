@@ -3,33 +3,24 @@
 namespace Painel\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
 use Painel\Http\Controllers\Controller;
 use Painel\Http\Requests;
 use Painel\Http\Requests\EmailRequest;
 use Painel\Http\Requests\UserRequest;
 use Painel\Models\User;
-use Painel\Repositories\ProjectsRepository;
-use Painel\Repositories\UploadsRepository;
 use Painel\Repositories\UserRepository;
-use Painel\Services\ProjectService;
-
-
-
+use Painel\Services\UserService;
 
 class PainelController extends Controller
 {
     private $user;
-    private $projectService;
-    private $projectRepository;
-    private $uploadRepository;
+    private $userService;
 
-    public function __construct(UserRepository $user)
+    public function __construct(UserRepository $user, UserService $userService)
     {
         $this->user = $user;
+        $this->userService = $userService;
     }
 
 
@@ -45,9 +36,9 @@ class PainelController extends Controller
 
     public function saveUser(UserRequest $userRequest)
     {
-        $this->user->create($userRequest->all());
+        return $this->userService->createUser($userRequest->all());
           
-        return redirect()->route('admin.painel.userlist');
+        // return redirect()->route('admin.painel.userlist');
     }
 
     public function listUser()
