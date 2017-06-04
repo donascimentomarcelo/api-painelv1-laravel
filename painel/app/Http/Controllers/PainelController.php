@@ -34,8 +34,16 @@ class PainelController extends Controller
         return view('admin.painel.create-user');
     }
 
-    public function saveUser(UserRequest $userRequest)
+    public function saveUser(Request $userRequest)
     {
+        // return $this->userService->createUser($userRequest->all());
+
+        $validator = $this->userService->validateUser($userRequest->all());
+
+        if ($validator->fails()) {    
+           return 3;
+        }
+
         return $this->userService->createUser($userRequest->all());
           
         // return redirect()->route('admin.painel.userlist');
@@ -53,6 +61,11 @@ class PainelController extends Controller
         $users = $this->user->paginate(5);
 
         return $users;
+    }
+
+    public function editUser($id)
+    {
+        dd($id);
     }
 
     public function email(EmailRequest $request)

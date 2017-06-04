@@ -29,6 +29,7 @@
 		Route::get('home',['as' => 'painel.index', 'uses' => 'PainelController@index']);
 		Route::get('painel/register',['as' => 'painel.user', 'uses' => 'PainelController@createUser']);
 		Route::post('painel/save',['as' => 'painel.create.user', 'uses' => 'PainelController@saveUser']);
+		Route::get('painel/edit/{id}',['as' => 'painel.edit.user', 'uses' => 'PainelController@editUser']);
 		Route::get('painel/list',['as' => 'painel.userlist', 'uses' => 'PainelController@listUser']);
 		Route::get('painel/index',['as' => 'painel.userIndex', 'uses' => 'PainelController@indexList']);
 

@@ -1,4 +1,4 @@
-angular.module('user', ['cfp.loadingBar'])
+angular.module('user', ['cfp.loadingBar', 'angular.snackbar'])
 .config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('<%');
   $interpolateProvider.endSymbol('%>');
@@ -7,33 +7,31 @@ angular.module('user', ['cfp.loadingBar'])
 	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
 	cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Carregando...</div>';
 }])
-.controller('userCtrl',[ '$scope', '$http','cfpLoadingBar', 
-	function($scope, $http, cfpLoadingBar){
+.controller('userCtrl',[ '$scope', '$http','cfpLoadingBar', '$window', 'snackbar', '$userAPIService',
+	function($scope, $http, cfpLoadingBar, $window, snackbar, $userAPIService){
 	
 	$scope.load = function(){
 		cfpLoadingBar.start();
-		var promise = $http.get('/admin/painel/index');
+		var promise = $userAPIService.listUser();
 		promise.then(function(data){
-			console.log(data.data.data);
 			cfpLoadingBar.complete();
 			$scope.users = data.data.data;
-		},function(){
-
+		},function(dataError){
+			console.log(dataError);
 		});
 	};
 
 	$scope.save = function(data){
-		cfpLoadingBarProvider.start();
-		var promise = $http.post('admin/painel/save', data);
-		promise.then(function(data){
-			cfpLoadingBar.complete();
-			console.log(data)
-		},function(dataError){
-			cfpLoadingBar.complete();
-		})
-	}
-
-
-	$scope.load();
+		$userAPIService.validateConfirmPassword(data);
+			cfpLoadingBar.start();
+			var promise = $userAPIService.saveUser(data);
+				promise.then(function(data){
+					$userAPIService.verifyDataUser(data);
+			},function(dataError){
+				cfpLoadingBar.complete();
+				console.log(dataError);
+			});
+	};
+	// $scope.load();
 
 }]);
