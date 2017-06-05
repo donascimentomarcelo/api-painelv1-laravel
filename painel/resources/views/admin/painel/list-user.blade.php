@@ -7,6 +7,7 @@
 
 {!! Html::script('js/angular/user/userCtrl.js') !!}
 {!! Html::script('js/angular/user/userAPIService.js') !!}
+{!! Html::script('js/angular/lib/pagination/simplePagination.js') !!}
 
 <div class="container-fluid" ng-app="user">
 	<div class="row" ng-controller="userCtrl">
@@ -18,28 +19,46 @@
 					<button class="btn btn-primary" ng-click="load()">Listar</button>
 				</div>
 					<div id="loading-bar-container"></div>
+					<form name="searchById" ng-show="users.length > 0">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-12">
+								<label for="">Nome do Usuário</label>
+									<div class="input-group">
+										<input type="text" class="form-control" ng-model="search">
+										<span class="input-group-btn">
+											<button class="btn btn-primary" type="button" disabled="true">
+												<span class="glyphicon glyphicon-search"></span>
+											</button>
+										</span>
+									</div>
+								</div> 
+							</div>
+						</div>
+					</form>
 					<table class="table" ng-show="users.length > 0">
  						<thead>
 							<tr>
 								<th>ID</th>
 								<th>Nome</th>
 								<th>E-mail/Login</th>
-								<th>Editar</th>
 							</tr>
 							<tbody>
-								<tr ng-repeat="user in users">
+								<tr ng-repeat="user in users | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage | filter:{name:search}">
 									<td><% user.id %></td>
 									<td><% user.name %></td>
 									<td><% user.email %></td>
-									<td>
-										<a href="edit/<% user.id %>" class="btn btn-success btn-sm">
-											<span class="glyphicon glyphicon-pencil"></span>
-										</a>
-									</td>
 								</tr>
 							</tbody>
 						</thead>
 					</table>
+					<ul class="pagination" ng-show="users.length > 0">
+						<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+						<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
+							<a href="" ng-click="pagination.toPageId(n)"><% n + 1 %></a>
+						</li>
+						<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>

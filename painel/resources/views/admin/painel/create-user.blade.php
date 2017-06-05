@@ -7,6 +7,7 @@
 
 {!! Html::script('js/angular/user/userCtrl.js') !!}
 {!! Html::script('js/angular/user/userAPIService.js') !!}
+{!! Html::script('js/angular/lib/pagination/simplePagination.js') !!}
 
 <div class="container-fluid" ng-app="user">
 	<div class="row" ng-controller="userCtrl">
@@ -14,19 +15,32 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de usuário</div>
 				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
+
+					<form name="searchById">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-12">
+								<label for="">Código do Usuário</label>
+									<div class="input-group">
+										<input type="number" class="form-control" min="0" ng-model="cod.id" ng-required="true">
+										<span class="input-group-btn">
+											<button class="btn btn-primary"  type="button" ng-click="edit(cod)" ng-disabled="searchById.$invalid">
+												<span class="glyphicon glyphicon-search"></span>
+											</button>
+										</span>
+									</div>
+								</div> 
+							</div>
 						</div>
-					@endif
-					
+					</form>
+
 					{!! Form::open(['class'=>'form', 'name'=>'form'])!!}
 						{!! csrf_field() !!}
+						
+	
+						<div class="form-group">
+						    {!! Form::hidden('id', null, ['class' => 'form-control', 'ng-model'=>'user.id']) !!}
+						</div>
 						<div class="form-group">
 						    {!! Form::label('Nome', 'Nome') !!}
 						    {!! Form::text('name', null, ['class' => 'form-control', 'ng-model'=>'user.name', 'required', 'ng-required'=>'true']) !!}
@@ -44,7 +58,8 @@
 							{!! Form::password('confirmpassword',array('class' => 'form-control', 'required', 'ng-model'=>'user.confirmpassword', 'ng-required'=>'true')) !!}
 						</div>
 						<div class="form-group">
-						{!! Form::button('Criar Usuário', ['class'=>'btn btn-success', 'ng-click'=>'save(user)', 'ng-disabled'=>'form.$invalid'])!!}
+						{!! Form::button('Salvar', ['class'=>'btn btn-success', 'ng-click'=>'save(user)', 'ng-disabled'=>'form.$invalid'])!!}
+						{!! Form::button('Limpar', ['class'=>'btn btn-info', 'ng-click'=>'clear()'])!!}
 						</div>
 						<div id="loading-bar-container"></div>
 					{!! Form::close()!!}

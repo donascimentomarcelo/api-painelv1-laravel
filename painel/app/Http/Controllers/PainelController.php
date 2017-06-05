@@ -36,36 +36,39 @@ class PainelController extends Controller
 
     public function saveUser(Request $userRequest)
     {
-        // return $this->userService->createUser($userRequest->all());
-
         $validator = $this->userService->validateUser($userRequest->all());
 
         if ($validator->fails()) {    
            return 3;
         }
 
-        return $this->userService->createUser($userRequest->all());
-          
-        // return redirect()->route('admin.painel.userlist');
+        return $this->userService->createUser($userRequest->all());    
+    }
+
+    public function updateUser(Request $userRequest)
+    {
+        $validator = $this->userService->validateUserUpdate($userRequest->all());
+
+        if ($validator->fails()) {    
+           return 3;
+        }
+
+        return $this->userService->updateUser($userRequest->all());    
     }
 
     public function listUser()
     {
-        // $users = $this->user->skipPresenter()->paginate(5);
-
-        // return view('admin.painel.list-user', compact('users'));
         return view('admin.painel.list-user');
     }
     public function indexList()
     {
-        $users = $this->user->paginate(5);
-
-        return $users;
+        return $this->user->all();
     }
 
     public function editUser($id)
     {
-        dd($id);
+        return  $this->user->find($id);
+
     }
 
     public function email(EmailRequest $request)

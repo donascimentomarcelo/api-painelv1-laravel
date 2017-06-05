@@ -24,8 +24,24 @@ angular.module('user').factory('$userAPIService',
 					}
 				};
 
+				var _verifyIfExistId = function(data){
+					
+					if(!data.id)
+					{
+						return _saveUser(data)
+					}
+					else
+					{
+						return _updateUser(data)
+					}
+				}
+
 				var _saveUser = function(data){
 					return $http.post('/admin/painel/save', data);
+				};
+
+				var _updateUser = function(data){
+					return $http.post('/admin/painel/update', data);
 				};
 
 				var _listUser = function(){
@@ -38,7 +54,11 @@ angular.module('user').factory('$userAPIService',
 
 		saveUser                : _saveUser,
 
-		listUser                : _listUser
+		updateUser              : _updateUser,
+
+		listUser                : _listUser,
+
+		verifyIfExistId         : _verifyIfExistId
 	};
 }])
 
