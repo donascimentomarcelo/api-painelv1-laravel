@@ -54,7 +54,7 @@
 						    {!! Form::password('password',array('class' => 'form-control', 'required', 'ng-model'=>'user.password', 'ng-required'=>'true')) !!}
 						</div>
 						<div class="form-group">
-						    {!! Form::label('Conforma senha', 'Conforma senha') !!}
+						    {!! Form::label('Confirma senha', 'Confirma senha') !!}
 							{!! Form::password('confirmpassword',array('class' => 'form-control', 'required', 'ng-model'=>'user.confirmpassword', 'ng-required'=>'true')) !!}
 						</div>
 						<div class="form-group">

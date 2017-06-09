@@ -30,16 +30,15 @@ class ProjectController extends Controller
 
     public function saveProject(Request $request)
     {
-        $files = Input::file('images');
+        $files = Input::file('file');
         $validator = $this->projectService->validateFiles($files);
         if($validator->fails()){
-            return redirect('project/save')
-                        ->withErrors($validator)
-                        ->withInput();
-          }
+            return 3;
+        }
+
         $id = $this->projectRepository->skipPresenter()->create($request->all());
         $return = $this->projectService->save($files, $id);
-        return redirect()->route('admin.painel.projectlist');
+        return 1;
     }
 
     public function editProject($id)
