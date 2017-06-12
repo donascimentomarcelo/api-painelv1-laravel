@@ -37,8 +37,9 @@
 		Route::get('project/register',['as' => 'painel.project', 'uses' => 'ProjectController@createProject']);
 		Route::post('project/save',['as' => 'painel.create.project', 'uses' => 'ProjectController@saveProject']);
 		Route::get('project/list',['as' => 'painel.projectlist', 'uses' => 'ProjectController@listProject']);
-		Route::get('project/edit/{id}',['as' => 'painel.edit', 'uses' => 'ProjectController@editProject']);
-		Route::post('project/update/{id}',['as' => 'painel.update', 'uses' => 'ProjectController@updateProject']);
+		Route::get('project/edit',['as' => 'painel.projectedit', 'uses' => 'ProjectController@editProject']);
+		Route::get('project/edit/{id}',['as' => 'painel.edit', 'uses' => 'ProjectController@edit']);
+		Route::post('project/update',['as' => 'painel.update', 'uses' => 'ProjectController@updateProject']);
 
 		Route::get('image/edit/{id}',['as' => 'painel.image', 'uses' => 'ImageController@editImage']);
 		Route::post('image/update/{id}',['as' => 'painel.image.update', 'uses' => 'ImageController@updateImage']);

@@ -37,22 +37,27 @@ class ProjectController extends Controller
         }
 
         $id = $this->projectRepository->skipPresenter()->create($request->all());
-        $return = $this->projectService->save($files, $id);
-        return 1;
+        $response = $this->projectService->save($files, $id);
+        return json_encode($response);
     }
 
-    public function editProject($id)
+    public function edit($id)
     {
-        $projects = $this->projectRepository->skipPresenter()->find($id);
+        return $this->projectRepository->find($id);
 
-        return view('admin.project.edit', compact('projects'));
     }
 
-    public function updateProject(Request $request, $id)
+    public function updateProject(Request $request)
     {
+        $id = $request->id;
+        
         $this->projectRepository->update($request->all(), $id);
 
-        return redirect()->route('admin.painel.projectlist');
+        $response = $this->projectRepository->find($id);
+
+        $response['status'] = 1;
+
+        return $response;
     }
 
     public function listProject()
@@ -60,6 +65,11 @@ class ProjectController extends Controller
         $projects = $this->projectRepository->skipPresenter()->paginate(5);
 
         return view('admin.project.list-project', compact('projects'));
+    }
+
+    public function editProject()
+    {
+         return view('admin.project.edit-project');
     }
 
     

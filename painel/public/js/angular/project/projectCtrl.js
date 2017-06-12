@@ -7,33 +7,29 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
     cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Carregando...</div>';
 }])
-.controller('projectCtrl', ['$scope','$http', 'Upload','cfpLoadingBar', '$projectAPIService',
-        function ($scope, $http, Upload, cfpLoadingBar, $projectAPIService) {
-	
+.controller('projectCtrl', ['$scope','$http', 'Upload','cfpLoadingBar', '$projectAPIService', 'snackbar',
+    function ($scope, $http, Upload, cfpLoadingBar, $projectAPIService, snackbar) {
 
-	$scope.save = function(){
-		if ($scope.form.file.$valid && $scope.file) {
-        $scope.upload($scope.file);
-      }
-	}
 
-	$scope.upload = function (file) {
+     $scope.save = function(project){
+        var file = project.file;
+
+        if (file) {
+            $scope.upload(project);
+        }
+        else
+        {
+            snackbar.create('Você precisa anexar uma imagem ao projeto.');
+        }
+    }
+
+    $scope.upload = function (project) {
         cfpLoadingBar.start();
-        Upload.upload({
-            url: '/admin/project/save',
-            data: {
+        var promise = $projectAPIService.saveProject(project);
 
-                 file: file, 
-                'name': $scope.name, 
-                'link': $scope.link, 
-                'description': $scope.description, 
-                'category': $scope.category
-            }
-
-        }).then(function (data) {
-            // console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        promise.then(function (data) {
+            $scope.project = data.data.data;
             $projectAPIService.verifyDataProject(data);
-            console.log(data)
         }, function (resp) {
             cfpLoadingBar.complete();
             snackbar.create('Houve um erro ao criar o projeto!');   
@@ -41,6 +37,54 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
         }, function (evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
+
+
+
+    $scope.edit = function(data){
+
+        var promise = $http.get('/admin/project/edit/' + data.id);
+
+        promise.then(function(data){
+            $scope.project = data.data.data;
+        }, function(dataError){
+            console.log(dataError)
+            if(parseInt(dataError.status) === 404){  
+                snackbar.create('Esse projeto não existe!'); 
+            }
+        })
+    };
+
+
+    $scope.update = function(data){
+        cfpLoadingBar.start();
+        var promise = $projectAPIService.updateProject(data);
+        promise.then(function(data){
+            cfpLoadingBar.complete();
+            $scope.project = data.data.data;
+            $projectAPIService.verifyDataProject(data);
+        }, function(dataError){
+            console.log(dataError);
+            cfpLoadingBar.complete();
+            snackbar.create('Houve um erro ao atualizar o projeto!');
+        })
+    };
+
+    $scope.updateImage = function(data){
+        var promise = Upload.upload({
+                        url: '/admin/image/update',
+                        data: {
+                            file               : data.file,
+                            'id'               : data.id,
+                            'order'            : data.order,
+                            'original_filename': data.original_filename
+                        }
+                    });
+        promise.then(function(data){
+            console.log(data.data);
+        }, function(dataError){
+            console.log(dataError);
         });
     };
 

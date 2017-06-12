@@ -40,3 +40,12 @@
 .alert-del-img{
     text-align: center;
 }
+#loading-bar .bar {
+    position: relative;
+    background: #333;
+    height: 7px;
+}
+.img-project-list{
+    width: 100%;
+    height: 200px;
+}

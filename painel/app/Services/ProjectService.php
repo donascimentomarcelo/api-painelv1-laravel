@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Painel\Models\Uploads;
+use Painel\Repositories\ProjectsRepository;
 use Painel\Repositories\UploadsRepository;
 
 
@@ -13,10 +14,12 @@ use Painel\Repositories\UploadsRepository;
 class ProjectService 
 {
   private $uploadsRepository;
+  private $projectsRepository;
 
-  public function __construct(UploadsRepository $uploadsRepository)
+  public function __construct(UploadsRepository $uploadsRepository, ProjectsRepository $projectsRepository)
   {
     $this->uploadsRepository = $uploadsRepository;
+    $this->projectsRepository = $projectsRepository;
   }
 
 
@@ -40,7 +43,12 @@ class ProjectService
           $entry->projects_id = $id;
           $entry->save();
         }
-        return;
+
+        $result = $this->projectsRepository->find($id);
+
+        $result['status'] = 1;
+
+        return $result;
     }
 
     public function updateImage($files, $id, $dataImage)
