@@ -75,21 +75,21 @@
 							<div class="form-group">
 								<div class="row">
 									<div ng-repeat="p in project.upload.data" class="col-md-4">
-										<form name="imageForm" enctype="multipart/form-data">
+										<div class="thumbnail">
 											<img data-ng-src="<% p.way + p.original_filename %>" class="img-project-list">
-											<div class="form-group">
-												<span class="btn btn-info btn-file btn-sm">
-													<input type="file" ngf-select ng-model="p.file" name="file" accept="image/*" ngf-max-size="2MB">
-													<span class="glyphicon glyphicon-picture"></span> 
-												</span>
-												<button class="btn btn-success btn-sm" ng-click="updateImage(p)">
-													<span class="glyphicon glyphicon-pencil"></span>
-												</button>
-												<button class="btn btn-danger btn-sm" ng-click="deleteImage(p)">
-													<span class="glyphicon glyphicon-trash"></span>
-												</button>
+											<div class="btn-group btn-group-justified" role="group" aria-label="...">
+												<div class="btn-group" role="group">
+													<button class="btn btn-success btn-sm" ng-click="updateImage(p.id)">
+														<span class="glyphicon glyphicon-pencil"></span> Editar
+													</button>
+												</div>
+												<div class="btn-group" role="group">
+													<button class="btn btn-danger btn-sm" ng-click="deleteImage(p.id)">
+														<span class="glyphicon glyphicon-trash"></span> Excluir
+													</button>
+												</div>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 							</div>
