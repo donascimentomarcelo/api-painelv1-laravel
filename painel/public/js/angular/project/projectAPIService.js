@@ -16,6 +16,7 @@ angular.module('project').factory('$projectAPIService',
 			 	}
 			 	else
 			 	{
+			 		console.log(data.data); 
 			 		cfpLoadingBar.complete();
 			 		snackbar.create('Houve um erro ao criar o projeto!');	
 			 	}
@@ -52,13 +53,26 @@ angular.module('project').factory('$projectAPIService',
 					});
 			};
 
+			var _updateImage = function(data){
+				return Upload.upload({
+                        url: '/admin/image/update',
+                        data: {
+                            file               : data.file,
+                            'id'               : data.id,
+                            'original_filename': data.original_filename
+                        }
+                    });
+			}
+
 	 return {
 
 	 	verifyDataProject : _verifyDataProject,
 
 		saveProject       : _saveProject,
 
-		updateProject     : _updateProject
+		updateProject     : _updateProject,
+
+		updateImage       : _updateImage
 	 };
 
 }])

@@ -75,7 +75,7 @@
 							<div class="form-group">
 								<div class="row">
 									<div ng-repeat="p in project.upload.data" class="col-md-4">
-										<form name="imageForm">
+										<form name="imageForm" enctype="multipart/form-data">
 											<img data-ng-src="<% p.way + p.original_filename %>" class="img-project-list">
 											<div class="form-group">
 												<span class="btn btn-info btn-file btn-sm">

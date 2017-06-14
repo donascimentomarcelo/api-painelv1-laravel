@@ -72,20 +72,20 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
     };
 
     $scope.updateImage = function(data){
-        var promise = Upload.upload({
-                        url: '/admin/image/update',
-                        data: {
-                            file               : data.file,
-                            'id'               : data.id,
-                            'order'            : data.order,
-                            'original_filename': data.original_filename
-                        }
-                    });
-        promise.then(function(data){
-            console.log(data.data);
-        }, function(dataError){
-            console.log(dataError);
-        });
+        if(data.file)
+        {
+            var promise = $projectAPIService.updateImage(data);
+            promise.then(function(data){
+                console.log(data.data);
+                console.log(data)
+            }, function(dataError){
+                console.log(dataError);
+            });
+        }
+        else
+        {
+            snackbar.create('Selecione uma imagem!');
+        }
     };
 
 
