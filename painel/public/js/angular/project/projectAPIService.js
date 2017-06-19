@@ -42,7 +42,6 @@ angular.module('project').factory('$projectAPIService',
 						url: '/admin/project/update',
 						data: {
 
-							file         : project.file, 
 							'name'       : project.name, 
 							'id'         : project.id, 
 							'link'       : project.link, 

@@ -25,8 +25,6 @@ class UploadsRepositoryEloquent extends BaseRepository implements UploadsReposit
         return Uploads::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */

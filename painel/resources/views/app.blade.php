@@ -50,8 +50,13 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projetos<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{route('admin.painel.project') }}">Criar</a></li>
-								<li><a href="{{route('admin.painel.projectedit') }}">Editar</a></li>
 								<li><a href="{{route('admin.painel.projectlist') }}">Exibir</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Image<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{route('admin.painel.projectedit') }}">Gerenciar</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">

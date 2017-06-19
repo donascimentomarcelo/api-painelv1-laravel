@@ -31,9 +31,7 @@ class ImageController extends Controller
 
     public function editImage($id)
     {
-        $upload = $this->uploadsRepository->skipPresenter()->find($id);
-
-        return view('admin.image.image', compact('upload'));
+        return $this->uploadsRepository->find($id);
     }
 
     public function updateImage($id, Request $request)
@@ -70,9 +68,9 @@ class ImageController extends Controller
 
         $id_project = $upload->projects->id;
 
-        $projects = $this->projectsRepository->skipPresenter()->find($id_project);
+        $projects = $this->projectsRepository->find($id_project);
 
-        return view('admin.project.edit', compact('projects'));
+        return $projects;
     }
 
     public function addImage($id)

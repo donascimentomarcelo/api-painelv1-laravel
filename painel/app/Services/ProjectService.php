@@ -79,7 +79,7 @@ class ProjectService
 
         Uploads::where('original_filename', $upload->original_filename)->delete();
 
-        return;
+        return 1;
 
       } catch (Exception $e) {
 

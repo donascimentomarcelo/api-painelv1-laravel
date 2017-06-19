@@ -19,9 +19,28 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Registro de projeto</h4></div>
 				<div class="panel-body">
+				<form name="searchById">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-12">
+								<label for="">Código do Projeto</label>
+									<div class="input-group">
+										<input type="number" class="form-control" min="0" ng-model="cod.id" ng-required="true">
+										<span class="input-group-btn">
+											<button class="btn btn-primary"  type="button" ng-click="edit(cod)" ng-disabled="searchById.$invalid">
+												<span class="glyphicon glyphicon-search"></span>
+											</button>
+										</span>
+									</div>
+								</div> 
+							</div>
+						</div>
+					</form>
 					{!! Form::open(['name'=>'form', 'class'=>'form', 'files'=>true])!!}
 						{!! csrf_field() !!}
-
+							<div class="form-group">
+								{!! Form::hidden('id', null, ['class' => 'form-control', 'ng-model'=>'project.id']) !!}
+							</div>
 							<div class="form-group">
 								{!! Form::label('Nome', 'Nome') !!}
 								{!! Form::text('name', null, ['class' => 'form-control', 'ng-model'=>'project.name']) !!}
@@ -50,16 +69,19 @@
 									<span class="glyphicon glyphicon-folder-open"></span> Selecione as imagens
 								</span>
 							</div>
-							<div class="form-group">
+							
+<!-- 							<div class="form-group">
 								<div class="row" ng-show="project.upload.data">
 									<div ng-repeat="p in project.upload.data" class="col-md-4">
 										<img data-ng-src="<% p.way + p.original_filename %>" class="img-project-list">
 									</div>
 								</div>
-							</div>
+							</div> -->
 						
 						<div class="form-group">
-						{!! Form::button('Salvar', ['class'=>'btn btn-primary', 'ng-click'=>'save(project)'])!!}
+						{!! Form::button('Salvar', ['class'=>'btn btn-primary', 'ng-click'=>'save()'])!!}
+						
+						{!! Form::button('Limpar', ['class'=>'btn btn-info', 'ng-click'=>'clear()'])!!}
 						</div>
 
 

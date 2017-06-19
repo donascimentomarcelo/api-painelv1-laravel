@@ -10,12 +10,15 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
 .controller('projectCtrl', ['$scope','$http', 'Upload','cfpLoadingBar', '$projectAPIService', 'snackbar',
     function ($scope, $http, Upload, cfpLoadingBar, $projectAPIService, snackbar) {
 
-
-     $scope.save = function(project){
-        var file = project.file;
-
-        if (file) {
-            $scope.upload(project);
+    $scope.project = [];
+     $scope.save = function(){
+        if($scope.project.file)
+        {
+            $scope.upload($scope.project);
+        }
+        else if(!$scope.project.file && $scope.project.id)
+        {
+            $scope.update($scope.project);
         }
         else
         {
@@ -43,12 +46,15 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
 
 
     $scope.edit = function(data){
-
+        cfpLoadingBar.start();
         var promise = $http.get('/admin/project/edit/' + data.id);
 
         promise.then(function(data){
+            cfpLoadingBar.complete();
             $scope.project = data.data.data;
+            $scope.containerImg = true;
         }, function(dataError){
+            cfpLoadingBar.complete();
             console.log(dataError)
             if(parseInt(dataError.status) === 404){  
                 snackbar.create('Esse projeto não existe!'); 
@@ -87,6 +93,54 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
             snackbar.create('Selecione uma imagem!');
         }
     };
+
+    $scope.editImage = function(data){
+        cfpLoadingBar.start();
+        var promise = $http.get('/admin/image/edit/' + data.id);
+
+        promise.then(function(data){
+            cfpLoadingBar.complete();
+            $scope.img = data.data.data;
+        },function(dataError){
+            cfpLoadingBar.complete();
+            console.log(dataError);
+            snackbar.create('Houve um erro ao realizar a busca!')
+        })
+    };
+
+    $scope.deleteImage = function(data){
+        cfpLoadingBar.start();
+        var promise = $http.post('/admin/image/destroy/' + data.id);
+
+        promise.then(function(data){
+            delete $scope.img;
+            delete $scope.codImg;
+            cfpLoadingBar.complete();
+            snackbar.create('Imagem excluida com sucesso!');
+            $scope.project = data.data.data;
+        }, function(dataError){
+            cfpLoadingBar.complete();
+            console.log(dataError);
+            snackbar.create('Houve um erro ao excluir a imagem!');
+        })
+    }
+
+    $scope.fillImage = function(data){
+        $scope.codImg = data;
+        $scope.img = data;
+    };
+
+    $scope.clear = function(){
+        delete $scope.project;
+        delete $scope.cod;
+    }
+
+    $scope.clearImage = function(){
+        delete $scope.cod;
+        delete $scope.codImg;
+        delete $scope.img;
+        $scope.containerImg = false;
+    }
 
 
 }])
