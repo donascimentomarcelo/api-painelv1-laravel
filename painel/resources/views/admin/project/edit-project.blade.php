@@ -111,7 +111,35 @@
 						<div class="form-group">
 							{!! Form::button('Alterar Imagem', ['class'=>'btn btn-primary', 'ng-click'=>'updateImage()'])!!}
 
+<<<<<<< HEAD
 							{!! Form::button('Limpar', ['class'=>'btn btn-info', 'ng-click'=>'clearImage()'])!!}
+=======
+						<div class="panel panel-default" ng-show="project.upload.data">
+							<div class="panel-heading">
+								<h4> Imagens do projeto </h4>
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div ng-repeat="p in project.upload.data" class="col-md-4">
+										<div class="thumbnail">
+											<img data-ng-src="<% p.way + p.original_filename %>" class="img-project-list">
+											<div class="btn-group btn-group-justified" role="group" aria-label="...">
+												<div class="btn-group" role="group">
+													<button class="btn btn-success btn-sm" ng-click="updateImage(p.id)">
+														<span class="glyphicon glyphicon-pencil"></span> Editar
+													</button>
+												</div>
+												<div class="btn-group" role="group">
+													<button class="btn btn-danger btn-sm" ng-click="deleteImage(p.id)">
+														<span class="glyphicon glyphicon-trash"></span> Excluir
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+>>>>>>> 194b2b707290720081dfebc34714fea38ec1e538
 						</div>
 
 						{!! Form::close()!!}
