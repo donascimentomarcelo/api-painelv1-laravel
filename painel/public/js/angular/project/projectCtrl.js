@@ -78,11 +78,20 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
     };
 
     $scope.updateImage = function(data){
-           $projectAPIService.updateImage(data); 
-    };
-
-    $scope.deleteImage = function(data){
-           $projectAPIService.deleteImage(data);
+        if(data.file)
+        {
+            var promise = $projectAPIService.updateImage(data);
+            promise.then(function(data){
+                console.log(data.data);
+                console.log(data)
+            }, function(dataError){
+                console.log(dataError);
+            });
+        }
+        else
+        {
+            snackbar.create('Selecione uma imagem!');
+        }
     };
 
     $scope.editImage = function(data){

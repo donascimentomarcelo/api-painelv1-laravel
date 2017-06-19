@@ -53,13 +53,14 @@ angular.module('project').factory('$projectAPIService',
 			};
 
 			var _updateImage = function(data){
-
-				 $window.location.href = '/admin/image/edit/' + data;
-				 
-			}
-
-			var _deleteImage = function(data){
-				return $http.post('/admin/image/destroy/' + data );
+				return Upload.upload({
+                        url: '/admin/image/update',
+                        data: {
+                            file               : data.file,
+                            'id'               : data.id,
+                            'original_filename': data.original_filename
+                        }
+                    });
 			}
 
 	 return {
@@ -70,9 +71,7 @@ angular.module('project').factory('$projectAPIService',
 
 		updateProject     : _updateProject,
 
-		updateImage       : _updateImage,
-
-	    deleteImage       : _deleteImage
+		updateImage       : _updateImage
 	 };
 
 }])
