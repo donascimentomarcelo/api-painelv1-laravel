@@ -103,8 +103,10 @@
 
 						<div class="form-group">
 							<span class="btn btn-default btn-file">
-								{!! Form::file('images[]', array('multiple'=>true, 'class'=>'custom-file-input')) !!}
-								<span class="glyphicon glyphicon-folder-open"></span> Selecione outra imagem
+								<input type="file" ngf-select ng-model="img.file" name="file"    
+								accept="image/*" ngf-max-size="2MB"  multiple
+								ngf-model-invalid="errorFile">
+								<span class="glyphicon glyphicon-folder-open"></span> Selecione as imagens
 							</span>
 						</div>
 						

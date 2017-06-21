@@ -34,22 +34,21 @@ class ImageController extends Controller
         return $this->uploadsRepository->find($id);
     }
 
-    public function updateImage($id, Request $request)
+    public function updateImage(Request $request)
     {
-        $files = Input::file('images');
+        $id = $request->id;
+        $files = Input::file('file');
         $validator = $this->projectService->validateFiles($files);
         if($validator->fails()){
-            return redirect('admin/image/edit/'.$id)
-            ->withErrors($validator)
-            ->withInput();
+            return 3;
         }
         $dataImage = $this->uploadsRepository->skipPresenter()->find($id);
 
-        $this->projectService->updateImage($files, $id, $dataImage);
+        $return['img'] = $this->projectService->updateImage($files, $id, $dataImage);
 
-        $projects = $this->returnToEdit($id);
+        $return['project'] = $this->returnToEdit($id);
 
-        return view('admin.project.edit', compact('projects'));
+        return $return;
 
     }
 
@@ -133,7 +132,7 @@ class ImageController extends Controller
 
         $id_project = $uploads->projects->id;
 
-        return $projects = $this->projectsRepository->skipPresenter()->find($id_project);
+        return $projects = $this->projectsRepository->find($id_project);
     }
    
 }

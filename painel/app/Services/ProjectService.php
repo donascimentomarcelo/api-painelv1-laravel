@@ -66,7 +66,8 @@ class ProjectService
 
           Uploads::where('id', $id)->update($key);
          }
-        return;
+
+         return  $this->uploadsRepository->find($id);
 
     }
 

@@ -76,22 +76,32 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
             snackbar.create('Houve um erro ao atualizar o projeto!');
         })
     };
-
-    $scope.updateImage = function(data){
-        if(data.file)
+    $scope.img = [];
+    $scope.updateImage = function(){
+        if(!$scope.img.id)
         {
-            var promise = $projectAPIService.updateImage(data);
+            return snackbar.create('Selecione um projeto!');
+        };
+
+        if($scope.img.file)
+        {
+            cfpLoadingBar.start();
+            var promise = $projectAPIService.updateImage($scope.img);
             promise.then(function(data){
-                console.log(data.data);
-                console.log(data)
+                $scope.img = data.data.img.data;
+                $scope.project = data.data.project.data;
+                cfpLoadingBar.complete();
+                snackbar.create('Imagem atualizada com sucesso!');
             }, function(dataError){
+                cfpLoadingBar.complete();
                 console.log(dataError);
+                snackbar.create('Houve um erro ao atualizar a imagem!');
             });
         }
         else
         {
             snackbar.create('Selecione uma imagem!');
-        }
+        };
     };
 
     $scope.editImage = function(data){

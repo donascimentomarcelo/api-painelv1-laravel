@@ -42,7 +42,8 @@
 		Route::post('project/update',['as' => 'painel.update', 'uses' => 'ProjectController@updateProject']);
 
 		Route::get('image/edit/{id}',['as' => 'painel.image', 'uses' => 'ImageController@editImage']);
-		Route::post('image/update/{id}',['as' => 'painel.image.update', 'uses' => 'ImageController@updateImage']);
+		// Route::post('image/update/{id}',['as' => 'painel.image.update', 'uses' => 'ImageController@updateImage']);
+		Route::post('image/update',['as' => 'painel.image.update', 'uses' => 'ImageController@updateImage']);
 		Route::get('image/delete/{id}',['as' => 'painel.image.delete', 'uses' => 'ImageController@deleteImage']);
 		Route::post('image/destroy/{id}',['as' => 'painel.image.destroy', 'uses' => 'ImageController@destroyImage']);
 		Route::get('image/add/{id}',['as' => 'painel.image.add', 'uses' => 'ImageController@addImage']);
