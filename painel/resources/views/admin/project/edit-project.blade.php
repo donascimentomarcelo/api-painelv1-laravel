@@ -19,6 +19,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Gerenciar Imagens do Projeto</h4></div>
 				<div class="panel-body">
+				<!-- BUSCAR PELO ID DO PROJETO -->
 					<form name="searchById">
 						<div class="form-group">
 							<div class="row">
@@ -35,7 +36,36 @@
 								</div> 
 							</div>
 						</div>
-					</form>		    
+					</form>	
+					<!-- BUSCAR PELO ID DO PROJETO -->
+					
+					<!-- FORMULARIO DE ADICIONAR IMAGEM -->
+					<div class="row">
+						<div class="panel-heading">
+							<h4> Inserir Imagens</h4>
+						</div>
+						<form name="addImgForm">
+							<input type="hidden" ng-model="project.id">
+							<div class="col-md-4">
+								<div class="form-group">
+									<span class="btn btn-default btn-file">
+										<input type="file" ngf-select ng-model="project.file" name="file"    
+										accept="image/*" ngf-max-size="2MB"  multiple
+										ngf-model-invalid="errorFile">
+										<span class="glyphicon glyphicon-folder-open"></span> Adicione imagens
+									</span>
+								</div>
+								<div class="form-group">
+									<button class="btn btn-info" ng-click="addImage()">
+										<span class="glyphicon glyphicon-plus"></span> Adicione imagens
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- FORMULARIO DE ADICIONAR IMAGEM -->
+
+					<!-- lISTAR IMAGENS DO PROJETO -->
 					<div class="panel panel-default" ng-show="project.upload.data; containerImg">
 						<div class="panel-heading">
 							<h4> Imagens do projeto </h4>
@@ -67,6 +97,8 @@
 							</div>
 						</div>
 					</div>
+					<!-- lISTAR IMAGENS DO PROJETO -->
+					<!-- BUSCAR PELO CÓDIGO DA IMAGEM -->
 					<form name="searchImageById">
 						<div class="form-group">
 							<div class="row">
@@ -85,7 +117,8 @@
 						</div>
 					</form>
 					<div>
-						
+					<!-- BUSCAR PELO CÓDIGO DA IMAGEM -->
+					<!-- ALTERAR IMAGEM -->
 					{!! Form::open(['files'=>true])!!}
 						<input type="hidden" class="form-control" ng-model="codImg.id">
 
@@ -117,6 +150,7 @@
 						</div>
 
 						{!! Form::close()!!}
+						<!-- ALTERAR IMAGEM -->
 					</div>		    
 					<div id="loading-bar-container"></div>
 					<div class="snackbar-container" data-snackbar="true" data-snackbar-duration="5000" data-snackbar-remove-delay="200"></div>

@@ -52,6 +52,7 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
         promise.then(function(data){
             cfpLoadingBar.complete();
             $scope.project = data.data.data;
+            console.log(data.data.data)
             $scope.containerImg = true;
         }, function(dataError){
             cfpLoadingBar.complete();
@@ -133,7 +134,24 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
             console.log(dataError);
             snackbar.create('Houve um erro ao excluir a imagem!');
         })
-    }
+    };
+
+    $scope.addImage = function(){
+        if(!$scope.project.id){
+            snackbar.create('Selecione um projeto');
+        };
+
+        if($scope.project.file){
+            var promise = $projectAPIService.addImage($scope.project);
+            promise.then(function(data){
+                snackbar.create('Imagem inserida com sucesso!');
+                $scope.project = data.data.data;
+            }, function(dataError){
+                snackbar.create('Imagem excluida com sucesso!');
+                console.log(dataError);
+            });
+        };
+    };
 
     $scope.fillImage = function(data){
         $scope.codImg = data;

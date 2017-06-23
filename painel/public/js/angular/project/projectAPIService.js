@@ -61,6 +61,16 @@ angular.module('project').factory('$projectAPIService',
                             'original_filename': data.original_filename
                         }
                     });
+			};
+
+			var _addImage = function(data){
+				return Upload.upload({
+                        url: '/admin/image/save',
+                        data: {
+                            file               : data.file,
+                            'id'               : data.id
+                        }
+                    });
 			}
 
 	 return {
@@ -71,7 +81,9 @@ angular.module('project').factory('$projectAPIService',
 
 		updateProject     : _updateProject,
 
-		updateImage       : _updateImage
+		updateImage       : _updateImage,
+
+		addImage          : _addImage
 	 };
 
 }])
