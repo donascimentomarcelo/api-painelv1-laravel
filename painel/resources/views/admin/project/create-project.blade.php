@@ -12,6 +12,7 @@
 
 {!! Html::script('js/angular/project/projectCtrl.js') !!}
 {!! Html::script('js/angular/project/projectAPIService.js') !!}
+{!! Html::script('js/angular/project/projectVerifyAPIService.js') !!}
 
 <div class="container-fluid" ng-app="project">
 	<div class="row" ng-controller="projectCtrl">

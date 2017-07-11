@@ -9,22 +9,6 @@ angular.module('user', ['cfp.loadingBar', 'angular.snackbar', 'simplePagination'
 }])
 .controller('userCtrl',[ '$scope', '$http','cfpLoadingBar', '$window', 'snackbar', '$userAPIService', 'Pagination',
 	function($scope, $http, cfpLoadingBar, $window, snackbar, $userAPIService, Pagination){
-	
-
-	$scope.load = function(){
-		cfpLoadingBar.start();
-		var promise = $userAPIService.listUser();
-		promise.then(function(data){
-			cfpLoadingBar.complete();
-			$scope.users = data.data.data;
-			$scope.pagination = Pagination.getNew(10);
-			$scope.pagination.numPages = Math.ceil($scope.users.length/$scope.pagination.perPage);
-		},function(dataError){
-			console.log(dataError);
-		});
-	};
-
-
 
 	$scope.save = function(data){
 		$userAPIService.validateConfirmPassword(data);

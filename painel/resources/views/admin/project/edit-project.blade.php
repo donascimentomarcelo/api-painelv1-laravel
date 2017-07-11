@@ -12,6 +12,7 @@
 
 {!! Html::script('js/angular/project/projectCtrl.js') !!}
 {!! Html::script('js/angular/project/projectAPIService.js') !!}
+{!! Html::script('js/angular/project/projectVerifyAPIService.js') !!}
 
 <div class="container-fluid" ng-app="project">
 	<div class="row" ng-controller="projectCtrl">
@@ -52,7 +53,7 @@
 										<input type="file" ngf-select ng-model="project.file" name="file"    
 										accept="image/*" ngf-max-size="2MB"  multiple
 										ngf-model-invalid="errorFile">
-										<span class="glyphicon glyphicon-folder-open"></span> Adicione imagens
+										<span class="glyphicon glyphicon-folder-open"></span> Selecione imagens
 									</span>
 								</div>
 								<div class="form-group">
@@ -144,7 +145,7 @@
 						</div>
 						
 						<div class="form-group">
-							{!! Form::button('Alterar Imagem', ['class'=>'btn btn-primary', 'ng-click'=>'updateImage()'])!!}
+							{!! Form::button('Salvar Alteração', ['class'=>'btn btn-primary', 'ng-click'=>'updateImage()'])!!}
 
 							{!! Form::button('Limpar', ['class'=>'btn btn-info', 'ng-click'=>'clearImage()'])!!}
 						</div>

@@ -31,9 +31,12 @@ class ProjectController extends Controller
     public function saveProject(Request $request)
     {
         $files = Input::file('file');
+        return $this->projectService->validateProject($request->all());
         $validator = $this->projectService->validateFiles($files);
         if($validator->fails()){
-            return 3;
+            $error['message'] = 'Só serão aceitas imagens no formato jpg, jpeg e png.';
+            $error['status'] = 333;
+            return $error;
         }
 
         $id = $this->projectRepository->skipPresenter()->create($request->all());
@@ -41,11 +44,6 @@ class ProjectController extends Controller
         return json_encode($response);
     }
 
-    public function edit($id)
-    {
-        return $this->projectRepository->find($id);
-
-    }
 
     public function updateProject(Request $request)
     {
@@ -67,6 +65,13 @@ class ProjectController extends Controller
         return view('admin.project.list-project', compact('projects'));
     }
 
+    public function edit($id)
+    {
+
+        // return $this->projectService->edit($id);
+        return $this->projectRepository->edit($id);
+
+    }
     public function editProject()
     {
          return view('admin.project.edit-project');

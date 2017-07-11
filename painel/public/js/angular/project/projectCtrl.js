@@ -7,18 +7,18 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
     cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Carregando...</div>';
 }])
-.controller('projectCtrl', ['$scope','$http', 'Upload','cfpLoadingBar', '$projectAPIService', 'snackbar',
-    function ($scope, $http, Upload, cfpLoadingBar, $projectAPIService, snackbar) {
+.controller('projectCtrl', ['$rootScope','$http', 'Upload','cfpLoadingBar', '$projectAPIService', '$projectVerifyAPIService','snackbar',
+    function ($rootScope, $http, Upload, cfpLoadingBar, $projectAPIService, $projectVerifyAPIService, snackbar) {
 
-    $scope.project = [];
-     $scope.save = function(){
-        if($scope.project.file)
+     $rootScope.project = [];
+     $rootScope.save = function(){
+        if($rootScope.project.file)
         {
-            $scope.upload($scope.project);
+            $rootScope.upload($rootScope.project);
         }
-        else if(!$scope.project.file && $scope.project.id)
+        else if(!$rootScope.project.file && $rootScope.project.id)
         {
-            $scope.update($scope.project);
+            $rootScope.update($rootScope.project);
         }
         else
         {
@@ -26,17 +26,18 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
         }
     }
 
-    $scope.upload = function (project) {
+    $rootScope.upload = function (project) {
         cfpLoadingBar.start();
         var promise = $projectAPIService.saveProject(project);
 
         promise.then(function (data) {
-            $scope.project = data.data.data;
-            $projectAPIService.verifyDataProject(data);
+            $rootScope.project = data.data.data;
+            $projectVerifyAPIService.verifyDataProject(data);
         }, function (resp) {
             cfpLoadingBar.complete();
             snackbar.create('Houve um erro ao criar o projeto!');   
             console.log('Error status: ' + resp.status);
+            console.log('Error status: ' + resp);
         }, function (evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
@@ -45,15 +46,12 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
 
 
 
-    $scope.edit = function(data){
+    $rootScope.edit = function(data){
         cfpLoadingBar.start();
-        var promise = $http.get('/admin/project/edit/' + data.id);
+        var promise = $projectAPIService.getEdit(data);
 
         promise.then(function(data){
-            cfpLoadingBar.complete();
-            $scope.project = data.data.data;
-            console.log(data.data.data)
-            $scope.containerImg = true;
+            $projectVerifyAPIService.verifyResponseEdit(data);
         }, function(dataError){
             cfpLoadingBar.complete();
             console.log(dataError)
@@ -64,40 +62,33 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
     };
 
 
-    $scope.update = function(data){
+    $rootScope.update = function(data){
         cfpLoadingBar.start();
         var promise = $projectAPIService.updateProject(data);
         promise.then(function(data){
             cfpLoadingBar.complete();
-            $scope.project = data.data.data;
-            $projectAPIService.verifyDataProject(data);
+            $rootScope.project = data.data.data;
+            $projectVerifyAPIService.verifyDataProject(data);
         }, function(dataError){
             console.log(dataError);
             cfpLoadingBar.complete();
             snackbar.create('Houve um erro ao atualizar o projeto!');
         })
     };
-    $scope.img = [];
-    $scope.updateImage = function(){
-        if(!$scope.img.id)
+    $rootScope.img = [];
+    $rootScope.updateImage = function(){
+        if(!$rootScope.img.id)
         {
             return snackbar.create('Selecione um projeto!');
         };
 
-        if($scope.img.file)
+        if($rootScope.img.file)
         {
-            cfpLoadingBar.start();
-            var promise = $projectAPIService.updateImage($scope.img);
-            promise.then(function(data){
-                $scope.img = data.data.img.data;
-                $scope.project = data.data.project.data;
-                cfpLoadingBar.complete();
-                snackbar.create('Imagem atualizada com sucesso!');
-            }, function(dataError){
-                cfpLoadingBar.complete();
-                console.log(dataError);
-                snackbar.create('Houve um erro ao atualizar a imagem!');
-            });
+           $rootScope.updateImageApply($rootScope.img);
+        }
+        else if(!$rootScope.img.file && $rootScope.img.order)
+        {
+            $rootScope.updateOnlyOrderApply($rootScope.img)
         }
         else
         {
@@ -105,13 +96,43 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
         };
     };
 
-    $scope.editImage = function(data){
+    $rootScope.updateImageApply = function(dataImg){
+         cfpLoadingBar.start();
+            var promise = $projectAPIService.updateImage(dataImg);
+            promise.then(function(data){
+                $rootScope.img = data.data.img.data;
+                $rootScope.project = data.data.project.data;
+                cfpLoadingBar.complete();
+                snackbar.create('Imagem atualizada com sucesso!');
+            }, function(dataError){
+                cfpLoadingBar.complete();
+                console.log(dataError);
+                snackbar.create('Houve um erro ao atualizar a imagem!');
+            });
+    };
+
+    $rootScope.updateOnlyOrderApply = function(data){
+        
+        var promise = $projectAPIService.updateOrder(data);
+
+        promise.then(function(data){
+            console.log(data)
+            cfpLoadingBar.complete();
+            snackbar.create('Ordem atualizada com sucesso!');
+        }, function(dataError){
+            cfpLoadingBar.complete();
+            console.log(dataError);
+            snackbar.create('Houve um erro ao atualizar a ordem!');
+        });
+    };
+
+    $rootScope.editImage = function(data){
         cfpLoadingBar.start();
-        var promise = $http.get('/admin/image/edit/' + data.id);
+        var promise = $projectAPIService.getEditImage(data)
 
         promise.then(function(data){
             cfpLoadingBar.complete();
-            $scope.img = data.data.data;
+            $rootScope.img = data.data.data;
         },function(dataError){
             cfpLoadingBar.complete();
             console.log(dataError);
@@ -119,16 +140,16 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
         })
     };
 
-    $scope.deleteImage = function(data){
+    $rootScope.deleteImage = function(data){
         cfpLoadingBar.start();
-        var promise = $http.post('/admin/image/destroy/' + data.id);
+        var promise = $projectAPIService.getDeleteImage(data);
 
         promise.then(function(data){
-            delete $scope.img;
-            delete $scope.codImg;
+            delete $rootScope.img;
+            delete $rootScope.codImg;
             cfpLoadingBar.complete();
             snackbar.create('Imagem excluida com sucesso!');
-            $scope.project = data.data.data;
+            $rootScope.project = data.data.data;
         }, function(dataError){
             cfpLoadingBar.complete();
             console.log(dataError);
@@ -136,38 +157,39 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
         })
     };
 
-    $scope.addImage = function(){
-        if(!$scope.project.id){
+    $rootScope.addImage = function(){
+        if(!$rootScope.project.id){
             snackbar.create('Selecione um projeto');
         };
 
-        if($scope.project.file){
-            var promise = $projectAPIService.addImage($scope.project);
+        if($rootScope.project.file){
+            cfpLoadingBar.start();
+            var promise = $projectAPIService.addImage($rootScope.project);
             promise.then(function(data){
-                snackbar.create('Imagem inserida com sucesso!');
-                $scope.project = data.data.data;
+                $projectVerifyAPIService.verifyDataImage(data);
             }, function(dataError){
-                snackbar.create('Imagem excluida com sucesso!');
+                cfpLoadingBar.complete();
+                snackbar.create('Houve um erro ao inserir a imagem!');
                 console.log(dataError);
             });
         };
     };
 
-    $scope.fillImage = function(data){
-        $scope.codImg = data;
-        $scope.img = data;
+    $rootScope.fillImage = function(data){
+        $rootScope.codImg = data;
+        $rootScope.img = data;
     };
 
-    $scope.clear = function(){
-        delete $scope.project;
-        delete $scope.cod;
+    $rootScope.clear = function(){
+        delete $rootScope.project;
+        delete $rootScope.cod;
     }
 
-    $scope.clearImage = function(){
-        delete $scope.cod;
-        delete $scope.codImg;
-        delete $scope.img;
-        $scope.containerImg = false;
+    $rootScope.clearImage = function(){
+        delete $rootScope.cod;
+        delete $rootScope.codImg;
+        delete $rootScope.img;
+        $rootScope.containerImg = false;
     }
 
 

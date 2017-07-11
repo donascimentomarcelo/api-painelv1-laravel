@@ -25,11 +25,14 @@ class ImageService
 		return;		
 	}
 
-	public function updateSingleImage($request, $id)
+	public function updateSingleImage($request)
 	{
+		$order = $request->order;
+		$id    = $request->id;
+
 		try {
 
-			Uploads::where('id', $id)->update(['order'=>$request->order]);
+			Uploads::where('id', $id)->update(['order'=>$order]);
 			
 		} catch (Exception $e) {
 

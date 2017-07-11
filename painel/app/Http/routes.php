@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+		
 	Route::get('/','Auth\AuthController@getLogin');
 
 	Route::post('painel/email',['as' => 'painel.email', 'uses' => 'PainelController@email']);
@@ -47,7 +47,9 @@
 		Route::get('image/delete/{id}',['as' => 'painel.image.delete', 'uses' => 'ImageController@deleteImage']);
 		Route::post('image/destroy/{id}',['as' => 'painel.image.destroy', 'uses' => 'ImageController@destroyImage']);
 		Route::get('image/add/{id}',['as' => 'painel.image.add', 'uses' => 'ImageController@addImage']);
-		Route::post('image/save/{id}',['as' => 'painel.image.save', 'uses' => 'ImageController@saveImage']);
+		Route::post('image/save',['as' => 'painel.image.save', 'uses' => 'ImageController@saveImage']);
+		Route::post('image/updateOrder',['as' => 'painel.image.updateOrder', 'uses' => 'ImageController@updateOrder']);
+		// Route::post('image/save/{id}',['as' => 'painel.image.save', 'uses' => 'ImageController@saveImage']);
 
 		Route::get('image/multiple/{id}',['as' => 'multiple.order', 'uses' => 'ImageController@indexMultiple']);
 		Route::post('image/multiple/{id}',['as' => 'image.update.multiple', 'uses' => 'ImageController@updateMultiple']);

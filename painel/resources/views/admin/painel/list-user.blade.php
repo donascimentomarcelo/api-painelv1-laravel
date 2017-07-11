@@ -5,19 +5,16 @@
 {!! Html::script('js/angular/lib/loading-bar.js') !!}
 {!! Html::style('js/angular/lib/loading-bar.css') !!}
 
-{!! Html::script('js/angular/user/userCtrl.js') !!}
+{!! Html::script('js/angular/user/userListCtrl.js') !!}
 {!! Html::script('js/angular/user/userAPIService.js') !!}
 {!! Html::script('js/angular/lib/pagination/simplePagination.js') !!}
 
 <div class="container-fluid" ng-app="user">
-	<div class="row" ng-controller="userCtrl">
+	<div class="row" ng-controller="listUserCtrl">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">Lista de usuário</div>
 				<div class="panel-body">
-				<div class="form-group">
-					<button class="btn btn-primary" ng-click="load()">Listar</button>
-				</div>
 					<div id="loading-bar-container"></div>
 					<form name="searchById" ng-show="users.length > 0">
 						<div class="form-group">
@@ -52,13 +49,15 @@
 							</tbody>
 						</thead>
 					</table>
-					<ul class="pagination" ng-show="users.length > 0">
-						<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
-						<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
-							<a href="" ng-click="pagination.toPageId(n)"><% n + 1 %></a>
-						</li>
-						<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
-					</ul>
+					<div ng-show="users.length > 0">  
+						<ul class="pagination" ng-show="users.length > 0">
+							<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+							<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
+								<a href="" ng-click="pagination.toPageId(n)"><% n + 1 %></a>
+							</li>
+							<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

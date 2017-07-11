@@ -52,13 +52,6 @@ class ImageController extends Controller
 
     }
 
-    public function deleteImage($id)
-    {
-        $upload = $this->uploadsRepository->skipPresenter()->find($id);
-
-        return view('admin.image.delete', compact('upload'));
-    }
-
     public function destroyImage($id)
     {
         $upload = $this->uploadsRepository->skipPresenter()->find($id);
@@ -72,58 +65,23 @@ class ImageController extends Controller
         return $projects;
     }
 
-    public function addImage($id)
+    public function saveImage(Request $request)
     {
-        $projects = $this->projectsRepository->skipPresenter()->find($id);
-
-        return view('admin.image.add', compact('projects'));
-    }
-
-    public function saveImage($id)
-    {
-        $files = Input::file('images');
+        $id = $request->id;
+        $files = Input::file('file');
         $validator = $this->projectService->validateFiles($files);
           if($validator->fails()){
-            return redirect('admin/image/add/'.$id)
-                        ->withErrors($validator)
-                        ->withInput();
+            $return['status'] = 3;
+            return $return;
           }
-        $return = $this->projectService->save($files, $id);
-        return redirect()->route('admin.painel.projectlist');
+        
+        $this->projectService->save($files, $id);
 
-    }
+        $return['return'] = $this->projectsRepository->find($id);
+        $return['status'] = 1;
 
-    public function indexMultiple($id)
-    {
-        $uploads = $this->projectsRepository->skipPresenter()->find($id);
+        return $return;
 
-        return view('admin.image.orderMultiple', compact('uploads'));
-    }
-
-    public function updateMultiple(Request $request, $id)
-    {
-        $this->imageService->updateMultipleImage($request);
-
-        $projects = $this->projectsRepository->skipPresenter()->find($id);
-
-        return view('admin.project.edit', compact('projects'));
-    }
-
-    public function indexSingle($id)
-    {
-        $uploads = $this->uploadsRepository->skipPresenter()->find($id);
-
-        return view('admin.image.order', compact('uploads'));
-    }
-
-    public function updateSingle(Request $request, $id)
-    {
-
-        $this->imageService->updateSingleImage($request, $id);
-
-        $projects = $this->returnToEdit($id);
-
-        return view('admin.project.edit', compact('projects'));
     }
 
     public function returnToEdit($id)
@@ -133,6 +91,11 @@ class ImageController extends Controller
         $id_project = $uploads->projects->id;
 
         return $projects = $this->projectsRepository->find($id_project);
+    }
+
+    public function updateOrder(Request $request)
+    {
+        $this->imageService->updateSingleImage($request);
     }
    
 }

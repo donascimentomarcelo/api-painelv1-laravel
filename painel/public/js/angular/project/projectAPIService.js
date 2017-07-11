@@ -7,7 +7,6 @@ angular.module('project').factory('$projectAPIService',
 			 	{
 			 		cfpLoadingBar.complete();
 			 		snackbar.create('Operação realizada com sucesso!');
-			 		// $window.location.href = '/admin/project/list';
 			 	}
 			 	else if(parseInt(data.data) === 3)
 			 	{
@@ -71,7 +70,45 @@ angular.module('project').factory('$projectAPIService',
                             'id'               : data.id
                         }
                     });
-			}
+			};
+
+			var _verifyDataImage = function(data){
+				if(parseInt(data.data.status) === 1)
+				{
+					cfpLoadingBar.complete();
+                	snackbar.create('Imagem inserida com sucesso!');
+                	$rootScope.project = data.data.return.data;
+				}
+				else if(parseInt(data.data.status) === 3)
+				{
+					cfpLoadingBar.complete();
+                	snackbar.create('Só serão aceitas imagens jpeg, jpg e png!');
+				}
+				else
+				{
+					cfpLoadingBar.complete();
+                	snackbar.create('Houve um erro ao inserir a imagem!');
+				}
+
+                	
+			};
+
+			var _getEdit = function(data){
+				return $http.get('/admin/project/edit/' + data.id);
+			};
+
+			var _getEditImage = function(data){
+				return $http.get('/admin/image/edit/' + data.id);
+			};
+
+			var _getDeleteImage = function(data){
+				return $http.post('/admin/image/destroy/' + data.id);
+			};
+
+			var _updateOrder = function(data){
+				
+				return $http.post('/admin/image/updateOrder', data);
+			};
 
 	 return {
 
@@ -83,7 +120,17 @@ angular.module('project').factory('$projectAPIService',
 
 		updateImage       : _updateImage,
 
-		addImage          : _addImage
+		addImage          : _addImage,
+
+		verifyDataImage   : _verifyDataImage,
+
+		getEdit           : _getEdit,
+
+		getEditImage      : _getEditImage,
+
+		getDeleteImage    : _getDeleteImage,
+
+		updateOrder		  : _updateOrder
 	 };
 
 }])

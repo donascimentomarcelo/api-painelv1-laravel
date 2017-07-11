@@ -2,6 +2,7 @@
 
 namespace Painel\Services;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -26,8 +27,8 @@ class ProjectService
 
     public function way()
     {
-        return 'http://marceloprogrammer.com/api/uploads/project/';
-        // return 'http://localhost:8000/uploads/project/';
+        // return 'http://marceloprogrammer.com/api/uploads/project/';
+        return 'http://localhost:8000/uploads/project/';
     }
 
     public function save($files, $id)
@@ -155,4 +156,26 @@ class ProjectService
         }
     }
 
+    public function validateProject(array $project)
+    {
+      $validator = Validator::make($project,[
+        'name'       =>'required|max:50',
+        'category'   =>'required|max:50',
+        'link'       =>'required|max:50',
+        'description'=>'required|max:255'
+        ], [
+        'required' => 'O campo :attribute é obrigatório!',
+        ], [
+        'name'        => 'Nome',
+        'category'    => 'Categoria',
+        'link'        => 'Link',
+        'description' => 'Descrição'
+
+        ]);
+      if($validator->fails()){
+            $error['message'] = $validator->messages();
+            $error['status'] = 333;
+            return $error;
+        }
+    }
 }
