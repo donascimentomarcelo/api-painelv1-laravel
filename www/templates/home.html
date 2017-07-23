@@ -21,11 +21,11 @@
 		     class="hide-desktop">
 		</div>  
 		<div class="container-painel">
-					<img src="../img/capinella_ou_beaujolais.png" class="logo"><br/>	
-				</div>
-				<div class="text-initial">
-					<span typewrite="" type-delay="100" text="stuff" initial-delay="1.5s" callback-fn="activateTitle()" class="ng-isolate-scope"></span>
-				</div>
+					<img src="../img/logo1.png" class="logo"><br/>	
+		</div>
+		<div class="text-initial">
+			<span typewrite="" type-delay="100" text="stuff" initial-delay="1.5s" callback-fn="activateTitle()" class="ng-isolate-scope"></span>
+		</div>
 		</section>
 	</div>
 	<div class="container">
@@ -35,7 +35,7 @@
 					 		<section name="profile" id="perfil">
 							<h1>Um pouquinho sobre mim.</h1>
 							<div class="col container-photo-margins">
-								<img src="../img/photo.jpg" class="container-photo" parallax-background parallax-ratio="0.10">
+								<img src="../img/perfil.jpg" class="container-photo" parallax-background parallax-ratio="0.10">
 							</div>
 							<div class="col text-col">
 								<h2>
@@ -61,10 +61,47 @@
 	<div class="container-center">
 		<div class="">
 			<div  class="container-center-img"  parallax-background parallax-ratio="0.5">
-				<div class="text-center-reflection">	
+				<div class="content-container-center">
+					<div class="col-md-4">
+						<div>
+							<img src="../img/responsive.png" alt="" class="image-conteiner-center">
+						</div>
+						<div class="text-about-image-center">
+							<h2>Sites responsivos</h2>
+							<h4>
+								Crie sites responsivos que se ajustam com qualquer tipo de dispositivos 
+								como PCs, Tablets e Smartphones. Além de mantes o padrão e a beleza do
+								site, pode ser configurado para ter reações diferentes para cada resolução.
+							</h4>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<img src="../img/application.png" alt="" class="image-conteiner-center">
+						<div class="text-about-image-center">
+							<h2>Aplicativos</h2>
+							<h4>
+								Crie aplicativos para sua empresa, traga aos seus clientes o prazer de 
+								negociar com você por meio da facilidade e diversão que será proposto
+								a eles por meio de um aplicativo.
+							</h4>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<img src="../img/websystem.png" alt="" class="image-conteiner-center">
+						<div class="text-about-image-center">
+							<h2>Sistemas Web</h2>
+							<h4>
+								Crie Sistemas Web para gerenciar seus negócios como sistemas de gestão 
+								de clientes, de gestão de financias, painel de gerenciamento para sites
+								ou aquele sistema que atenderá todas a regras de negócios da sua empresa.
+							</h4>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="text-center-reflection">	
 					"Nunca é tarde para tentar o desconhecido. Nunca é tarde para ir mais além." <br>
 					-Gabriele D'Annunzio
-				</div>		
+				</div>	 -->	
 			</div>
 		</div>
 	</div>
@@ -112,7 +149,7 @@
 								<input type="text" class="form-control" placeholder="Seu nome..." ng-model="data.name" ng-required="true">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Seu e-mail..." ng-model="data.email" ng-required="true">
+								<input type="email" class="form-control" placeholder="Seu e-mail..." ng-model="data.email" ng-required="true">
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="Assunto..." ng-model="data.subject" ng-required="true">
@@ -131,10 +168,10 @@
 					<h1>Cadastre-se</h1>
 						<form name="news" class="form">
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Seu nome..." ng-model="news.name" ng-required="true">
+								<input type="text" class="form-control" placeholder="Seu nome..." ng-model="news.name" required ng-required="true">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Seu e-mail..." ng-model="news.email" ng-required="true">
+								<input type="email" class="form-control" placeholder="Seu e-mail..." ng-model="news.email" required ng-required="true">
 							</div>
 							<div class="form-group">
 								<button type="button" class="btn btn-success btn-send" ng-click="registerNews(news)" ng-disabled="news.$invalid">Registrar</button>
@@ -163,7 +200,7 @@
 	</div>
 <div class="footer">
 		<div class="footer-align-logo">
-			<img src="../img/capinella_ou_beaujolais.png" class="footer-logo">
+			<img src="../img/logo1.png" class="footer-logo">
 		</div>
 		<div class="footer-text">
 		Nossa missão é de trazer mobilidade, agilidade e praticidade <br>

@@ -4,7 +4,7 @@ angular.module('myApp').factory('$configAPIService',['$rootScope', '$document' ,
 				return $rootScope.stuff = [
 				"Procura um Programador?", 
 				"Procura um Web Designer?", 
-				"Procura um aplicativo para a sua empresa?", 
+				"Procura um aplicativo?", 
 				"Você veio ao lugar certo!", 
 				];
 			};

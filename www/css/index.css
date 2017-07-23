@@ -1,8 +1,10 @@
 /*****************HEADER*******************/
 .header{
-	background-image: url(../img/painel2.jpg);
-	height: 380px;
+	/*background-image: url(../img/painel2.jpg);*/
+	background-color: gray;
+	height: 305px;
 	width: 100%;
+	background-color: gray;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
@@ -11,8 +13,9 @@
 }
 .logo{
 	height: 200px;
-    width: 15%;
-	padding-top: 2%;
+    /*width: 15%;*/
+    width: 100%;
+	padding-top: 7%;
 	margin-left: 2%;
 }
 .sub-logo{
@@ -66,7 +69,11 @@
 	padding-top: 2%;
 }
 .container-painel{
-	margin-left: 10%;
+	/*margin-left: 10%;*/
+	width: 22%;
+	margin-right: auto;
+	margin-left: auto;
+	align-items: center;
 }
 .container-photo-margins{
 	margin-top: 5%;
@@ -81,10 +88,10 @@
 	background-color: black;
 }
 .container-center-img{
-	background-image: url(../img/center1.jpg);
+	background-image: url(../img/fundo-centro.jpg);
 	/*background-color: rgb(155, 145, 143);*/
 	width: 100%;
-	height: 400px;
+	height: 480px;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
@@ -104,6 +111,21 @@
 .container-center{
 	margin-top: 6%;
 	margin-bottom: 6%;
+}
+
+.image-conteiner-center{
+	height: 300px;
+	width:  400px;
+}
+.content-container-center{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.text-about-image-center{
+	color: black;
+	text-align: center;
+	width: 400px;
 }
 /*****************TEXT-CENTER*******************/
 
@@ -161,7 +183,7 @@
 }
 
 .footer-img-contact{
-	background-image: url(../img/footer2.jpg);
+	background-image: url(../img/contact.jpg);
 	/*background-color: rgb(155, 145, 143);*/
 	width: 100%;
 	height: 400px;
@@ -339,10 +361,13 @@ a:hover, a:focus {
 @media(max-width: 1024px)
 {
 .header{
-	background-image: url(../img/1020/painel1020.jpg);
-	height: 380px;
+	/*background-image: url(../img/1020/painel1020.jpg);*/
+	height: 300px;
 	width: 100%;
 }
+.container-painel {
+    width: 50%;
+ }
 .social-footer {
     margin-top: -8%;
 }
@@ -353,7 +378,37 @@ a:hover, a:focus {
     height: 95px;
     padding-top: 3%;
 }
+/*****************TEXT-CENTER*******************/
+.container-center-img {
+	height: 530px;
+}
+.image-conteiner-center {
+    width: 330px;
+}
+.text-about-image-center {
+    width: 290px;
+}
+/*****************TEXT-CENTER*******************/
+}
+@media(max-width: 981px)
+{
+/*****************TEXT-CENTER*******************/
+.container-center-img {
+	height: 1500px;
+	background-image: url(../img/fundo-centro-2000.jpg);
+	background-repeat: repeat;
+}
+.image-conteiner-center {
+    width: 100%;
+}
+.text-about-image-center {
+    width: 100%;
+}
+.content-container-center {
+    width: 50%;
+}
 
+/*****************TEXT-CENTER*******************/
 }
 
 @media(max-width: 768px)
@@ -362,20 +417,28 @@ a:hover, a:focus {
     font-size: 25px;
 }
 .header{
-	background-image: url(../img/768/painel768.jpg);
-	height: 380px;
+	/*background-image: url(../img/768/painel768.jpg);*/
+	height: 290px;
 	width: 100%;
 }
 .logo {
     height: 188px;
-    width: 30%;
-    padding-top: 2%;
-    margin-left: 0%;
+    /*width: 30%;*/
+    /*padding-top: 2%;*/
+    /*margin-left: 0%;*/
 }
+/*****************TEXT-CENTER*******************/
 .text-center-reflection {
     font-size: 25px;
     padding-top: 14%;
 }
+.content-container-center {
+    width: 77%;
+ }
+ .container-center-img {
+    height: 1350px;
+}
+/*****************TEXT-CENTER*******************/
 .footer-text {
 	width: 80%;
 	font-size: 18px;
@@ -503,7 +566,7 @@ a:hover, a:focus {
 }
 /********************MENU-RESPONSIVE*********************/
 .header{
-	background-image: url(../img/425/painel425.jpg);
+	/*background-image: url(../img/425/painel425.jpg);*/
 	/*height: 270px;*/
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -515,8 +578,8 @@ a:hover, a:focus {
 	width: 90%;
 }
 .logo{
-	width: 40%;
-	height: 150px;
+	/*width: 40%;*/
+	/*height: 150px;*/
 	margin-left: 11%;
 }
 section {
@@ -533,7 +596,7 @@ section {
 	width: 90%;
 }
 .footer-img-contact{
-	background-image: url(../img/425/footer3.jpg);
+	background-image: url(../img/425/contact.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
@@ -558,6 +621,9 @@ img{
 	width: 100%;
 	/*height: 300px;*/
 }
+.content-container-center {
+    width: 100%;
+}
 /*.ng-carousel {
     height: 300px;
 }*/
@@ -569,7 +635,7 @@ img{
 	width: 40%;
 }
 .logo {
-    width: 53%;
+    /*width: 53%;*/
 }
 .text-profile-under {
     font-size: 20px;
@@ -579,10 +645,18 @@ img{
 .hide-footer-text{
 	display: none;
 }
+/*****************TEXT-CENTER*******************/
 .text-center-reflection {
     padding-top: 0%;
     font-size: 19px;
 }
+.image-conteiner-center {
+    height: 230px;
+}
+.container-center-img {
+    height: 1255px;
+}
+/*****************TEXT-CENTER*******************/
 }
 
 @media(max-width: 320px)
@@ -598,7 +672,7 @@ h2, .h2 {
     width: 150px;
 }
 .logo {
-    width: 60%;
+    /*width: 60%;*/
 }
 .text-center-reflection {
     font-size: 20px;
