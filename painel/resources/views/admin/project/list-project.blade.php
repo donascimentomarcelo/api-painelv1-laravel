@@ -1,73 +1,79 @@
 @extends('app')
-{!! Html::style('css/style.css') !!}
+
 @section('content')
-<div class="container-fluid">
-	<div class="row">
+
+{!! Html::style('css/style.css') !!}
+
+{!! Html::script('js/angular/lib/loading-bar.js') !!}
+{!! Html::style('js/angular/lib/loading-bar.css') !!}
+
+{!! Html::script('js/angular/lib/pagination/simplePagination.js') !!}
+
+{!! Html::script('js/angular/project/projectListCtrl.js') !!}
+{!! Html::script('js/angular/project/projectAPIService.js') !!}
+
+<div class="container-fluid" ng-app='project'>
+	<div class="row" ng-controller='projectListCtrl'>
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Lista de Projetos</h4></div>
 				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-					<table class="table">
+				<div id="loading-bar-container"></div>
+				<div class="form-group">
+					<input ng-model="search" class="form-control" placeholder="Pesquise pelo nome do projeto...">
+				</div>
+					<table class="table" ng-show='projects.length > 0'>
 						<thead>
 							<tr>
-								<th>Código</th>
-								<th>Nome do Projeto</th>
-								<th>Link</th>
-								<th>Imagens</th>
-								<th>Opções</th>
+								<th class="text-table">Código</th>
+								<th class="text-table">Nome do Projeto</th>
+								<th class="text-table">Link</th>
+								<th class="text-table">Imagens</th>
 							</tr>
-							<tbody>
-								@foreach($projects as $project)
+							<tbody ng-repeat='project in projects | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage |  filter:{name:search}'>
 								<tr>
-									<td>{{$project->id}}</td>
-									<td>{{$project->name}}</td>
-									<td>{{$project->link}}</td>
-									<td>
-										<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#{{$project->id}}">
+									<td class="text-table"><% project.id %></td>
+									<td class="text-table"><% project.name %></td>
+									<td class="text-table"><% project.link %></td>
+									<td class="text-table">
+										<button type="button" class="btn btn-info btn-sm btn-block" data-toggle="collapse" data-target="#<% project.id %>">
 											<span class="glyphicon glyphicon-picture"></span>
 										</button>	
-									</td>
-									<td>
-										<a href="{{route('admin.painel.edit',['id'=>$project->id])}}" class="btn btn-success btn-sm">
-											<span class="glyphicon glyphicon-pencil"></span>
-										</a>
-										<a href="{{route('admin.painel.image.add',['id'=>$project->id])}}" class="btn btn-primary btn-sm">
-											<span class="glyphicon glyphicon-plus"></span>
-										</a>
 									</td>
 								</tr>
 								<tr >
 									<td colspan="5">
-										<div id="{{$project->id}}" class="collapse">
+										<div id="<% project.id %>" class="collapse">
 											<div class="row">
-												@foreach($project->upload as $key)
-												<div class="col-sm-4">
-													<img src="{{$key->way}}{{$key->original_filename}}" class="img-project" alt="">
+												<div class="col-sm-4" ng-repeat='upload in project.upload.data'>
+													<img data-ng-src="<% upload.way + upload.original_filename %>" class="img-project" alt="">
 												</div>
-												@endforeach
 											</div>
 										</div>
 									</td>
 								</tr>
-								@endforeach
 							</tbody>
 						</thead>
 					</table>
-					{!! $projects->render() !!}
+					<div ng-show="projects.length > 0">  
+						<ul class="pagination" ng-show="projects.length > 0">
+							<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+							<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
+								<a href="" ng-click="pagination.toPageId(n)"><% n + 1 %></a>
+							</li>
+							<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+<style>
+	#loading-bar .bar {
+		position: relative;
+		background: #333;
+		height: 7px;
+	}
+</style>
 @endsection

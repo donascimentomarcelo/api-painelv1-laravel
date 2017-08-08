@@ -36,6 +36,7 @@
 
 		Route::get('project/register',['as' => 'painel.project', 'uses' => 'ProjectController@createProject']);
 		Route::post('project/save',['as' => 'painel.create.project', 'uses' => 'ProjectController@saveProject']);
+		Route::get('project/projects',['as' => 'painel.projectView', 'uses' => 'ProjectController@project']);
 		Route::get('project/list',['as' => 'painel.projectlist', 'uses' => 'ProjectController@listProject']);
 		Route::get('project/edit',['as' => 'painel.projectedit', 'uses' => 'ProjectController@editProject']);
 		Route::get('project/edit/{id}',['as' => 'painel.edit', 'uses' => 'ProjectController@edit']);

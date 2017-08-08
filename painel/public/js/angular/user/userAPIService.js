@@ -1,6 +1,15 @@
-angular.module('user').factory('$userAPIService',
-	['$rootScope', '$http' , 'snackbar', 'cfpLoadingBar', '$window',
-			function ($rootScope, $http, snackbar, cfpLoadingBar, $window) {
+angular.module('user')
+.value("config",{
+    // quando estiver em produção
+    // baseUrl : "/api/admin"
+
+    // quando estiver em localhost
+    baseUrl : "/admin"
+    
+})
+.factory('$userAPIService',
+	['$rootScope', '$http' , 'snackbar', 'cfpLoadingBar', '$window', 'config',
+			function ($rootScope, $http, snackbar, cfpLoadingBar, $window, config) {
 	
 				var _validateConfirmPassword = function(data){
 					if(data)
@@ -15,7 +24,7 @@ angular.module('user').factory('$userAPIService',
 					if(parseInt(data.data) === 1)
 					{
 						cfpLoadingBar.complete();
-						$window.location.href = '/admin/painel/list';
+						$window.location.href = config.baseUrl + '/painel/list';
 					}
 					else if(parseInt(data.data) === 3)
 					{
@@ -37,15 +46,19 @@ angular.module('user').factory('$userAPIService',
 				}
 
 				var _saveUser = function(data){
-					return $http.post('/admin/painel/save', data);
+					return $http.post( config.baseUrl + '/painel/save', data);
 				};
 
 				var _updateUser = function(data){
-					return $http.post('/admin/painel/update', data);
+					return $http.post( config.baseUrl + '/painel/update', data);
 				};
 
 				var _listUser = function(){
-					return $http.get('/admin/painel/index');
+					return $http.get( config.baseUrl + '/painel/index');
+				};
+				
+				var _getId = function(id){
+					return $http.get( config.baseUrl + '/painel/edit/' + id)
 				};
 	return {
 		validateConfirmPassword : _validateConfirmPassword,
@@ -58,7 +71,9 @@ angular.module('user').factory('$userAPIService',
 
 		listUser                : _listUser,
 
-		verifyIfExistId         : _verifyIfExistId
+		verifyIfExistId         : _verifyIfExistId,
+
+		getId					: _getId
 	};
 }])
 

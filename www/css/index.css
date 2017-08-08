@@ -1,7 +1,7 @@
 /*****************HEADER*******************/
 .header{
-	/*background-image: url(../img/painel2.jpg);*/
-	background-color: gray;
+	background-image: url(../img/fundo-centro.jpg);
+	/*background-color: gray;*/
 	height: 305px;
 	width: 100%;
 	background-color: gray;
@@ -26,8 +26,9 @@
 }
 .text-initial{
     font-size: 30px;
-    width: 60%;
-    margin-left: 5%;
+    width: 35%;
+    margin-right: auto;
+    margin-left: auto;
     color: #000;
     margin-top: 1%;
     font-family: "Courier New", Courier, monospace;
@@ -36,7 +37,7 @@
 
 /*****************PROFILE*******************/
 .container-profile{
-	text-align: -webkit-center;
+	text-align: center;
 	margin-top: 6%;
 }
 #loading-bar .bar {
@@ -58,8 +59,10 @@
 	font-family: "Times New Roman", Times, serif;
 	color: black;
 	text-align-last: center;
-	font-size: 30px;
+	font-size: 20px;
 	padding-top: 2%;
+	float: right;
+	width: 58%;
 }
 .text-profile-under-one{
 	font-family: "Times New Roman", Times, serif;
@@ -171,7 +174,7 @@
 
 /*****************FOOTER*******************/
 .footer-img{
-	background-image: url(../img/footer.jpg);
+	background-image: url(../img/footer3.jpg);
 	/*background-color: rgb(155, 145, 143);*/
 	width: 100%;
 	height: 375px;
@@ -198,13 +201,13 @@
     position:absolute;
     bottom:-50;
     width:100%;
-    background-color: #9b918f;
+    background-color: #808080;
     height: 150px;
     color: white;
 }
 .footer-logo{
 	height: 127px;
-	width: 7%;
+	width: 9%;
 	padding-top: 1%;
 	margin-left: 2%;
 	float: left;
@@ -360,9 +363,12 @@ a:hover, a:focus {
 
 @media(max-width: 1024px)
 {
+.text-initial{
+	width: 47%;
+}
 .header{
 	/*background-image: url(../img/1020/painel1020.jpg);*/
-	height: 300px;
+	height: 330px;
 	width: 100%;
 }
 .container-painel {
@@ -415,6 +421,7 @@ a:hover, a:focus {
 {
 .text-initial {
     font-size: 25px;
+    width: 55%;
 }
 .header{
 	/*background-image: url(../img/768/painel768.jpg);*/
@@ -441,11 +448,14 @@ a:hover, a:focus {
 /*****************TEXT-CENTER*******************/
 .footer-text {
 	width: 80%;
-	font-size: 18px;
+	/*font-size: 18px;*/
+	font-size: 14px;
 	margin-left: 16%;
+	margin-bottom: 1%;
 }
 .footer {
-    height: 215px;
+    /*height: 215px;*/
+    height: 136px;
 }
 .social-footer{
 	margin-top: 0%;
@@ -456,7 +466,7 @@ a:hover, a:focus {
 	width: 9%;
 }
 .footer-img {
-    background-image: url(../img/768/footer.jpg);
+    background-image: url(../img/footer2000.jpg);
    
 }
 }
@@ -487,11 +497,12 @@ h3, .h3 {
 }
 .text-profile-under{
 	font-size: 19px;
-	width: 95%;
+	width: 98%;
     margin-left: auto;
     margin-right: auto;
     /*padding-top: 1%;*/
     padding-top: 20%;
+    text-align: center;
 }
 .text-profile-under-none{
 	display: none;
@@ -593,7 +604,7 @@ section {
 	display: none;
 }
 .text-col{
-	width: 90%;
+	/*width: 90%;*/
 }
 .footer-img-contact{
 	background-image: url(../img/425/contact.jpg);
@@ -610,6 +621,7 @@ section {
 .footer-img {
     /*height: 250px;*/
 	background-position: 50% 0 !important;
+	background-image: url(../img/fundo-centro.jpg);
 }
 .text-profile-under-one{
 	padding-top: 35px;
@@ -627,6 +639,9 @@ img{
 /*.ng-carousel {
     height: 300px;
 }*/
+.footer {
+    height: 215px;
+}
 }
 @media(max-width: 375px)
 {
@@ -634,14 +649,7 @@ img{
 .social-footer {
 	width: 40%;
 }
-.logo {
-    /*width: 53%;*/
-}
-.text-profile-under {
-    font-size: 20px;
-    width: 89%;
-    float: right !important;
-}
+
 .hide-footer-text{
 	display: none;
 }
@@ -657,6 +665,13 @@ img{
     height: 1255px;
 }
 /*****************TEXT-CENTER*******************/
+.text-profile-under-one {
+    width: 50%;
+ }
+ .footer-img-contact{
+	background-image: url(../img/425/contato.jpg);
+}
+
 }
 
 @media(max-width: 320px)

@@ -43,7 +43,7 @@ class ProjectsRepositoryEloquent extends BaseRepository implements ProjectsRepos
 
      public function edit($id)
     {
-        $return = $this->model::with(['upload'])->where(['id'=> $id])->first();
+        $return = $this->model->with(['upload'])->where(['id'=> $id])->first();
         if($return)
         {
             // O parserResult adiciona subnivel data: ao objeto

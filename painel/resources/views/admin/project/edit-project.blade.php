@@ -58,7 +58,7 @@
 								</div>
 								<div class="form-group">
 									<button class="btn btn-info" ng-click="addImage()">
-										<span class="glyphicon glyphicon-plus"></span> Adicione imagens
+										<span class="glyphicon glyphicon-plus"></span> Adicione as imagens
 									</button>
 								</div>
 							</div>
@@ -67,7 +67,7 @@
 					<!-- FORMULARIO DE ADICIONAR IMAGEM -->
 
 					<!-- lISTAR IMAGENS DO PROJETO -->
-					<div class="panel panel-default" ng-show="project.upload.data; containerImg">
+					<div class="panel panel-default" ng-show="project.upload.data.length > 0">
 						<div class="panel-heading">
 							<h4> Imagens do projeto </h4>
 						</div>
@@ -87,13 +87,34 @@
 													</button>
 												</div>
 												<div class="btn-group" role="group">
-													<button class="btn btn-danger btn-sm btn-block" ng-click="deleteImage(p)">
+													<button class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#confirmDeleteImage">
 														<span class="glyphicon glyphicon-trash"></span>
 													</button>
 												</div>
 											</div>
 										</div>
 									</form>
+									<!-- CONFIRM DELETE-->
+									<div id="confirmDeleteImage" class="modal fade" role="dialog">
+										<div class="modal-dialog">
+											<!-- Modal content-->
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+													<h4 class="modal-title">Deseja realmente excluir essa imagem?</h4>
+												</div>
+												<div class="modal-body">
+													<p>Ao excluir a imagem a mesma não poderá ser recuperada.</p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+													<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteImage(p)">Confirmar</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- CONFIRM DELETE-->
 								</div>
 							</div>
 						</div>

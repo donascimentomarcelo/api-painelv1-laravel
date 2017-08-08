@@ -25,7 +25,7 @@ angular.module('user', ['cfp.loadingBar', 'angular.snackbar', 'simplePagination'
 	$scope.edit =  function(data){
 		var id = data.id;
 		cfpLoadingBar.start();
-		var promise = $http.get('/admin/painel/edit/' + id);
+		var promise = $userAPIService.getId(id);
 			promise.then(function(data){
 				cfpLoadingBar.complete();
 				$scope.user = data.data.data;
@@ -42,5 +42,5 @@ angular.module('user', ['cfp.loadingBar', 'angular.snackbar', 'simplePagination'
 		delete $scope.user;
 		delete $scope.cod;
 	}
-
+// Jynx Maze
 }]);

@@ -40,6 +40,9 @@
 .alert-del-img{
     text-align: center;
 }
+.text-table{
+    text-align: center;
+}
 #loading-bar .bar {
     position: relative;
     background: #333;

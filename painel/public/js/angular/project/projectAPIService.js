@@ -1,6 +1,15 @@
-angular.module('project').factory('$projectAPIService',
-	 ['$rootScope', '$http', 'snackbar', 'cfpLoadingBar', '$window', 'Upload', 
-	 		function($rootScope, $http, snackbar, cfpLoadingBar, $window, Upload){
+angular.module('project')
+.value("config",{
+    // quando estiver em produção
+    // baseUrl : "/api/admin"
+
+    // quando estiver em localhost
+    baseUrl : "/admin"
+    
+})
+.factory('$projectAPIService',
+	 ['$rootScope', '$http', 'snackbar', 'cfpLoadingBar', '$window', 'Upload', 'config',
+	 		function($rootScope, $http, snackbar, cfpLoadingBar, $window, Upload, config){
 
 			 var _verifyDataProject = function(data){
 			 	if(parseInt(data.data.status) === 1)
@@ -23,7 +32,7 @@ angular.module('project').factory('$projectAPIService',
 
 			var _saveProject = function(project){
 				return Upload.upload({
-						url: '/admin/project/save',
+						url: config.baseUrl + '/project/save',
 						data: {
 
 							file         : project.file, 
@@ -38,7 +47,7 @@ angular.module('project').factory('$projectAPIService',
 
 			var _updateProject = function(project){
 				return Upload.upload({
-						url: '/admin/project/update',
+						url: config.baseUrl + '/project/update',
 						data: {
 
 							'name'       : project.name, 
@@ -53,7 +62,7 @@ angular.module('project').factory('$projectAPIService',
 
 			var _updateImage = function(data){
 				return Upload.upload({
-                        url: '/admin/image/update',
+                        url: config.baseUrl + '/image/update',
                         data: {
                             file               : data.file,
                             'id'               : data.id,
@@ -64,7 +73,7 @@ angular.module('project').factory('$projectAPIService',
 
 			var _addImage = function(data){
 				return Upload.upload({
-                        url: '/admin/image/save',
+                        url: config.baseUrl + '/image/save',
                         data: {
                             file               : data.file,
                             'id'               : data.id
@@ -94,20 +103,24 @@ angular.module('project').factory('$projectAPIService',
 			};
 
 			var _getEdit = function(data){
-				return $http.get('/admin/project/edit/' + data.id);
+				return $http.get( config.baseUrl + '/project/edit/' + data.id);
 			};
 
 			var _getEditImage = function(data){
-				return $http.get('/admin/image/edit/' + data.id);
+				return $http.get( config.baseUrl + '/image/edit/' + data.id);
 			};
 
 			var _getDeleteImage = function(data){
-				return $http.post('/admin/image/destroy/' + data.id);
+				return $http.post( config.baseUrl + '/image/destroy/' + data.id);
 			};
 
 			var _updateOrder = function(data){
 				
-				return $http.post('/admin/image/updateOrder', data);
+				return $http.post( config.baseUrl + '/image/updateOrder', data);
+			};
+
+			var _listProjects = function(){
+				return $http.get( config.baseUrl + '/project/list');
 			};
 
 	 return {
@@ -130,7 +143,9 @@ angular.module('project').factory('$projectAPIService',
 
 		getDeleteImage    : _getDeleteImage,
 
-		updateOrder		  : _updateOrder
+		updateOrder		  : _updateOrder,
+
+		listProjects      : _listProjects
 	 };
 
 }])

@@ -58,11 +58,14 @@ class ProjectController extends Controller
         return $response;
     }
 
+    public function project()
+    {
+        return view('admin.project.list-project');
+    }
+
     public function listProject()
     {
-        $projects = $this->projectRepository->skipPresenter()->paginate(5);
-
-        return view('admin.project.list-project', compact('projects'));
+        return $this->projectRepository->all();        
     }
 
     public function edit($id)
