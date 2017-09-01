@@ -2,6 +2,9 @@
 
 @section('content')
 
+{!! Html::style('css/style.css') !!}
+{!! Html::style('css/altered.css') !!}
+
 {!! Html::script('js/angular/lib/loading-bar.js') !!}
 {!! Html::style('js/angular/lib/loading-bar.css') !!}
 
@@ -9,11 +12,11 @@
 {!! Html::script('js/angular/user/userAPIService.js') !!}
 {!! Html::script('js/angular/lib/pagination/simplePagination.js') !!}
 
-<div class="container-fluid" ng-app="user">
+<div class="container-fluid align-div-principal" ng-app="user">
 	<div class="row" ng-controller="listUserCtrl">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 col-md-offset-2 align-div-button">
 			<div class="panel panel-default">
-				<div class="panel-heading">Lista de usuário</div>
+				<div class="panel-heading"><h4>Lista de usuário</h4></div>
 				<div class="panel-body">
 					<div id="loading-bar-container"></div>
 					<form name="searchById" ng-show="users.length > 0">

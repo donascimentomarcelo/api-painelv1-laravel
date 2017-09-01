@@ -3,6 +3,7 @@
 @section('content')
 
 {!! Html::style('css/style.css') !!}
+{!! Html::style('css/altered.css') !!}
 
 {!! Html::script('js/angular/lib/loading-bar.js') !!}
 {!! Html::style('js/angular/lib/loading-bar.css') !!}
@@ -14,9 +15,9 @@
 {!! Html::script('js/angular/project/projectAPIService.js') !!}
 {!! Html::script('js/angular/project/projectVerifyAPIService.js') !!}
 
-<div class="container-fluid" ng-app="project">
+<div class="container-fluid align-div-principal" ng-app="project" >
 	<div class="row" ng-controller="projectCtrl">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 col-md-offset-2 align-div-button">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Gerenciar Imagens do Projeto</h4></div>
 				<div class="panel-body">
@@ -27,7 +28,7 @@
 								<div class="col-md-12">
 								<label for="">Código do Projeto</label>
 									<div class="input-group">
-										<input type="number" class="form-control" min="0" ng-model="cod.id" ng-required="true">
+										<input type="number" class="form-control" min="0" ng-model="cod.id" ng-required="true" ng-change="findProjecChangeInput(cod)">
 										<span class="input-group-btn">
 											<button class="btn btn-primary"  type="button" ng-click="edit(cod)" ng-disabled="searchById.$invalid">
 												<span class="glyphicon glyphicon-search"></span>
@@ -186,6 +187,9 @@
 		position: relative;
 		background: #333;
 		height: 7px;
+	}
+	.align-div-button{
+		margin-bottom: 5%;
 	}
 </style>
 @endsection

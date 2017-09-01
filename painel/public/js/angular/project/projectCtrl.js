@@ -44,7 +44,9 @@ angular.module('project',['cfp.loadingBar', 'angular.snackbar', 'ngFileUpload'])
         });
     };
 
-
+    $rootScope.findProjecChangeInput = function(data){
+        $rootScope.edit(data);
+    }
 
     $rootScope.edit = function(data){
         cfpLoadingBar.start();

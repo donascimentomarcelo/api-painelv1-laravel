@@ -1,0 +1,17 @@
+.align-div-principal{
+	overflow: auto; 
+	height: 100%;
+}
+
+/**CONTENT**/
+@media (min-width: 992px){
+.col-md-8 {
+    width: 100%;
+}
+.col-md-offset-2 {
+    margin-left: 0 !important;
+    padding-left: 0px;
+    padding-right: 0px;
+}    
+}
+/**CONTENT**/
