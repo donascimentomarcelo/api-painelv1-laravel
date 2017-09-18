@@ -9,27 +9,21 @@ use Illuminate\Support\Facades\Validator;
 use Painel\Models\Uploads;
 use Painel\Repositories\ProjectsRepository;
 use Painel\Repositories\UploadsRepository;
-
+use Painel\Services\UploadService;
 
 
 class ProjectService 
 {
   private $uploadsRepository;
   private $projectsRepository;
+  private $uploadService;
 
-  public function __construct(UploadsRepository $uploadsRepository, ProjectsRepository $projectsRepository)
+  public function __construct(UploadsRepository $uploadsRepository, ProjectsRepository $projectsRepository, UploadService $uploadService)
   {
     $this->uploadsRepository = $uploadsRepository;
     $this->projectsRepository = $projectsRepository;
+    $this->uploadService = $uploadService;
   }
-
-
-
-    public function way()
-    {
-        // return 'http://marceloprogrammer.com/api/uploads/project/';
-        return 'http://localhost:8000/uploads/project/';
-    }
 
     public function save($files, $id)
     {
@@ -38,7 +32,8 @@ class ProjectService
           $id = $id->id;
         }
 
-        $arr = $this->doUpload($files);
+        $entityManager = new Uploads();
+        $arr = $this->uploadService->doUpload($files, $entityManager);
         foreach($arr as $entry)
         {
           $entry->projects_id = $id;
@@ -54,9 +49,10 @@ class ProjectService
 
     public function updateImage($files, $id, $dataImage)
     {
-         $this->destroyImageRepository($dataImage);
+         $this->uploadService->destroyImageInStorage($dataImage);
 
-         $arr = $this->doUpload($files);
+         $entityManager = new Uploads();
+         $arr = $this->uploadService->doUpload($files, $entityManager);
 
          foreach ($arr as $key) {
           $key = array(
@@ -77,7 +73,7 @@ class ProjectService
 
       try {
 
-        $this->destroyImageRepository($upload);
+        $this->uploadService->destroyImageInStorage($upload);
 
         Uploads::where('original_filename', $upload->original_filename)->delete();
 
@@ -89,62 +85,6 @@ class ProjectService
       
       }
 
-    }
-
-    public function destroyImageRepository($image)
-    {
-      File::delete('uploads/project/'.$image->original_filename);
-
-      return;
-    }
-
-    public function doUpload($files)
-    {
-        $file_count = count($files);
-        $uploadcount = 0;
-          foreach($files as $file) {
-            
-              $destinationPath = 'uploads/project';
-              $filename = $file->getClientOriginalName();
-
-              $filename = $this->renameFile($filename);
-              $upload_success = $file->move($destinationPath, $filename);
-              
-              $uploadcount ++;
-
-              $extension = $file->getClientOriginalExtension();
-              $entry = new Uploads();
-              $entry->mime = $file->getClientMimeType();
-              $entry->original_filename = $filename;
-              $entry->filename = $file->getFilename().'.'.$extension;
-              
-              $entry->way = $this->way();
-
-              $entry->order = $uploadcount;
-
-
-              $arr[] = $entry;
-              
-          }
-      
-        return $arr;
-    }
-
-
-    public function renameFile($filename)
-    {
-      $file_name_pieces = explode(".",  $filename);
-      $length = 20;
-      $key = '';
-      $keys = array_merge(range(0, 9), range('a', 'z'), range(111, 999));
-          for ($i = 0; $i < $length; $i++) 
-          {
-            $key .= $keys[array_rand($keys)];
-          }
-      $new_file_name = $key;
-      $newname = $new_file_name.'.'.$file_name_pieces[1];
-
-      return $newname;
     }
 
     public function validateFiles($files)

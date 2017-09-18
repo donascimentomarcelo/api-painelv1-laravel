@@ -8,16 +8,12 @@
 {!! Html::script('js/angular/lib/loading-bar.js') !!}
 {!! Html::style('js/angular/lib/loading-bar.css') !!}
 
-{!! Html::script('js/angular/lib/pagination/simplePagination.js') !!}
 
-{!! Html::script('js/angular/project/projectListCtrl.js') !!}
-{!! Html::script('js/angular/project/projectAPIService.js') !!}
-
-<div class="container-fluid align-div-principal" ng-app='project'>
-	<div class="row" ng-controller='projectListCtrl'>
+<div class="container-fluid align-div-principal">
+	<div class="row">
 		<div class="col-md-8 col-md-offset-2 align-div-button">
 			<div class="panel panel-default">
-				<div class="panel-heading"><h4>Lista de Projetos</h4></div>
+				<div class="panel-heading"><h4>Lista de Promoções</h4></div>
 				<div class="panel-body">
 				<div id="loading-bar-container"></div>
 				<div class="form-group">
@@ -31,11 +27,11 @@
 								<th class="text-table">Link</th>
 								<th class="text-table">Imagens</th>
 							</tr>
-							<tbody ng-repeat='project in projects | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage |  filter:{name:search}'>
+							<tbody>
 								<tr>
-									<td class="text-table"><% project.id %></td>
-									<td class="text-table"><% project.name %></td>
-									<td class="text-table"><% project.link %></td>
+									<td class="text-table"></td>
+									<td class="text-table"></td>
+									<td class="text-table"></td>
 									<td class="text-table">
 										<button type="button" class="btn btn-info btn-sm btn-block" data-toggle="collapse" data-target="#<% project.id %>">
 											<span class="glyphicon glyphicon-picture"></span>

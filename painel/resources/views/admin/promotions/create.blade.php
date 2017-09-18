@@ -5,21 +5,13 @@
 {!! Html::style('css/style.css') !!}
 {!! Html::style('css/altered.css') !!}
 
-{!! Html::script('js/angular/lib/loading-bar.js') !!}
-{!! Html::style('js/angular/lib/loading-bar.css') !!}
 
-{!! Html::script('js/angular/lib/upload/ng-file-upload-shim.js') !!}
-{!! Html::script('js/angular/lib/upload/ng-file-upload.js') !!}
 
-{!! Html::script('js/angular/project/projectCtrl.js') !!}
-{!! Html::script('js/angular/project/projectAPIService.js') !!}
-{!! Html::script('js/angular/project/projectVerifyAPIService.js') !!}
-
-<div class="container-fluid align-div-principal" ng-app="project">
-	<div class="row" ng-controller="projectCtrl">
+<div class="container-fluid align-div-principal">
+	<div class="row">
 		<div class="col-md-8 col-md-offset-2 align-div-button">
 			<div class="panel panel-default">
-				<div class="panel-heading"><h4>Criar Projeto</h4></div>
+				<div class="panel-heading"><h4>Criar Promoções</h4></div>
 				<div class="panel-body">
 				<form name="searchById">
 						<div class="form-group">

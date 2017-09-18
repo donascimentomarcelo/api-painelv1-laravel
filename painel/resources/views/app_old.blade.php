@@ -29,7 +29,68 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 				<a class="navbar-brand" href="http://marceloprogrammer.com">Marcelo Programmer</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="nav navbar-nav">
+				@if(Auth::user())
+					<ul class="nav navbar-nav">
+						<li><a href="{{route('admin.painel.index')}}">Home</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuário<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{route('admin.painel.user') }}">Criar</a></li>
+								<li><a href="{{route('admin.painel.userlist') }}">Exibir</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projetos<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{route('admin.painel.project') }}">Criar</a></li>
+								<li><a href="{{route('admin.painel.projectView') }}">Exibir</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Image<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{route('admin.painel.projectedit') }}">Gerenciar</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Publicações<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{route('admin.painel.news.create') }}">Enviar</a></li>
+								<li><a href="{{route('admin.painel.news.list') }}">Exibir</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">E-mails<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								
+								<li><a href="{{route('admin.painel.emails.list') }}">Exibir</a></li>
+							</ul>
+						</li>
+					</ul>
+				@endif
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					@if(!auth()->guest())
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{ url('/auth/logout') }}">Sair</a></li>
+							</ul>
+						</li>
+					@endif
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -49,7 +110,7 @@
 					<li class='last'><a href="{{route('admin.painel.projectView') }}"><span>Exibir</span></a></li>
 				</ul>
 			</li>
-			<li class='has-sub'><a href='#'><span>Imagem</span></a>
+			<li class='has-sub'><a href='#'><span>Image</span></a>
 				<ul>
 					<li class='last'><a href="{{route('admin.painel.projectedit') }}"><span>Gerenciar</span></a></li>
 				</ul>
@@ -63,12 +124,6 @@
 			<li class='has-sub'><a href='#'><span>E-mails</span></a>
 				<ul>
 					<li class='last'><a href="{{route('admin.painel.emails.list') }}"><span>Exibir</span></a></li>
-				</ul>
-			</li>
-			<li class='has-sub'><a href='#'><span>Promoções</span></a>
-				<ul>
-					<li><a href="{{route('admin.painel.promotions.create') }}"><span>Criar</span></a></li>
-					<li class='last'><a href="{{route('admin.painel.promotions.list') }}"><span>Exibir</span></a></li>
 				</ul>
 			</li>
 			<li class='has-sub'><a href='#'><span>{{ auth()->user()->name }} </span></a>

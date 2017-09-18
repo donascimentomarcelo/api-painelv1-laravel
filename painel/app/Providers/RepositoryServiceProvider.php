@@ -46,5 +46,13 @@ class RepositoryServiceProvider extends ServiceProvider
                 "Painel\Repositories\NewsRepository",
                 "Painel\Repositories\NewsRepositoryEloquent"
             );
+            $this->app->bind(
+                "Painel\Repositories\PromotionsRepository",
+                "Painel\Repositories\PromotionsRepositoryEloquent"
+            );
+            $this->app->bind(
+                "Painel\Repositories\UploadspromotionsRepository",
+                "Painel\Repositories\UploadspromotionsRepositoryEloquent"
+            );
     }
 }

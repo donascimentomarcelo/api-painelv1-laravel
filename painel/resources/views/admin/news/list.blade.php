@@ -1,11 +1,15 @@
 @extends('app')
 
 @section('content')
-<div class="container-fluid">
+
+{!! Html::style('css/style.css') !!}
+{!! Html::style('css/altered.css') !!}
+
+<div class="container-fluid align-div-principal">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 col-md-offset-2 align-div-button">
 			<div class="panel panel-default">
-				<div class="panel-heading">Lista de publicações</div>
+				<div class="panel-heading"><h4>Lista de publicações</h4></div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">

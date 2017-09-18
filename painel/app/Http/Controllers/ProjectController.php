@@ -10,18 +10,21 @@ use Painel\Http\Requests\ImageRequest;
 use Painel\Repositories\ProjectsRepository;
 use Painel\Repositories\UploadsRepository;
 use Painel\Services\ProjectService;
+use Painel\Services\UploadService;
 
 class ProjectController extends Controller
 {  
     private $projectService;
     private $projectRepository;
     private $uploadRepository;
+    private $uploadService;
 
-    public function __construct(ProjectService $projectService, ProjectsRepository $projectRepository, UploadsRepository $uploadRepository)
+    public function __construct(ProjectService $projectService, ProjectsRepository $projectRepository, UploadsRepository $uploadRepository, UploadService $uploadService)
     {
         $this->projectService = $projectService;
         $this->projectRepository = $projectRepository;
         $this->uploadRepository = $uploadRepository;
+        $this->uploadService = $uploadService;
     }
      public function createProject()
     {
@@ -32,15 +35,16 @@ class ProjectController extends Controller
     {
         $files = Input::file('file');
         return $this->projectService->validateProject($request->all());
-        $validator = $this->projectService->validateFiles($files);
-        if($validator->fails()){
+        $validator = $this->uploadService->validateFiles($files);
+        if($validator->fails())
+        {
             $error['message'] = 'Só serão aceitas imagens no formato jpg, jpeg e png.';
             $error['status'] = 333;
             return $error;
         }
 
         $id = $this->projectRepository->skipPresenter()->create($request->all());
-        $response = $this->projectService->save($files, $id);
+        $response = $this->uploadService->save($files, $id);
         return json_encode($response);
     }
 

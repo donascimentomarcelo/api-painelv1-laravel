@@ -1,9 +1,13 @@
 @extends('app')
-{!! Html::style('css/style.css') !!}
+
 @section('content')
-<div class="container-fluid">
+
+{!! Html::style('css/style.css') !!}
+{!! Html::style('css/altered.css') !!}
+
+<div class="container-fluid align-div-principal">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 col-md-offset-2 align-div-button">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>Editar Publicação: {{$news->title}}</h4></div>
 				<div class="panel-body">

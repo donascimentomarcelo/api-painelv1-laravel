@@ -25,7 +25,7 @@
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 	Route::group(['prefix'=>'admin', 'middleware'=>'verify', 'as'=>'admin.'],function(){
-	
+		
 		Route::get('home',['as' => 'painel.index', 'uses' => 'PainelController@index']);
 		Route::get('painel/register',['as' => 'painel.user', 'uses' => 'PainelController@createUser']);
 		Route::post('painel/save',['as' => 'painel.create.user', 'uses' => 'PainelController@saveUser']);
@@ -67,6 +67,12 @@
 
 		Route::get('emails/list',['as' => 'painel.emails.list', 'uses' => 'EmailController@show']);
 
+		Route::get('promotions/list',['as' => 'painel.promotions.list', 'uses' => 'PromotionsController@index']);
+		Route::get('promotions/store',['as' => 'painel.promotions.store', 'uses' => 'PromotionsController@store']);
+		Route::get('promotions/show',['as' => 'painel.promotions.show', 'uses' => 'PromotionsController@show']);
+		Route::post('promotions/create',['as' => 'painel.promotions.create', 'uses' => 'PromotionsController@create']);
+		Route::post('promotions/update',['as' => 'painel.promotions.update', 'uses' => 'PromotionsController@update']);
+		Route::post('promotions/delete',['as' => 'painel.promotions.delete', 'uses' => 'PromotionsController@delete']);
 	});
 	// Route::get('email/send/multiple',['as' => 'email.send', 'uses' => 'EmailController@sendEmail']);
 	

@@ -8,26 +8,29 @@ use Illuminate\Support\Facades\Mail;
 use Painel\Models\News;
 use Painel\Repositories\NewsRepository;
 use Painel\Services\ProjectService;
+use Painel\Services\UploadService;
 
 class NewsService 
 {
 	private $newsRepository;
 	private $projectService;
+	private $uploadService;
 
-	public function __construct(NewsRepository $newsRepository, ProjectService $projectService)
+	public function __construct(NewsRepository $newsRepository, ProjectService $projectService, UploadService $uploadService)
 	{
 		$this->newsRepository = $newsRepository;
 		$this->projectService = $projectService;
+		$this->uploadService = $uploadService;
 	}
 
 	public function createNews($request)
 	{
-		
 		$files = Input::file('images');
 
 		if($files[0] != null)
 		{
-			$returnFiles = $this->doUpload($files);
+			$entityManager = new News();
+			$returnFiles = $this->uploadService->doUpload($files, $entityManager);
 
 			foreach ($returnFiles as $entry) 
 			{
@@ -35,6 +38,8 @@ class NewsService
 				$entry->description = $request['description'];
 				$entry->subject = $request['subject'];
 			}
+			unset($entry['order']);
+			// Unset exclui a coluna order do array retornado do metodo doUpload
 
 			$entry->save();
 
@@ -59,10 +64,10 @@ class NewsService
 			
 				if(!empty($dataFile['original_filename']))
 				{
-					$this->destroyImageRepository($dataFile);
+					$this->uploadService->destroyImageInStorage($dataFile);
 				}
-
-			$entrys = $this->doUpload($files);
+			$entityManager = new News();
+			$entrys = $this->uploadService->doUpload($files, $entityManager);
 			
 			foreach ($entrys as $entry) {	
 				$arr = array(
@@ -88,43 +93,10 @@ class NewsService
 
 	public function destroyImageRepository($dataFile)
     {
-      File::delete('uploads/news/'.$dataFile['original_filename']);
+      File::delete('uploads/'.$dataFile['original_filename']);
 
       return;
     }
 
-	public function wayNews()
-	{
-		return 'http://marceloprogrammer.com/api/uploads/news/';
-        // return 'http://localhost:8000/uploads/news/';
-	}
-
-	public function doUpload($files)
-    {
-        $file_count = count($files);
-        $uploadcount = 0;
-          foreach($files as $file) {
-            
-              $destinationPath = 'uploads/news';
-              $filename = $file->getClientOriginalName();
-
-              $filename = $this->projectService->renameFile($filename);
-              $upload_success = $file->move($destinationPath, $filename);
-              
-              $uploadcount ++;
-
-              $extension = $file->getClientOriginalExtension();
-              $entry = new News();
-              $entry->mime = $file->getClientMimeType();
-              $entry->original_filename = $filename;
-              $entry->filename = $file->getFilename().'.'.$extension;
-              
-              $entry->way = $this->wayNews();
-
-              $arr[] = $entry;
-              
-          }
-      
-        return $arr;
-    }
+	
 }
