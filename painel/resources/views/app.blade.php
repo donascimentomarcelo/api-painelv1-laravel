@@ -67,7 +67,7 @@
 			</li>
 			<li class='has-sub'><a href='#'><span>Promoções</span></a>
 				<ul>
-					<li><a href="{{route('admin.painel.promotions.create') }}"><span>Criar</span></a></li>
+					<li><a href="{{route('admin.painel.promotions.store') }}"><span>Criar</span></a></li>
 					<li class='last'><a href="{{route('admin.painel.promotions.list') }}"><span>Exibir</span></a></li>
 				</ul>
 			</li>
